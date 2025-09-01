@@ -202,6 +202,8 @@ Devvit.addCustomPostType({
         setGameStatus('lost');
       }
     };
+    
+
 
     const walkAway = () => {
       setGameStatus('walked');
@@ -303,13 +305,13 @@ Devvit.addCustomPostType({
           </text>
           <vstack gap="small" width="100%">
             {currentQ.options.map((option, index) => (
-              <button
-                key={index.toString()}
-                appearance="primary"
-                onPress={() => answerQuestion(index)}
-                width="100%"
-                size="small"
-              >
+                              <button
+                  key={index.toString()}
+                  appearance="primary"
+                  onPress={() => answerQuestion(index)}
+                  width="100%"
+                  size="small"
+                >
                 {String.fromCharCode(65 + index)}. {option}
               </button>
             ))}
