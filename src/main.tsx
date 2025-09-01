@@ -3,6 +3,7 @@ import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 
 Devvit.configure({
   redditAPI: true,
+  redis: true,
 });
 
 // Game constants
@@ -114,11 +115,11 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
   const { reddit } = context;
   const subreddit = await reddit.getCurrentSubreddit();
   const post = await reddit.submitPost({
-    title: "🎯 Who Wants to Be a Redditionaire? - Test Your Knowledge!",
+    title: "Who Wants to Be a Redditionaire? - Test Your Knowledge!",
     subredditName: subreddit.name,
     preview: (
       <vstack height="100%" width="100%" alignment="middle center">
-        <text size="large">🎯 Redditionaire Game Loading...</text>
+        <text size="large">Redditionaire Game Loading...</text>
       </vstack>
     ),
   });
@@ -128,13 +129,13 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
 
 // Add a menu item to the subreddit menu for instantiating the new experience post
 Devvit.addMenuItem({
-  label: "🎯 Start Redditionaire Game",
+  label: "Start Redditionaire Game",
   location: "subreddit",
   forUserType: "moderator",
   onPress: async (_event, context) => {
     const { reddit, ui } = context;
     ui.showToast(
-      "🎯 Starting Redditionaire game - you'll be redirected to the game post!"
+      "Starting Redditionaire game - you'll be redirected to the game post!"
     );
 
     const post = await createPost(context);
@@ -163,6 +164,9 @@ Devvit.addCustomPostType({
     const [phoneFriend, setPhoneFriend] = useState(true);
     const [usedLifelines, setUsedLifelines] = useState<string[]>([]);
     const [showWalkAway, setShowWalkAway] = useState(false);
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
+    const [showHowToPlay, setShowHowToPlay] = useState(false);
+    const [leaderboardData, setLeaderboardData] = useState<Array<{userId: string, score: number}>>([]);
 
     const startGame = () => {
       setCurrentQuestion(0);
@@ -173,6 +177,8 @@ Devvit.addCustomPostType({
       setPhoneFriend(true);
       setUsedLifelines([]);
       setShowWalkAway(false);
+      setShowLeaderboard(false);
+      setShowHowToPlay(false);
     };
 
     const answerQuestion = (selectedAnswer: number) => {
@@ -202,8 +208,6 @@ Devvit.addCustomPostType({
         setGameStatus('lost');
       }
     };
-    
-
 
     const walkAway = () => {
       setGameStatus('walked');
@@ -236,11 +240,35 @@ Devvit.addCustomPostType({
       setPhoneFriend(true);
       setUsedLifelines([]);
       setShowWalkAway(false);
+      setShowLeaderboard(false);
+      setShowHowToPlay(false);
+    };
+
+    const handleShowLeaderboard = () => {
+      setLeaderboardData([
+        { userId: "user1", score: 1000000 },
+        { userId: "user2", score: 850000 },
+        { userId: "user3", score: 600000 },
+        { userId: "user4", score: 400000 },
+        { userId: "user5", score: 250000 },
+      ]);
+      setShowLeaderboard(true);
+      setShowHowToPlay(false);
+    };
+
+    const handleShowHowToPlay = () => {
+      setShowHowToPlay(true);
+      setShowLeaderboard(false);
+    };
+
+    const handleBackToStart = () => {
+      setShowLeaderboard(false);
+      setShowHowToPlay(false);
     };
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="start">💰 Money Ladder</text>
+        <text size="small" weight="bold" alignment="start">Money Ladder</text>
         <vstack gap="small" width="100%">
           {MONEY_LADDER.map((rung, index) => (
             <hstack 
@@ -305,13 +333,13 @@ Devvit.addCustomPostType({
           </text>
           <vstack gap="small" width="100%">
             {currentQ.options.map((option, index) => (
-                              <button
-                  key={index.toString()}
-                  appearance="primary"
-                  onPress={() => answerQuestion(index)}
-                  width="100%"
-                  size="small"
-                >
+              <button
+                key={index.toString()}
+                appearance="primary"
+                onPress={() => answerQuestion(index)}
+                width="100%"
+                size="small"
+              >
                 {String.fromCharCode(65 + index)}. {option}
               </button>
             ))}
@@ -323,8 +351,8 @@ Devvit.addCustomPostType({
     const renderGameOver = () => (
       <vstack gap="medium" width="100%" alignment="center">
         <text size="xlarge" weight="bold">
-          {gameStatus === 'won' ? '🎉 CONGRATULATIONS! 🎉' : 
-           gameStatus === 'lost' ? '❌ Game Over!' : '🚶 Walked Away!'}
+          {gameStatus === 'won' ? 'CONGRATULATIONS!' : 
+           gameStatus === 'lost' ? 'Game Over!' : 'Walked Away!'}
         </text>
         <text size="large">
           {gameStatus === 'won' ? `You won $1,000,000!` :
@@ -339,7 +367,7 @@ Devvit.addCustomPostType({
 
     const renderWalkAwayPrompt = () => (
       <vstack gap="medium" width="100%" alignment="center">
-        <text size="large" weight="bold">🎯 Milestone Reached!</text>
+        <text size="large" weight="bold">Milestone Reached!</text>
         <text size="medium">
           You've secured {MONEY_LADDER[currentQuestion].amount}!
         </text>
@@ -355,24 +383,83 @@ Devvit.addCustomPostType({
       </vstack>
     );
 
-          return (
-        <vstack height="100%" width="100%" gap="medium">
-          {/* Header */}
-          <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
-            <text size="medium" weight="bold">🎯 Redditionaire Game</text>
-          </hstack>
+    const renderLeaderboard = () => (
+      <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
+        <text size="xlarge" weight="bold" alignment="center">
+          Leaderboard
+        </text>
+        <vstack gap="small" width="100%" maxHeight="60%">
+          {leaderboardData.map((entry, index) => (
+            <hstack key={entry.userId} width="100%" padding="small" backgroundColor="#F8F8F8" cornerRadius="small">
+              <text size="medium" weight="bold" width="40px">#{index + 1}</text>
+              <text size="medium" width="60%">Player {entry.userId}</text>
+              <text size="medium" weight="bold" color="#FFD700">${entry.score.toLocaleString()}</text>
+            </hstack>
+          ))}
+        </vstack>
+        <button appearance="primary" onPress={handleBackToStart}>
+          Back to Start
+        </button>
+      </vstack>
+    );
+
+    const renderHowToPlay = () => (
+      <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
+        <text size="xlarge" weight="bold" alignment="center">
+          How to Play
+        </text>
+        <vstack gap="small" width="100%" maxHeight="60%">
+          <text size="medium" weight="bold">Objective:</text>
+          <text size="small">Answer 12 questions correctly to win $1,000,000!</text>
           
-                    {gameStatus === 'waiting' && (
-            <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
-              <text size="xlarge" weight="bold" alignment="center">
-                🎯 Who Wants to Be a Redditionaire?
-              </text>
-              <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
-              <button appearance="primary" onPress={startGame} size="large">
-                🚀 Start Game
+          <text size="medium" weight="bold">Money Ladder:</text>
+          <text size="small">• Each correct answer moves you up the money ladder</text>
+          <text size="small">• Milestone questions (★) let you walk away with guaranteed money</text>
+          
+          <text size="medium" weight="bold">Lifelines:</text>
+          <text size="small">• 50:50 - Eliminates two wrong answers</text>
+          <text size="small">• Ask Audience - Shows audience poll results</text>
+          <text size="small">• Phone a Friend - Get a hint from a friend</text>
+          
+          <text size="medium" weight="bold">Game Over:</text>
+          <text size="small">• One wrong answer and you lose everything!</text>
+          <text size="small">• Use lifelines wisely to maximize your chances</text>
+        </vstack>
+        <button appearance="primary" onPress={handleBackToStart}>
+          Back to Start
+        </button>
+      </vstack>
+    );
+
+    return (
+      <vstack height="100%" width="100%" gap="medium">
+        {/* Header */}
+        <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
+          <text size="medium" weight="bold">Redditionaire Game</text>
+        </hstack>
+        
+        {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
+          <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
+            <text size="xlarge" weight="bold" alignment="center">
+              Who Wants to Be a Redditionaire?
+            </text>
+            <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
+            <button appearance="primary" onPress={startGame} size="large">
+              Start Game
+            </button>
+            <hstack gap="medium" width="100%" alignment="center">
+              <button appearance="secondary" onPress={handleShowLeaderboard} size="medium">
+                Leaderboard
               </button>
-            </vstack>
-          )}
+              <button appearance="secondary" onPress={handleShowHowToPlay} size="medium">
+                How to Play
+              </button>
+            </hstack>
+          </vstack>
+        )}
+
+        {showLeaderboard && renderLeaderboard()}
+        {showHowToPlay && renderHowToPlay()}
 
         {gameStatus === 'playing' && (
           <hstack gap="medium" width="100%" height="85%" padding="medium">
@@ -388,15 +475,15 @@ Devvit.addCustomPostType({
 
         {showWalkAway && renderWalkAwayPrompt()}
         
-                {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
+        {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
           renderGameOver()}
-          
-          {/* Footer */}
-          <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
-            <text size="small" color="#666666">Redditionaire Game - Test Your Knowledge</text>
-          </hstack>
-        </vstack>
-      );
+        
+        {/* Footer */}
+        <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
+          <text size="small" color="#666666">Redditionaire Game - Test Your Knowledge</text>
+        </hstack>
+      </vstack>
+    );
   },
 });
 

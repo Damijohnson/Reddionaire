@@ -1,1 +1,3 @@
 name: redditionaire-gm
+permissions:
+  redis: true
