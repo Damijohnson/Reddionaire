@@ -353,22 +353,27 @@ Devvit.addCustomPostType({
       </vstack>
     );
 
-    return (
-      <vstack height="100%" width="100%" gap="medium" padding="medium">
-        {gameStatus === 'waiting' && (
-          <vstack gap="medium" width="100%" alignment="center">
-            <text size="xlarge" weight="bold" alignment="center">
-              🎯 Who Wants to Be a Redditionaire?
-            </text>
-            <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
-            <button appearance="primary" onPress={startGame} size="large">
-              🚀 Start Game
-            </button>
-          </vstack>
-        )}
+          return (
+        <vstack height="100%" width="100%" gap="medium">
+          {/* Header */}
+          <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
+            <text size="medium" weight="bold">🎯 Redditionaire Game</text>
+          </hstack>
+          
+                    {gameStatus === 'waiting' && (
+            <vstack gap="medium" width="100%" height="85%" alignment="center">
+              <text size="xlarge" weight="bold" alignment="center">
+                🎯 Who Wants to Be a Redditionaire?
+              </text>
+              <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
+              <button appearance="primary" onPress={startGame} size="large">
+                🚀 Start Game
+              </button>
+            </vstack>
+          )}
 
         {gameStatus === 'playing' && (
-          <hstack gap="medium" width="100%" height="100%">
+          <hstack gap="medium" width="100%" height="85%">
             <vstack width="70%" height="100%" gap="small">
               {renderQuestion()}
               {renderLifelines()}
@@ -381,10 +386,15 @@ Devvit.addCustomPostType({
 
         {showWalkAway && renderWalkAwayPrompt()}
         
-        {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
+                {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
           renderGameOver()}
-      </vstack>
-    );
+          
+          {/* Footer */}
+          <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
+            <text size="small" color="#666666">Redditionaire Game - Test Your Knowledge</text>
+          </hstack>
+        </vstack>
+      );
   },
 });
 
