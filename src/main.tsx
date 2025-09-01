@@ -361,7 +361,7 @@ Devvit.addCustomPostType({
           </hstack>
           
                     {gameStatus === 'waiting' && (
-            <vstack gap="medium" width="100%" height="85%" alignment="center">
+            <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
               <text size="xlarge" weight="bold" alignment="center">
                 🎯 Who Wants to Be a Redditionaire?
               </text>
@@ -373,7 +373,7 @@ Devvit.addCustomPostType({
           )}
 
         {gameStatus === 'playing' && (
-          <hstack gap="medium" width="100%" height="85%">
+          <hstack gap="medium" width="100%" height="85%" padding="medium">
             <vstack width="70%" height="100%" gap="small">
               {renderQuestion()}
               {renderLifelines()}
