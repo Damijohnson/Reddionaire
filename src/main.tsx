@@ -18,10 +18,7 @@ const MONEY_LADDER = [
   { question: 9, amount: "$700K", milestone: false },
   { question: 10, amount: "$800K", milestone: false },
   { question: 11, amount: "$850K", milestone: false },
-  { question: 12, amount: "$900K", milestone: true },
-  { question: 13, amount: "$950K", milestone: false },
-  { question: 14, amount: "$975K", milestone: false },
-  { question: 15, amount: "$1M", milestone: true },
+  { question: 12, amount: "$1M", milestone: true },
 ];
 
 // Sample questions for MVP
@@ -97,24 +94,6 @@ const QUESTIONS = [
     question: "In which year did the first moon landing occur?",
     options: ["1967", "1968", "1969", "1970"],
     correctAnswer: 2,
-  },
-  {
-    id: 13,
-    question: "What is the speed of light?",
-    options: ["186,000 mph", "186,000 km/s", "186,000 m/s", "186,000 km/h"],
-    correctAnswer: 1,
-  },
-  {
-    id: 14,
-    question: "Which element has the chemical symbol 'O'?",
-    options: ["Osmium", "Oxygen", "Oganesson", "Osmium"],
-    correctAnswer: 1,
-  },
-  {
-    id: 15,
-    question: "What is the largest country by land area?",
-    options: ["China", "United States", "Canada", "Russia"],
-    correctAnswer: 3,
   },
 ];
 
@@ -259,14 +238,14 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="center">💰 Money Ladder</text>
+        <text size="small" weight="bold" alignment="start">💰 Money Ladder</text>
         <vstack gap="small" width="100%">
           {MONEY_LADDER.map((rung, index) => (
             <hstack 
               key={index.toString()} 
               width="100%" 
               padding="xsmall" 
-              alignment="center"
+              alignment="start"
               gap="small"
             >
               <text size="xsmall" width="25px" weight="bold" color={index === currentQuestion ? "#FFD700" : 
@@ -282,7 +261,7 @@ Devvit.addCustomPostType({
 
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="center">🆘 Lifelines</text>
+        <text size="small" weight="bold" alignment="center">Lifelines</text>
         <hstack gap="small" width="100%" alignment="center">
           <button
             appearance={fiftyFifty ? "primary" : "secondary"}
@@ -298,7 +277,7 @@ Devvit.addCustomPostType({
             onPress={() => useLifeline('askAudience')}
             size="small"
           >
-            👥 Ask
+            Ask
           </button>
           <button
             appearance={phoneFriend ? "primary" : "secondary"}
@@ -306,7 +285,7 @@ Devvit.addCustomPostType({
             onPress={() => useLifeline('phoneFriend')}
             size="small"
           >
-            📞 Call
+            Call
           </button>
         </hstack>
       </vstack>
@@ -381,7 +360,7 @@ Devvit.addCustomPostType({
             <text size="xlarge" weight="bold" alignment="center">
               🎯 Who Wants to Be a Redditionaire?
             </text>
-            <text size="large">Test your knowledge and win up to $1,000,000!</text>
+            <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
             <button appearance="primary" onPress={startGame} size="large">
               🚀 Start Game
             </button>
@@ -390,11 +369,11 @@ Devvit.addCustomPostType({
 
         {gameStatus === 'playing' && (
           <hstack gap="medium" width="100%" height="100%">
-            <vstack width="60%" height="100%" gap="small">
+            <vstack width="70%" height="100%" gap="small">
               {renderQuestion()}
               {renderLifelines()}
             </vstack>
-            <vstack width="40%" height="100%">
+            <vstack width="30%" height="100%">
               {renderMoneyLadder()}
             </vstack>
           </hstack>
