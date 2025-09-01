@@ -7,21 +7,21 @@ Devvit.configure({
 
 // Game constants
 const MONEY_LADDER = [
-  { question: 1, amount: "$100", milestone: false },
-  { question: 2, amount: "$200", milestone: false },
-  { question: 3, amount: "$300", milestone: false },
-  { question: 4, amount: "$500", milestone: true },
-  { question: 5, amount: "$1,000", milestone: false },
-  { question: 6, amount: "$2,000", milestone: false },
-  { question: 7, amount: "$4,000", milestone: false },
-  { question: 8, amount: "$8,000", milestone: true },
-  { question: 9, amount: "$16,000", milestone: false },
-  { question: 10, amount: "$32,000", milestone: false },
-  { question: 11, amount: "$64,000", milestone: false },
-  { question: 12, amount: "$125,000", milestone: true },
-  { question: 13, amount: "$250,000", milestone: false },
-  { question: 14, amount: "$500,000", milestone: false },
-  { question: 15, amount: "$1,000,000", milestone: true },
+  { question: 1, amount: "$100K", milestone: false },
+  { question: 2, amount: "$150K", milestone: false },
+  { question: 3, amount: "$200K", milestone: false },
+  { question: 4, amount: "$250K", milestone: true },
+  { question: 5, amount: "$300K", milestone: false },
+  { question: 6, amount: "$400K", milestone: false },
+  { question: 7, amount: "$500K", milestone: false },
+  { question: 8, amount: "$600K", milestone: true },
+  { question: 9, amount: "$700K", milestone: false },
+  { question: 10, amount: "$800K", milestone: false },
+  { question: 11, amount: "$850K", milestone: false },
+  { question: 12, amount: "$900K", milestone: true },
+  { question: 13, amount: "$950K", milestone: false },
+  { question: 14, amount: "$975K", milestone: false },
+  { question: 15, amount: "$1M", milestone: true },
 ];
 
 // Sample questions for MVP
@@ -174,7 +174,7 @@ Devvit.addTrigger({
 // Add a post type definition
 Devvit.addCustomPostType({
   name: "Redditionaire Game",
-  height: "regular",
+  height: "tall",
   render: (context) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState<string>("$0");
@@ -259,51 +259,57 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
-        <text size="medium" weight="bold">💰 Money Ladder</text>
-        {MONEY_LADDER.map((rung, index) => (
-          <hstack 
-            key={index.toString()} 
-            width="100%" 
-            padding="small" 
-            backgroundColor={index === currentQuestion ? "#FFD700" : 
-                          index < currentQuestion ? "#90EE90" : "#F0F0F0"}
-            cornerRadius="medium"
-          >
-            <text size="small" width="60px">{rung.question}.</text>
-            <text size="small" weight={rung.milestone ? "bold" : undefined}>{rung.amount}</text>
-            {rung.milestone && <text size="small" color="blue">★</text>}
-          </hstack>
-        ))}
+        <text size="small" weight="bold" alignment="center">💰 Money Ladder</text>
+        <vstack gap="small" width="100%">
+          {MONEY_LADDER.map((rung, index) => (
+            <hstack 
+              key={index.toString()} 
+              width="100%" 
+              padding="xsmall" 
+              alignment="center"
+              gap="small"
+            >
+              <text size="xsmall" width="25px" weight="bold" color={index === currentQuestion ? "#FFD700" : 
+                            index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.question}</text>
+              <text size="xsmall" weight={rung.milestone ? "bold" : undefined} color={index === currentQuestion ? "#FFD700" : 
+                            index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.amount}</text>
+              {rung.milestone && <text size="xsmall" color="blue">★</text>}
+            </hstack>
+          ))}
+        </vstack>
       </vstack>
     );
 
     const renderLifelines = () => (
-      <hstack gap="small" width="100%">
-        <button
-          appearance={fiftyFifty ? "primary" : "secondary"}
-          disabled={!fiftyFifty}
-          onPress={() => useLifeline('fiftyFifty')}
-          size="small"
-        >
-          50:50
-        </button>
-        <button
-          appearance={askAudience ? "primary" : "secondary"}
-          disabled={!askAudience}
-          onPress={() => useLifeline('askAudience')}
-          size="small"
-        >
-          👥 Ask Audience
-        </button>
-        <button
-          appearance={phoneFriend ? "primary" : "secondary"}
-          disabled={!phoneFriend}
-          onPress={() => useLifeline('phoneFriend')}
-          size="small"
-        >
-          📞 Phone Friend
-        </button>
-      </hstack>
+      <vstack gap="small" width="100%">
+        <text size="small" weight="bold" alignment="center">🆘 Lifelines</text>
+        <hstack gap="small" width="100%" alignment="center">
+          <button
+            appearance={fiftyFifty ? "primary" : "secondary"}
+            disabled={!fiftyFifty}
+            onPress={() => useLifeline('fiftyFifty')}
+            size="small"
+          >
+            50:50
+          </button>
+          <button
+            appearance={askAudience ? "primary" : "secondary"}
+            disabled={!askAudience}
+            onPress={() => useLifeline('askAudience')}
+            size="small"
+          >
+            👥 Ask
+          </button>
+          <button
+            appearance={phoneFriend ? "primary" : "secondary"}
+            disabled={!phoneFriend}
+            onPress={() => useLifeline('phoneFriend')}
+            size="small"
+          >
+            📞 Call
+          </button>
+        </hstack>
+      </vstack>
     );
 
     const renderQuestion = () => {
@@ -323,6 +329,7 @@ Devvit.addCustomPostType({
                 appearance="primary"
                 onPress={() => answerQuestion(index)}
                 width="100%"
+                size="small"
               >
                 {String.fromCharCode(65 + index)}. {option}
               </button>
@@ -369,12 +376,11 @@ Devvit.addCustomPostType({
 
     return (
       <vstack height="100%" width="100%" gap="medium" padding="medium">
-        <text size="xlarge" weight="bold" alignment="center">
-          🎯 Who Wants to Be a Redditionaire?
-        </text>
-        
         {gameStatus === 'waiting' && (
           <vstack gap="medium" width="100%" alignment="center">
+            <text size="xlarge" weight="bold" alignment="center">
+              🎯 Who Wants to Be a Redditionaire?
+            </text>
             <text size="large">Test your knowledge and win up to $1,000,000!</text>
             <button appearance="primary" onPress={startGame} size="large">
               🚀 Start Game
@@ -383,8 +389,8 @@ Devvit.addCustomPostType({
         )}
 
         {gameStatus === 'playing' && (
-          <hstack gap="large" width="100%" height="100%">
-            <vstack width="60%" height="100%">
+          <hstack gap="medium" width="100%" height="100%">
+            <vstack width="60%" height="100%" gap="small">
               {renderQuestion()}
               {renderLifelines()}
             </vstack>
