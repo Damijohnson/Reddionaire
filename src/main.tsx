@@ -202,6 +202,8 @@ Devvit.addCustomPostType({
           // Won the game!
           setScore(newScore);
           setGameStatus('won');
+          // Update leaderboard with final score
+          updateLeaderboard(newScore);
         } else {
           // Check if the CURRENT question they just answered is a milestone
           const isMilestone = MONEY_LADDER[currentQuestion].milestone;
@@ -225,6 +227,8 @@ Devvit.addCustomPostType({
     const walkAway = () => {
       setGameStatus('walked');
       setShowWalkAway(false);
+      // Update leaderboard with current score
+      updateLeaderboard(score);
     };
 
     const continueGame = () => {
@@ -259,16 +263,43 @@ Devvit.addCustomPostType({
       setLastAnswerExplanation("");
     };
 
-    const handleShowLeaderboard = () => {
-      setLeaderboardData([
-        { userId: "user1", score: 1000000 },
-        { userId: "user2", score: 850000 },
-        { userId: "user3", score: 600000 },
-        { userId: "user4", score: 400000 },
-        { userId: "user5", score: 250000 },
-      ]);
-      setShowLeaderboard(true);
-      setShowHowToPlay(false);
+    const handleShowLeaderboard = async () => {
+      try {
+        // Get leaderboard data from Redis
+        const subreddit = await context.reddit.getCurrentSubreddit();
+        const leaderboardKey = `leaderboard:${subreddit.name}`;
+        const leaderboardData = await context.redis.get(leaderboardKey);
+        
+        if (leaderboardData) {
+          setLeaderboardData(JSON.parse(leaderboardData));
+        } else {
+          // Set default leaderboard if none exists
+          const defaultLeaderboard = [
+            { userId: "user1", score: 1000000 },
+            { userId: "user2", score: 850000 },
+            { userId: "user3", score: 600000 },
+            { userId: "user4", score: 400000 },
+            { userId: "user5", score: 250000 },
+          ];
+          await context.redis.set(leaderboardKey, JSON.stringify(defaultLeaderboard));
+          setLeaderboardData(defaultLeaderboard);
+        }
+        
+        setShowLeaderboard(true);
+        setShowHowToPlay(false);
+      } catch (error) {
+        console.error('Error loading leaderboard:', error);
+        // Fallback to default data
+        setLeaderboardData([
+          { userId: "user1", score: 1000000 },
+          { userId: "user2", score: 850000 },
+          { userId: "user3", score: 600000 },
+          { userId: "user4", score: 400000 },
+          { userId: "user5", score: 250000 },
+        ]);
+        setShowLeaderboard(true);
+        setShowHowToPlay(false);
+      }
     };
 
     const handleShowHowToPlay = () => {
@@ -415,6 +446,36 @@ Devvit.addCustomPostType({
         </button>
       </vstack>
     );
+
+    // Function to update leaderboard when game ends
+    const updateLeaderboard = async (finalScore: string) => {
+      try {
+        const subreddit = await context.reddit.getCurrentSubreddit();
+        const leaderboardKey = `leaderboard:${subreddit.name}`;
+        
+        // Get current leaderboard
+        const currentLeaderboard = await context.redis.get(leaderboardKey);
+        let leaderboard = currentLeaderboard ? JSON.parse(currentLeaderboard) : [];
+        
+        // Convert score string to number (e.g., "$300K" -> 300000)
+        const scoreNumber = parseInt(finalScore.replace(/[$,K]/g, '')) * 1000;
+        
+        // Add new score (you might want to get actual user ID here)
+        const newEntry = { userId: `user_${Date.now()}`, score: scoreNumber };
+        leaderboard.push(newEntry);
+        
+        // Sort by score (highest first) and keep top 10
+        leaderboard.sort((a: any, b: any) => b.score - a.score);
+        leaderboard = leaderboard.slice(0, 10);
+        
+        // Save back to Redis
+        await context.redis.set(leaderboardKey, JSON.stringify(leaderboard));
+        
+        console.log('Leaderboard updated:', leaderboard);
+      } catch (error) {
+        console.error('Error updating leaderboard:', error);
+      }
+    };
 
     const renderWalkAwayPrompt = () => (
       <vstack gap="medium" width="100%" alignment="center">
