@@ -1,0 +1,303 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "packId": "redditionaire-v1",
+    "totalQuestions": 1000,
+    "difficultyDistribution": {
+      "easy": 0.4,
+      "medium": 0.4,
+      "hard": 0.2
+    },
+    "questionsPerGame": 12,
+    "rotationMode": "daily",
+    "refreshWindow": "24h",
+    "maxFrequencyCap": 30,
+    "lastUpdated": "2024-01-01"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "options": ["London", "Berlin", "Paris", "Madrid"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "geography",
+      "explanation": "Paris is the capital and largest city of France."
+    },
+    {
+      "id": 2,
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+      "correctAnswer": 1,
+      "difficulty": "easy",
+      "category": "science",
+      "explanation": "Mars is called the Red Planet due to iron oxide on its surface."
+    },
+    {
+      "id": 3,
+      "question": "What is 2 + 2?",
+      "options": ["3", "4", "5", "6"],
+      "correctAnswer": 1,
+      "difficulty": "easy",
+      "category": "mathematics",
+      "explanation": "Basic arithmetic: 2 + 2 = 4"
+    },
+    {
+      "id": 4,
+      "question": "Who wrote 'Romeo and Juliet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+      "correctAnswer": 1,
+      "difficulty": "easy",
+      "category": "literature",
+      "explanation": "William Shakespeare wrote this famous tragedy in the late 16th century."
+    },
+    {
+      "id": 5,
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
+      "correctAnswer": 3,
+      "difficulty": "easy",
+      "category": "geography",
+      "explanation": "The Pacific Ocean covers about 46% of Earth's water surface."
+    },
+    {
+      "id": 6,
+      "question": "What year did World War II end?",
+      "options": ["1943", "1944", "1945", "1946"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "history",
+      "explanation": "World War II ended in 1945 with Germany's surrender in May and Japan's in September."
+    },
+    {
+      "id": 7,
+      "question": "What is the chemical symbol for gold?",
+      "options": ["Ag", "Au", "Fe", "Cu"],
+      "correctAnswer": 1,
+      "difficulty": "easy",
+      "category": "science",
+      "explanation": "Au comes from the Latin word for gold, 'aurum'."
+    },
+    {
+      "id": 8,
+      "question": "Which country is home to the kangaroo?",
+      "options": ["New Zealand", "South Africa", "Australia", "India"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "geography",
+      "explanation": "Kangaroos are native to Australia and are a national symbol."
+    },
+    {
+      "id": 9,
+      "question": "What is the square root of 144?",
+      "options": ["10", "11", "12", "13"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "mathematics",
+      "explanation": "12 × 12 = 144, so the square root of 144 is 12."
+    },
+    {
+      "id": 10,
+      "question": "Who painted the Mona Lisa?",
+      "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "art",
+      "explanation": "Leonardo da Vinci painted the Mona Lisa between 1503-1519."
+    },
+    {
+      "id": 11,
+      "question": "What is the largest mammal?",
+      "options": ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+      "correctAnswer": 1,
+      "difficulty": "easy",
+      "category": "science",
+      "explanation": "The Blue Whale is the largest animal known to have ever existed."
+    },
+    {
+      "id": 12,
+      "question": "In which year did the first moon landing occur?",
+      "options": ["1967", "1968", "1969", "1970"],
+      "correctAnswer": 2,
+      "difficulty": "easy",
+      "category": "history",
+      "explanation": "Apollo 11 landed on the Moon on July 20, 1969."
+    },
+    {
+      "id": 13,
+      "question": "What is the speed of light?",
+      "options": ["186,000 mph", "186,000 km/s", "186,000 m/s", "186,000 km/h"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "science",
+      "explanation": "The speed of light in vacuum is approximately 186,000 miles per second."
+    },
+    {
+      "id": 14,
+      "question": "Which element has the chemical symbol 'O'?",
+      "options": ["Osmium", "Oxygen", "Oganesson", "Osmium"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "science",
+      "explanation": "Oxygen has the chemical symbol 'O' and atomic number 8."
+    },
+    {
+      "id": 15,
+      "question": "What is the largest country by land area?",
+      "options": ["China", "United States", "Canada", "Russia"],
+      "correctAnswer": 3,
+      "difficulty": "medium",
+      "category": "geography",
+      "explanation": "Russia is the largest country by land area, covering about 17 million square kilometers."
+    },
+    {
+      "id": 16,
+      "question": "Who wrote 'Pride and Prejudice'?",
+      "options": ["Charlotte Brontë", "Jane Austen", "Emily Brontë", "Mary Shelley"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "literature",
+      "explanation": "Jane Austen published 'Pride and Prejudice' in 1813."
+    },
+    {
+      "id": 17,
+      "question": "What is the capital of Japan?",
+      "options": ["Kyoto", "Osaka", "Tokyo", "Yokohama"],
+      "correctAnswer": 2,
+      "difficulty": "medium",
+      "category": "geography",
+      "explanation": "Tokyo has been the capital of Japan since 1868."
+    },
+    {
+      "id": 18,
+      "question": "Which planet has the most moons?",
+      "options": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "science",
+      "explanation": "Saturn has the most moons in our solar system, with over 80 confirmed moons."
+    },
+    {
+      "id": 19,
+      "question": "What is the largest desert in the world?",
+      "options": ["Sahara", "Antarctic", "Arabian", "Gobi"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "geography",
+      "explanation": "The Antarctic Desert is the largest desert, covering about 14 million square kilometers."
+    },
+    {
+      "id": 20,
+      "question": "Who composed 'The Four Seasons'?",
+      "options": ["Mozart", "Beethoven", "Vivaldi", "Bach"],
+      "correctAnswer": 2,
+      "difficulty": "medium",
+      "category": "music",
+      "explanation": "Antonio Vivaldi composed 'The Four Seasons' in 1723."
+    },
+    {
+      "id": 21,
+      "question": "What is the smallest prime number?",
+      "options": ["0", "1", "2", "3"],
+      "correctAnswer": 2,
+      "difficulty": "medium",
+      "category": "mathematics",
+      "explanation": "2 is the smallest and only even prime number."
+    },
+    {
+      "id": 22,
+      "question": "Which country has the most time zones?",
+      "options": ["Russia", "United States", "France", "Australia"],
+      "correctAnswer": 2,
+      "difficulty": "medium",
+      "category": "geography",
+      "explanation": "France has the most time zones due to its overseas territories, with 12 time zones."
+    },
+    {
+      "id": 23,
+      "question": "What is the largest organ in the human body?",
+      "options": ["Heart", "Brain", "Liver", "Skin"],
+      "correctAnswer": 3,
+      "difficulty": "medium",
+      "category": "science",
+      "explanation": "The skin is the largest organ, covering about 20 square feet in adults."
+    },
+    {
+      "id": 24,
+      "question": "Who painted 'The Starry Night'?",
+      "options": ["Pablo Picasso", "Vincent van Gogh", "Claude Monet", "Salvador Dalí"],
+      "correctAnswer": 1,
+      "difficulty": "medium",
+      "category": "art",
+      "explanation": "Vincent van Gogh painted 'The Starry Night' in 1889."
+    },
+    {
+      "id": 25,
+      "question": "What is the capital of Brazil?",
+      "options": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
+      "correctAnswer": 2,
+      "difficulty": "medium",
+      "category": "geography",
+      "explanation": "Brasília became the capital in 1960, replacing Rio de Janeiro."
+    },
+    {
+      "id": 26,
+      "question": "Which element is most abundant in the Earth's crust?",
+      "options": ["Silicon", "Aluminum", "Iron", "Oxygen"],
+      "correctAnswer": 3,
+      "difficulty": "hard",
+      "category": "science",
+      "explanation": "Oxygen makes up about 46% of the Earth's crust by weight."
+    },
+    {
+      "id": 27,
+      "question": "What is the largest island in the Mediterranean Sea?",
+      "options": ["Sicily", "Crete", "Cyprus", "Sardinia"],
+      "correctAnswer": 0,
+      "difficulty": "hard",
+      "category": "geography",
+      "explanation": "Sicily is the largest island in the Mediterranean Sea."
+    },
+    {
+      "id": 28,
+      "question": "Who wrote 'The Divine Comedy'?",
+      "options": ["Homer", "Virgil", "Dante Alighieri", "Boccaccio"],
+      "correctAnswer": 2,
+      "difficulty": "hard",
+      "category": "literature",
+      "explanation": "Dante Alighieri wrote 'The Divine Comedy' in the early 14th century."
+    },
+    {
+      "id": 29,
+      "question": "What is the largest volcano in our solar system?",
+      "options": ["Mount Everest", "Mauna Loa", "Olympus Mons", "Mount Kilimanjaro"],
+      "correctAnswer": 2,
+      "difficulty": "hard",
+      "category": "science",
+      "explanation": "Olympus Mons on Mars is the largest volcano in our solar system."
+    },
+    {
+      "id": 30,
+      "question": "Which country has the longest coastline?",
+      "options": ["Canada", "Indonesia", "Russia", "Australia"],
+      "correctAnswer": 0,
+      "difficulty": "hard",
+      "category": "geography",
+      "explanation": "Canada has the longest coastline in the world at 202,080 kilometers."
+    }
+  ],
+  "rotationRules": {
+    "dailySeed": "date + subredditId",
+    "difficultyBuckets": {
+      "easy": 5,
+      "medium": 4,
+      "hard": 3
+    },
+    "exclusionRules": {
+      "userRecentQuestions": 150,
+      "subredditRecentQuestions": 90,
+      "maxFrequencyCap": 30
+    },
+    "fallbackQuestions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  }
+}

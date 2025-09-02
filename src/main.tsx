@@ -1,5 +1,6 @@
 // Learn more at developers.reddit.com/docs
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
+import questionsData from "./questions.json" with { type: "json" };
 
 Devvit.configure({
   redditAPI: true,
@@ -22,81 +23,56 @@ const MONEY_LADDER = [
   { question: 12, amount: "$1M", milestone: true },
 ];
 
-// Sample questions for MVP
-const QUESTIONS = [
-  {
-    id: 1,
-    question: "What is the capital of France?",
-    options: ["London", "Berlin", "Paris", "Madrid"],
-    correctAnswer: 2,
-  },
-  {
-    id: 2,
-    question: "Which planet is known as the Red Planet?",
-    options: ["Venus", "Mars", "Jupiter", "Saturn"],
-    correctAnswer: 1,
-  },
-  {
-    id: 3,
-    question: "What is 2 + 2?",
-    options: ["3", "4", "5", "6"],
-    correctAnswer: 1,
-  },
-  {
-    id: 4,
-    question: "Who wrote 'Romeo and Juliet'?",
-    options: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-    correctAnswer: 1,
-  },
-  {
-    id: 5,
-    question: "What is the largest ocean on Earth?",
-    options: ["Atlantic", "Indian", "Arctic", "Pacific"],
-    correctAnswer: 3,
-  },
-  {
-    id: 6,
-    question: "What year did World War II end?",
-    options: ["1943", "1944", "1945", "1946"],
-    correctAnswer: 2,
-  },
-  {
-    id: 7,
-    question: "What is the chemical symbol for gold?",
-    options: ["Ag", "Au", "Fe", "Cu"],
-    correctAnswer: 1,
-  },
-  {
-    id: 8,
-    question: "Which country is home to the kangaroo?",
-    options: ["New Zealand", "South Africa", "Australia", "India"],
-    correctAnswer: 2,
-  },
-  {
-    id: 9,
-    question: "What is the square root of 144?",
-    options: ["10", "11", "12", "13"],
-    correctAnswer: 2,
-  },
-  {
-    id: 10,
-    question: "Who painted the Mona Lisa?",
-    options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
-    correctAnswer: 2,
-  },
-  {
-    id: 11,
-    question: "What is the largest mammal?",
-    options: ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-    correctAnswer: 1,
-  },
-  {
-    id: 12,
-    question: "In which year did the first moon landing occur?",
-    options: ["1967", "1968", "1969", "1970"],
-    correctAnswer: 2,
-  },
-];
+// Question rotation system
+// TODO: Look into daily rotation system - currently has issues with fallback questions and hash function
+const getQuestionsForGame = (subredditId: string, date: string): typeof questionsData.questions => {
+  // Create a daily seed based on date and subreddit
+  const dailySeed = `${date}_${subredditId}`;
+  
+  // Simple hash function for consistent seeding
+  let hash = 0;
+  for (let i = 0; i < dailySeed.length; i++) {
+    const char = dailySeed.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  
+  // Use the hash to shuffle questions consistently
+  const shuffledQuestions = [...questionsData.questions].sort(() => {
+    hash = (hash * 9301 + 49297) % 233280;
+    return (hash / 233280) - 0.5;
+  });
+  
+  // Select questions based on difficulty distribution
+  const { easy, medium, hard } = questionsData.rotationRules.difficultyBuckets;
+  const questionsPerGame = questionsData.metadata.questionsPerGame;
+  
+  const selectedQuestions: typeof questionsData.questions = [];
+  
+  // Add easy questions
+  const easyQuestions = shuffledQuestions.filter(q => q.difficulty === "easy").slice(0, easy);
+  selectedQuestions.push(...easyQuestions);
+  
+  // Add medium questions
+  const mediumQuestions = shuffledQuestions.filter(q => q.difficulty === "medium").slice(0, medium);
+  selectedQuestions.push(...mediumQuestions);
+  
+  // Add hard questions
+  const hardQuestions = shuffledQuestions.filter(q => q.difficulty === "hard").slice(0, hard);
+  selectedQuestions.push(...hardQuestions);
+  
+  // If we don't have enough questions, add from fallback
+  if (selectedQuestions.length < questionsPerGame) {
+    const fallbackQuestions = questionsData.rotationRules.fallbackQuestions.map(id => 
+      questionsData.questions.find(q => q.id === id)
+    ).filter(Boolean) as typeof questionsData.questions;
+    
+    selectedQuestions.push(...fallbackQuestions.slice(0, questionsPerGame - selectedQuestions.length));
+  }
+  
+  // Ensure we have exactly the right number of questions
+  return selectedQuestions.slice(0, questionsPerGame);
+};
 
 // Game state interface
 interface GameState {
@@ -167,29 +143,62 @@ Devvit.addCustomPostType({
     const [showLeaderboard, setShowLeaderboard] = useState(false);
     const [showHowToPlay, setShowHowToPlay] = useState(false);
     const [leaderboardData, setLeaderboardData] = useState<Array<{userId: string, score: number}>>([]);
+    const [gameQuestions, setGameQuestions] = useState<typeof questionsData.questions>([]);
+    const [lastAnswerExplanation, setLastAnswerExplanation] = useState<string>("");
 
-    const startGame = () => {
-      setCurrentQuestion(0);
-      setScore("$0");
-      setGameStatus('playing');
-      setFiftyFifty(true);
-      setAskAudience(true);
-      setPhoneFriend(true);
-      setUsedLifelines([]);
-      setShowWalkAway(false);
-      setShowLeaderboard(false);
-      setShowHowToPlay(false);
+    const startGame = async () => {
+      try {
+        // Get current date and subreddit info for question rotation
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+        let subredditId = 'default';
+        
+        try {
+          const subreddit = await context.reddit.getCurrentSubreddit();
+          subredditId = subreddit.name;
+        } catch (e) {
+          console.warn('Could not get subreddit, using default:', e);
+        }
+        
+        // Generate questions for this game
+        const questions = getQuestionsForGame(subredditId, today);
+        setGameQuestions(questions);
+        
+        setCurrentQuestion(0);
+        setScore("$0");
+        setGameStatus('playing');
+        setFiftyFifty(true);
+        setAskAudience(true);
+        setPhoneFriend(true);
+        setUsedLifelines([]);
+        setShowWalkAway(false);
+        setShowLeaderboard(false);
+        setShowHowToPlay(false);
+        setLastAnswerExplanation("");
+      } catch (error) {
+        console.error('Error starting game:', error);
+        // Fallback to fallback questions
+        const fallbackQuestions = questionsData.rotationRules.fallbackQuestions.map(id => 
+          questionsData.questions.find(q => q.id === id)
+        ).filter(Boolean) as typeof questionsData.questions;
+        setGameQuestions(fallbackQuestions);
+        setGameStatus('playing');
+      }
     };
 
     const answerQuestion = (selectedAnswer: number) => {
-      const currentQ = QUESTIONS[currentQuestion];
+      if (gameQuestions.length === 0) return;
+      
+      const currentQ = gameQuestions[currentQuestion];
       const isCorrect = selectedAnswer === currentQ.correctAnswer;
       
       if (isCorrect) {
         const newScore = MONEY_LADDER[currentQuestion].amount;
         const nextQuestion = currentQuestion + 1;
         
-        if (nextQuestion >= QUESTIONS.length) {
+        // Set explanation for correct answer
+        setLastAnswerExplanation(currentQ.explanation || "Correct answer!");
+        
+        if (nextQuestion >= gameQuestions.length) {
           // Won the game!
           setScore(newScore);
           setGameStatus('won');
@@ -202,9 +211,11 @@ Devvit.addCustomPostType({
           
           setCurrentQuestion(nextQuestion);
           setScore(newScore);
+          setLastAnswerExplanation(""); // Clear explanation for next question
         }
       } else {
         // Wrong answer - game over
+        setLastAnswerExplanation(currentQ.explanation || "That was incorrect.");
         setGameStatus('lost');
       }
     };
@@ -242,6 +253,8 @@ Devvit.addCustomPostType({
       setShowWalkAway(false);
       setShowLeaderboard(false);
       setShowHowToPlay(false);
+      setGameQuestions([]);
+      setLastAnswerExplanation("");
     };
 
     const handleShowLeaderboard = () => {
@@ -269,22 +282,31 @@ Devvit.addCustomPostType({
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
         <text size="small" weight="bold" alignment="start">Money Ladder</text>
+
         <vstack gap="small" width="100%">
-          {MONEY_LADDER.map((rung, index) => (
-            <hstack 
-              key={index.toString()} 
-              width="100%" 
-              padding="xsmall" 
-              alignment="start"
-              gap="small"
-            >
-              <text size="xsmall" width="25px" weight="bold" color={index === currentQuestion ? "#FFD700" : 
-                            index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.question}</text>
-              <text size="xsmall" weight={rung.milestone ? "bold" : undefined} color={index === currentQuestion ? "#FFD700" : 
-                            index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.amount}</text>
-              {rung.milestone && <text size="xsmall" color="blue">★</text>}
-            </hstack>
-          ))}
+          {MONEY_LADDER.map((rung, index) => {
+            const questionDifficulty = gameQuestions[index]?.difficulty || "unknown";
+            const difficultyColor = questionDifficulty === "easy" ? "#90EE90" : 
+                                  questionDifficulty === "medium" ? "#FFD700" : 
+                                  questionDifficulty === "hard" ? "#FF6B6B" : "#8B8B8B";
+            
+            return (
+              <hstack 
+                key={index.toString()} 
+                width="100%" 
+                padding="xsmall" 
+                alignment="start"
+                gap="small"
+              >
+                <text size="xsmall" width="25px" weight="bold" color={index === currentQuestion ? "#FFD700" : 
+                              index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.question}</text>
+                <text size="xsmall" weight={rung.milestone ? "bold" : undefined} color={index === currentQuestion ? "#FFD700" : 
+                              index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.amount}</text>
+                {rung.milestone && <text size="xsmall" color="blue">★</text>}
+
+              </hstack>
+            );
+          })}
         </vstack>
       </vstack>
     );
@@ -322,11 +344,21 @@ Devvit.addCustomPostType({
     );
 
     const renderQuestion = () => {
-      const currentQ = QUESTIONS[currentQuestion];
+      if (gameQuestions.length === 0) {
+        return (
+          <vstack gap="medium" width="100%" alignment="center">
+            <text size="large" weight="bold" alignment="center">
+              Loading Questions...
+            </text>
+          </vstack>
+        );
+      }
+      
+      const currentQ = gameQuestions[currentQuestion];
       return (
         <vstack gap="medium" width="100%">
           <text size="large" weight="bold" alignment="center">
-            Question {currentQ.id}
+            Question {currentQuestion + 1}
           </text>
           <text size="medium" alignment="center">
             {currentQ.question}
@@ -344,6 +376,14 @@ Devvit.addCustomPostType({
               </button>
             ))}
           </vstack>
+          
+          {/* Show explanation if available */}
+          {lastAnswerExplanation && (
+            <vstack gap="small" width="100%" padding="small" backgroundColor="#F0F8FF" cornerRadius="small">
+              <text size="small" weight="bold" color="#0066CC">Explanation:</text>
+              <text size="small" color="#333333">{lastAnswerExplanation}</text>
+            </vstack>
+          )}
         </vstack>
       );
     };
@@ -359,6 +399,15 @@ Devvit.addCustomPostType({
            gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
            `You walked away with ${score}!`}
         </text>
+        
+        {/* Show final explanation if available */}
+        {lastAnswerExplanation && (
+          <vstack gap="small" width="100%" padding="small" backgroundColor="#F0F8FF" cornerRadius="small">
+            <text size="small" weight="bold" color="#0066CC">Final Answer Explanation:</text>
+            <text size="small" color="#333333">{lastAnswerExplanation}</text>
+          </vstack>
+        )}
+        
         <button appearance="primary" onPress={resetGame}>
           Play Again
         </button>
@@ -371,6 +420,7 @@ Devvit.addCustomPostType({
         <text size="medium">
           You've secured {MONEY_LADDER[currentQuestion].amount}!
         </text>
+
         <text size="medium">Do you want to continue or walk away?</text>
         <hstack gap="medium">
           <button appearance="primary" onPress={continueGame}>
@@ -436,6 +486,7 @@ Devvit.addCustomPostType({
         {/* Header */}
         <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
           <text size="medium" weight="bold">Redditionaire Game</text>
+          
         </hstack>
         
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
@@ -444,8 +495,15 @@ Devvit.addCustomPostType({
               Who Wants to Be a Redditionaire?
             </text>
             <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
-            <button appearance="primary" onPress={startGame} size="large">
-              Start Game
+
+
+            <button 
+              appearance="primary" 
+              onPress={startGame} 
+              size="large"
+              disabled={gameStatus !== 'waiting'}
+            >
+              {gameStatus !== 'waiting' ? 'Game in Progress' : 'Start Game'}
             </button>
             <hstack gap="medium" width="100%" alignment="center">
               <button appearance="secondary" onPress={handleShowLeaderboard} size="medium">
@@ -461,7 +519,7 @@ Devvit.addCustomPostType({
         {showLeaderboard && renderLeaderboard()}
         {showHowToPlay && renderHowToPlay()}
 
-        {gameStatus === 'playing' && (
+        {gameStatus === 'playing' && gameQuestions.length > 0 && (
           <hstack gap="medium" width="100%" height="85%" padding="medium">
             <vstack width="70%" height="100%" gap="small">
               {renderQuestion()}
