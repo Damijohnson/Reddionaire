@@ -203,9 +203,11 @@ Devvit.addCustomPostType({
           setScore(newScore);
           setGameStatus('won');
         } else {
-          // Check if it's a milestone question
-          const isMilestone = MONEY_LADDER[nextQuestion].milestone;
+          // Check if the CURRENT question they just answered is a milestone
+          const isMilestone = MONEY_LADDER[currentQuestion].milestone;
+          console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
           if (isMilestone) {
+            console.log('Setting showWalkAway to true');
             setShowWalkAway(true);
           }
           
@@ -519,7 +521,7 @@ Devvit.addCustomPostType({
         {showLeaderboard && renderLeaderboard()}
         {showHowToPlay && renderHowToPlay()}
 
-        {gameStatus === 'playing' && gameQuestions.length > 0 && (
+        {gameStatus === 'playing' && gameQuestions.length > 0 && !showWalkAway && (
           <hstack gap="medium" width="100%" height="85%" padding="medium">
             <vstack width="70%" height="100%" gap="small">
               {renderQuestion()}
