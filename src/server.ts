@@ -28,8 +28,22 @@ export class LeaderboardService {
       // Convert score string to number (e.g., "$300K" -> 300000)
       const scoreNumber = parseInt(score.replace(/[$,K]/g, '')) * 1000;
       
+      // Get current user's name
+      let username = 'Anonymous';
+      try {
+        const currentUser = await context.reddit.getCurrentUser();
+        if (currentUser && currentUser.username) {
+          username = currentUser.username;
+          console.log('Got username:', username);
+        } else {
+          console.log('No username found in currentUser:', currentUser);
+        }
+      } catch (error) {
+        console.error('Error getting username:', error);
+      }
+
       // Add new score
-      const newEntry = { userId: `user_${Date.now()}`, score: scoreNumber };
+      const newEntry = { userId: username, score: scoreNumber };
       leaderboard.push(newEntry);
       
       // Sort by score (highest first) and keep top 10
@@ -119,5 +133,7 @@ Devvit.addMenuItem({
     }
   },
 });
+
+
 
 export default Devvit;

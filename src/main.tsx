@@ -205,8 +205,7 @@ Devvit.addCustomPostType({
           // Won the game!
           setScore(newScore);
           setGameStatus('won');
-          // Update leaderboard with final score
-          updateLeaderboard(newScore);
+
         } else {
           // Check if the CURRENT question they just answered is a milestone
           const isMilestone = MONEY_LADDER[currentQuestion].milestone;
@@ -230,8 +229,7 @@ Devvit.addCustomPostType({
     const walkAway = () => {
       setGameStatus('walked');
       setShowWalkAway(false);
-      // Update leaderboard with current score
-      updateLeaderboard(score);
+
     };
 
     const continueGame = () => {
@@ -266,24 +264,7 @@ Devvit.addCustomPostType({
       setLastAnswerExplanation("");
     };
 
-    const handleShowLeaderboard = async () => {
-      try {
-        // Get subreddit name
-        const subreddit = await context.reddit.getCurrentSubreddit();
-        
-        // Get leaderboard data from server-side Redis
-        const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
-        
-        setLeaderboardData(leaderboard);
-        setShowLeaderboard(true);
-        setShowHowToPlay(false);
-      } catch (error) {
-        console.error('Error loading leaderboard:', error);
-        setLeaderboardData([]);
-        setShowLeaderboard(true);
-        setShowHowToPlay(false);
-      }
-    };
+
 
     const handleShowHowToPlay = () => {
       setShowHowToPlay(true);
@@ -424,33 +405,25 @@ Devvit.addCustomPostType({
           </vstack>
         )}
         
-        <button appearance="primary" onPress={resetGame}>
+        <button appearance="primary" onPress={async () => {
+          // Update leaderboard with final score before resetting
+          if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
+            try {
+              const subreddit = await context.reddit.getCurrentSubreddit();
+              await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+            } catch (error) {
+              console.error('Error updating leaderboard:', error);
+            }
+          }
+          
+          resetGame();
+        }}>
           Play Again
         </button>
       </vstack>
     );
 
-    // Function to update leaderboard when game ends
-    const updateLeaderboard = async (finalScore: string) => {
-      try {
-        console.log('Updating leaderboard with score:', finalScore);
-        
-        // Get subreddit name for the leaderboard key
-        const subreddit = await context.reddit.getCurrentSubreddit();
-        
-        // Call the server-side leaderboard service
-        const result = await LeaderboardService.updateLeaderboard(context, subreddit.name, finalScore);
-        
-        if (result.success) {
-          console.log('Leaderboard updated successfully:', result.leaderboard);
-        } else {
-          console.error('Failed to update leaderboard:', result.error);
-        }
-        
-      } catch (error) {
-        console.error('Error updating leaderboard:', error);
-      }
-    };
+
 
     const renderWalkAwayPrompt = () => (
       <vstack gap="medium" width="100%" alignment="center">
@@ -464,7 +437,17 @@ Devvit.addCustomPostType({
           <button appearance="primary" onPress={continueGame}>
             Continue Playing
           </button>
-          <button appearance="secondary" onPress={walkAway}>
+          <button appearance="secondary" onPress={async () => {
+            // Update leaderboard with current score before walking away
+            try {
+              const subreddit = await context.reddit.getCurrentSubreddit();
+              await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+            } catch (error) {
+              console.error('Error updating leaderboard:', error);
+            }
+            
+            walkAway();
+          }}>
             Walk Away
           </button>
         </hstack>
@@ -481,7 +464,7 @@ Devvit.addCustomPostType({
             leaderboardData.map((entry, index) => (
               <hstack key={entry.userId} width="100%" padding="small" backgroundColor="#F8F8F8" cornerRadius="small">
                 <text size="medium" weight="bold" width="40px">#{index + 1}</text>
-                <text size="medium" width="60%">Player {entry.userId}</text>
+                <text size="medium" width="60%">u/{entry.userId}</text>
                 <text size="medium" weight="bold" color="#FFD700">${entry.score.toLocaleString()}</text>
               </hstack>
             ))
@@ -553,9 +536,26 @@ Devvit.addCustomPostType({
               {gameStatus !== 'waiting' ? 'Game in Progress' : 'Start Game'}
             </button>
             <hstack gap="medium" width="100%" alignment="center">
-              <button appearance="secondary" onPress={handleShowLeaderboard} size="medium">
-                Leaderboard
-              </button>
+                          <button appearance="secondary" onPress={async () => {
+              try {
+                // Get subreddit name
+                const subreddit = await context.reddit.getCurrentSubreddit();
+                
+                // Get leaderboard data from server-side Redis
+                const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
+                
+                setLeaderboardData(leaderboard);
+                setShowLeaderboard(true);
+                setShowHowToPlay(false);
+              } catch (error) {
+                console.error('Error loading leaderboard:', error);
+                setLeaderboardData([]);
+                setShowLeaderboard(true);
+                setShowHowToPlay(false);
+              }
+            }} size="medium">
+              Leaderboard
+            </button>
               <button appearance="secondary" onPress={handleShowHowToPlay} size="medium">
                 How to Play
               </button>
