@@ -73,66 +73,7 @@ export class LeaderboardService {
   }
 }
 
-// Server-side menu items for testing Redis operations
-Devvit.addMenuItem({
-  label: "Get Leaderboard",
-  location: "subreddit",
-  forUserType: "moderator",
-  onPress: async (event, context) => {
-    try {
-      const subreddit = await context.reddit.getCurrentSubreddit();
-      const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
-      
-      if (leaderboard.length > 0) {
-        context.ui.showToast(`Leaderboard loaded: ${leaderboard.length} scores`);
-      } else {
-        context.ui.showToast("No leaderboard data found");
-      }
-    } catch (error) {
-      context.ui.showToast(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  },
-});
 
-Devvit.addMenuItem({
-  label: "Add Test Score",
-  location: "subreddit",
-  forUserType: "moderator",
-  onPress: async (event, context) => {
-    try {
-      const subreddit = await context.reddit.getCurrentSubreddit();
-      const result = await LeaderboardService.updateLeaderboard(context, subreddit.name, "$500K");
-      
-      if (result.success) {
-        context.ui.showToast(`Test score added! Leaderboard now has ${result.leaderboard.length} scores`);
-      } else {
-        context.ui.showToast(`Error: ${result.error}`);
-      }
-    } catch (error) {
-      context.ui.showToast(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  },
-});
-
-Devvit.addMenuItem({
-  label: "Clear Leaderboard",
-  location: "subreddit",
-  forUserType: "moderator",
-  onPress: async (event, context) => {
-    try {
-      const subreddit = await context.reddit.getCurrentSubreddit();
-      const result = await LeaderboardService.clearLeaderboard(context, subreddit.name);
-      
-      if (result.success) {
-        context.ui.showToast("Leaderboard cleared!");
-      } else {
-        context.ui.showToast(`Error: ${result.error}`);
-      }
-    } catch (error) {
-      context.ui.showToast(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  },
-});
 
 
 
