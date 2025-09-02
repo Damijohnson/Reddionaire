@@ -149,6 +149,8 @@ Devvit.addCustomPostType({
     const [gameQuestions, setGameQuestions] = useState<typeof questionsData.questions>([]);
     const [lastAnswerExplanation, setLastAnswerExplanation] = useState<string>("");
     const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
+    const [audienceResults, setAudienceResults] = useState<number[]>([]);
+    const [showAudienceResults, setShowAudienceResults] = useState(false);
 
     const startGame = async () => {
       try {
@@ -238,6 +240,82 @@ Devvit.addCustomPostType({
       setShowWalkAway(false);
     };
 
+    const generateAudienceResults = (question: any, userId: string, questionId: string) => {
+      // Create deterministic seed from userId + questionId
+      const seed = `${userId}_${questionId}`;
+      let hash = 0;
+      for (let i = 0; i < seed.length; i++) {
+        const char = seed.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32-bit integer
+      }
+      
+      // Simple seeded random function
+      const seededRandom = () => {
+        hash = (hash * 9301 + 49297) % 233280;
+        return hash / 233280;
+      };
+      
+      const correctAnswer = question.correctAnswer;
+      const difficulty = question.difficulty;
+      
+      // Base percentages by difficulty
+      let correctPercentage: number;
+      if (difficulty === 'easy') {
+        correctPercentage = 65 + Math.floor(seededRandom() * 15); // 65-80%
+      } else if (difficulty === 'medium') {
+        correctPercentage = 50 + Math.floor(seededRandom() * 15); // 50-65%
+      } else {
+        correctPercentage = 30 + Math.floor(seededRandom() * 15); // 30-45%
+      }
+      
+      // Add small noise (±5-10 points total)
+      const noise = (seededRandom() - 0.5) * 10;
+      correctPercentage = Math.max(0, Math.min(100, correctPercentage + noise));
+      
+      // Calculate remaining percentage for wrong answers
+      const remainingPercentage = 100 - correctPercentage;
+      const wrongOptions = [0, 1, 2, 3].filter(index => index !== correctAnswer);
+      
+      // Distribute remaining percentage across wrong options with some variation
+      const wrongPercentages: number[] = [];
+      let totalWrong = 0;
+      
+      for (let i = 0; i < wrongOptions.length; i++) {
+        const basePercentage = remainingPercentage / wrongOptions.length;
+        const variation = (seededRandom() - 0.5) * 20; // ±10% variation
+        let percentage = Math.max(3, basePercentage + variation); // Floor at 3%
+        wrongPercentages.push(percentage);
+        totalWrong += percentage;
+      }
+      
+      // Normalize to 100%
+      const total = correctPercentage + totalWrong;
+      const normalizedCorrect = Math.round((correctPercentage / total) * 100);
+      const normalizedWrong = wrongPercentages.map(p => Math.round((p / total) * 100));
+      
+      // Create final results array
+      const results = new Array(4).fill(0);
+      results[correctAnswer] = normalizedCorrect;
+      
+      let wrongIndex = 0;
+      for (let i = 0; i < 4; i++) {
+        if (i !== correctAnswer) {
+          results[i] = normalizedWrong[wrongIndex];
+          wrongIndex++;
+        }
+      }
+      
+      // Ensure total is 100%
+      const finalTotal = results.reduce((sum, val) => sum + val, 0);
+      if (finalTotal !== 100) {
+        const diff = 100 - finalTotal;
+        results[correctAnswer] += diff;
+      }
+      
+      return results;
+    };
+
     const useLifeline = (lifeline: string) => {
       if (lifeline === 'fiftyFifty' && fiftyFifty) {
         // Get current question and hide 2 wrong answers
@@ -256,6 +334,21 @@ Devvit.addCustomPostType({
         setFiftyFifty(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       } else if (lifeline === 'askAudience' && askAudience) {
+        // Generate audience results
+        const currentQ = gameQuestions[currentQuestion];
+        if (currentQ) {
+          const userId = context.userId || 'anonymous';
+          const questionId = currentQ.id;
+          const results = generateAudienceResults(currentQ, userId, questionId);
+          
+          setAudienceResults(results);
+          setShowAudienceResults(true);
+          
+          // Hide results after 5 seconds
+          setTimeout(() => {
+            setShowAudienceResults(false);
+          }, 5000);
+        }
         setAskAudience(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       } else if (lifeline === 'phoneFriend' && phoneFriend) {
@@ -278,6 +371,8 @@ Devvit.addCustomPostType({
       setGameQuestions([]);
       setLastAnswerExplanation("");
       setHiddenOptions([]);
+      setAudienceResults([]);
+      setShowAudienceResults(false);
     };
 
 
@@ -390,6 +485,35 @@ Devvit.addCustomPostType({
               </button>
             ))}
           </vstack>
+          
+          {/* Show audience results if available */}
+          {showAudienceResults && audienceResults.length > 0 && (
+            <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
+              <text size="small" weight="bold" color="#DAA520" alignment="center">Audience Results</text>
+              <vstack gap="small" width="100%">
+                {audienceResults.map((percentage, index) => (
+                  <hstack key={index} width="100%" gap="small" alignment="start">
+                    <text size="small" width="30px" weight="bold">
+                      {String.fromCharCode(65 + index)}:
+                    </text>
+                    <vstack width="100%" gap="small">
+                      <hstack width="100%" gap="small" alignment="start">
+                        <vstack 
+                          width={`${percentage}%`} 
+                          height="20px" 
+                          backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
+                          cornerRadius="small"
+                        />
+                        <text size="small" weight="bold" width="40px">
+                          {percentage.toString()}%
+                        </text>
+                      </hstack>
+                    </vstack>
+                  </hstack>
+                ))}
+              </vstack>
+            </vstack>
+          )}
           
           {/* Show explanation if available */}
           {lastAnswerExplanation && (
