@@ -148,6 +148,7 @@ Devvit.addCustomPostType({
     const [leaderboardData, setLeaderboardData] = useState<Array<{userId: string, score: number}>>([]);
     const [gameQuestions, setGameQuestions] = useState<typeof questionsData.questions>([]);
     const [lastAnswerExplanation, setLastAnswerExplanation] = useState<string>("");
+    const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
 
     const startGame = async () => {
       try {
@@ -218,6 +219,7 @@ Devvit.addCustomPostType({
           setCurrentQuestion(nextQuestion);
           setScore(newScore);
           setLastAnswerExplanation(""); // Clear explanation for next question
+          setHiddenOptions([]); // Reset hidden options for new question
         }
       } else {
         // Wrong answer - game over
@@ -238,6 +240,19 @@ Devvit.addCustomPostType({
 
     const useLifeline = (lifeline: string) => {
       if (lifeline === 'fiftyFifty' && fiftyFifty) {
+        // Get current question and hide 2 wrong answers
+        const currentQ = gameQuestions[currentQuestion];
+        if (currentQ) {
+          const correctAnswer = currentQ.correctAnswer;
+          const wrongOptions = [0, 1, 2, 3].filter(index => index !== correctAnswer);
+          
+          // Randomly select 2 wrong options to hide
+          const shuffledWrong = wrongOptions.sort(() => Math.random() - 0.5);
+          const optionsToHide = shuffledWrong.slice(0, 2);
+          
+          setHiddenOptions(optionsToHide);
+        }
+        
         setFiftyFifty(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       } else if (lifeline === 'askAudience' && askAudience) {
@@ -262,6 +277,7 @@ Devvit.addCustomPostType({
       setShowHowToPlay(false);
       setGameQuestions([]);
       setLastAnswerExplanation("");
+      setHiddenOptions([]);
     };
 
 
@@ -362,15 +378,17 @@ Devvit.addCustomPostType({
           </text>
           <vstack gap="small" width="100%">
             {currentQ.options.map((option, index) => (
-              <button
-                key={index.toString()}
-                appearance="primary"
-                onPress={() => answerQuestion(index)}
-                width="100%"
-                size="small"
-              >
-                {String.fromCharCode(65 + index)}. {option}
-              </button>
+              !hiddenOptions.includes(index) && (
+                <button
+                  key={index.toString()}
+                  appearance="primary"
+                  onPress={() => answerQuestion(index)}
+                  width="100%"
+                  size="small"
+                >
+                  {String.fromCharCode(65 + index)}. {option}
+                </button>
+              )
             ))}
           </vstack>
           
