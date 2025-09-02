@@ -1,6 +1,7 @@
 // Learn more at developers.reddit.com/docs
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
+import { LeaderboardService } from "./server.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -76,7 +77,7 @@ const getQuestionsForGame = (subredditId: string, date: string): typeof question
 
 // Game state interface
 interface GameState {
-  currentQuestion: number;
+  currentQuestion: number; 
   score: number;
   gameStatus: 'waiting' | 'playing' | 'won' | 'lost' | 'walked';
   lifelines: {
@@ -126,6 +127,8 @@ Devvit.addTrigger({
     await createPost(context);
   },
 });
+
+// Leaderboard operations are now handled in server.ts
 
 // Add a post type definition
 Devvit.addCustomPostType({
@@ -265,38 +268,18 @@ Devvit.addCustomPostType({
 
     const handleShowLeaderboard = async () => {
       try {
-        // Get leaderboard data from Redis
+        // Get subreddit name
         const subreddit = await context.reddit.getCurrentSubreddit();
-        const leaderboardKey = `leaderboard:${subreddit.name}`;
-        const leaderboardData = await context.redis.get(leaderboardKey);
         
-        if (leaderboardData) {
-          setLeaderboardData(JSON.parse(leaderboardData));
-        } else {
-          // Set default leaderboard if none exists
-          const defaultLeaderboard = [
-            { userId: "user1", score: 1000000 },
-            { userId: "user2", score: 850000 },
-            { userId: "user3", score: 600000 },
-            { userId: "user4", score: 400000 },
-            { userId: "user5", score: 250000 },
-          ];
-          await context.redis.set(leaderboardKey, JSON.stringify(defaultLeaderboard));
-          setLeaderboardData(defaultLeaderboard);
-        }
+        // Get leaderboard data from server-side Redis
+        const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
         
+        setLeaderboardData(leaderboard);
         setShowLeaderboard(true);
         setShowHowToPlay(false);
       } catch (error) {
         console.error('Error loading leaderboard:', error);
-        // Fallback to default data
-        setLeaderboardData([
-          { userId: "user1", score: 1000000 },
-          { userId: "user2", score: 850000 },
-          { userId: "user3", score: 600000 },
-          { userId: "user4", score: 400000 },
-          { userId: "user5", score: 250000 },
-        ]);
+        setLeaderboardData([]);
         setShowLeaderboard(true);
         setShowHowToPlay(false);
       }
@@ -450,28 +433,20 @@ Devvit.addCustomPostType({
     // Function to update leaderboard when game ends
     const updateLeaderboard = async (finalScore: string) => {
       try {
+        console.log('Updating leaderboard with score:', finalScore);
+        
+        // Get subreddit name for the leaderboard key
         const subreddit = await context.reddit.getCurrentSubreddit();
-        const leaderboardKey = `leaderboard:${subreddit.name}`;
         
-        // Get current leaderboard
-        const currentLeaderboard = await context.redis.get(leaderboardKey);
-        let leaderboard = currentLeaderboard ? JSON.parse(currentLeaderboard) : [];
+        // Call the server-side leaderboard service
+        const result = await LeaderboardService.updateLeaderboard(context, subreddit.name, finalScore);
         
-        // Convert score string to number (e.g., "$300K" -> 300000)
-        const scoreNumber = parseInt(finalScore.replace(/[$,K]/g, '')) * 1000;
+        if (result.success) {
+          console.log('Leaderboard updated successfully:', result.leaderboard);
+        } else {
+          console.error('Failed to update leaderboard:', result.error);
+        }
         
-        // Add new score (you might want to get actual user ID here)
-        const newEntry = { userId: `user_${Date.now()}`, score: scoreNumber };
-        leaderboard.push(newEntry);
-        
-        // Sort by score (highest first) and keep top 10
-        leaderboard.sort((a: any, b: any) => b.score - a.score);
-        leaderboard = leaderboard.slice(0, 10);
-        
-        // Save back to Redis
-        await context.redis.set(leaderboardKey, JSON.stringify(leaderboard));
-        
-        console.log('Leaderboard updated:', leaderboard);
       } catch (error) {
         console.error('Error updating leaderboard:', error);
       }
@@ -502,13 +477,22 @@ Devvit.addCustomPostType({
           Leaderboard
         </text>
         <vstack gap="small" width="100%" maxHeight="60%">
-          {leaderboardData.map((entry, index) => (
-            <hstack key={entry.userId} width="100%" padding="small" backgroundColor="#F8F8F8" cornerRadius="small">
-              <text size="medium" weight="bold" width="40px">#{index + 1}</text>
-              <text size="medium" width="60%">Player {entry.userId}</text>
-              <text size="medium" weight="bold" color="#FFD700">${entry.score.toLocaleString()}</text>
-            </hstack>
-          ))}
+          {leaderboardData.length > 0 ? (
+            leaderboardData.map((entry, index) => (
+              <hstack key={entry.userId} width="100%" padding="small" backgroundColor="#F8F8F8" cornerRadius="small">
+                <text size="medium" weight="bold" width="40px">#{index + 1}</text>
+                <text size="medium" width="60%">Player {entry.userId}</text>
+                <text size="medium" weight="bold" color="#FFD700">${entry.score.toLocaleString()}</text>
+              </hstack>
+            ))
+          ) : (
+            <vstack gap="small" width="100%" padding="medium" backgroundColor="#F8F8F8" cornerRadius="small" alignment="center">
+              <text size="medium" weight="bold" color="#666666">No scores yet!</text>
+              <text size="small" color="#999999" alignment="center">
+                Leaderboard will be updated as games are played
+              </text>
+            </vstack>
+          )}
         </vstack>
         <button appearance="primary" onPress={handleBackToStart}>
           Back to Start
