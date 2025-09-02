@@ -405,7 +405,7 @@ Devvit.addCustomPostType({
           </vstack>
         )}
         
-        <button appearance="primary" onPress={async () => {
+                <button appearance="primary" onPress={async () => {
           // Update leaderboard with final score before resetting
           if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
             try {
@@ -538,12 +538,8 @@ Devvit.addCustomPostType({
             <hstack gap="medium" width="100%" alignment="center">
                           <button appearance="secondary" onPress={async () => {
               try {
-                // Get subreddit name
                 const subreddit = await context.reddit.getCurrentSubreddit();
-                
-                // Get leaderboard data from server-side Redis
                 const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
-                
                 setLeaderboardData(leaderboard);
                 setShowLeaderboard(true);
                 setShowHowToPlay(false);
