@@ -378,17 +378,16 @@ Devvit.addCustomPostType({
           </text>
           <vstack gap="small" width="100%">
             {currentQ.options.map((option, index) => (
-              !hiddenOptions.includes(index) && (
-                <button
-                  key={index.toString()}
-                  appearance="primary"
-                  onPress={() => answerQuestion(index)}
-                  width="100%"
-                  size="small"
-                >
-                  {String.fromCharCode(65 + index)}. {option}
-                </button>
-              )
+              <button
+                key={index.toString()}
+                appearance={hiddenOptions.includes(index) ? "secondary" : "primary"}
+                disabled={hiddenOptions.includes(index)}
+                onPress={() => answerQuestion(index)}
+                width="100%"
+                size="small"
+              >
+                {String.fromCharCode(65 + index)}. {option}
+              </button>
             ))}
           </vstack>
           
