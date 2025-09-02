@@ -198,36 +198,38 @@ Devvit.addCustomPostType({
       const isCorrect = selectedAnswer === currentQ.correctAnswer;
       
       if (isCorrect) {
-        const newScore = MONEY_LADDER[currentQuestion].amount;
-        const nextQuestion = currentQuestion + 1;
-        
-        // Set explanation for correct answer
-        setLastAnswerExplanation(currentQ.explanation || "Correct answer!");
-        
-        if (nextQuestion >= gameQuestions.length) {
-          // Won the game!
-          setScore(newScore);
-          setGameStatus('won');
-
-        } else {
-          // Check if the CURRENT question they just answered is a milestone
-          const isMilestone = MONEY_LADDER[currentQuestion].milestone;
-          console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
-          if (isMilestone) {
-            console.log('Setting showWalkAway to true');
-            setShowWalkAway(true);
-          }
+          const newScore = MONEY_LADDER[currentQuestion].amount;
+          const nextQuestion = currentQuestion + 1;
           
-          setCurrentQuestion(nextQuestion);
-          setScore(newScore);
-          setLastAnswerExplanation(""); // Clear explanation for next question
-          setHiddenOptions([]); // Reset hidden options for new question
+          // Set explanation for correct answer
+          setLastAnswerExplanation(currentQ.explanation || "Correct answer!");
+          
+          if (nextQuestion >= gameQuestions.length) {
+            // Won the game!
+            setScore(newScore);
+            setGameStatus('won');
+
+          } else {
+            // Check if the CURRENT question they just answered is a milestone
+            const isMilestone = MONEY_LADDER[currentQuestion].milestone;
+            console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
+            if (isMilestone) {
+              console.log('Setting showWalkAway to true');
+              setShowWalkAway(true);
+            }
+            
+            setCurrentQuestion(nextQuestion);
+            setScore(newScore);
+            setLastAnswerExplanation(""); // Clear explanation for next question
+            setHiddenOptions([]); // Reset hidden options for new question
+            setAudienceResults([]); // Clear audience results for new question
+            setShowAudienceResults(false); // Hide audience results display
+          }
+        } else {
+          // Wrong answer - game over
+          setLastAnswerExplanation(currentQ.explanation || "That was incorrect.");
+          setGameStatus('lost');
         }
-      } else {
-        // Wrong answer - game over
-        setLastAnswerExplanation(currentQ.explanation || "That was incorrect.");
-        setGameStatus('lost');
-      }
     };
 
     const walkAway = () => {
