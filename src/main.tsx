@@ -2,6 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -599,22 +600,22 @@ Devvit.addCustomPostType({
 
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
-        <text size="xlarge" weight="bold" alignment="center">
-          Leaderboard
+        <text size="xlarge" weight="bold" alignment="center" color={COLORS.PRIMARY}>
+          🏆 Leaderboard
         </text>
         <vstack gap="small" width="100%" maxHeight="60%">
           {leaderboardData.length > 0 ? (
             leaderboardData.map((entry, index) => (
-              <hstack key={entry.userId} width="100%" padding="small" backgroundColor="#F8F8F8" cornerRadius="small">
-                <text size="medium" weight="bold" width="40px">#{index + 1}</text>
-                <text size="medium" width="60%">u/{entry.userId}</text>
-                <text size="medium" weight="bold" color="#FFD700">${entry.score.toLocaleString()}</text>
+              <hstack key={entry.userId} width="100%" padding="small" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
+                <text size="medium" weight="bold" width="40px" color={COLORS.SECONDARY}>#{index + 1}</text>
+                <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
+                <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
               </hstack>
             ))
           ) : (
-            <vstack gap="small" width="100%" padding="medium" backgroundColor="#F8F8F8" cornerRadius="small" alignment="center">
-              <text size="medium" weight="bold" color="#666666">No scores yet!</text>
-              <text size="small" color="#999999" alignment="center">
+            <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small" alignment="center">
+              <text size="medium" weight="bold" color={COLORS.NEUTRAL_600}>No scores yet!</text>
+              <text size="small" color={COLORS.NEUTRAL_500} alignment="center">
                 Leaderboard will be updated as games are played
               </text>
             </vstack>
@@ -657,18 +658,16 @@ Devvit.addCustomPostType({
     return (
       <vstack height="100%" width="100%" gap="medium">
         {/* Header */}
-        <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
-          <text size="medium" weight="bold">Redditionaire Game</text>
-          
+        <hstack width="100%" padding="small" backgroundColor={COLORS.PRIMARY_LIGHT} cornerRadius="small">
+          <text size="medium" weight="bold" color={COLORS.NEUTRAL_900}>🎯 Redditionaire Game</text>
         </hstack>
         
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
-          <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
-            <text size="xlarge" weight="bold" alignment="center">
+          <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium" backgroundColor={COLORS.NEUTRAL_200}>
+            <text size="xlarge" weight="bold" alignment="center" color={COLORS.PRIMARY}>
               Who Wants to Be a Redditionaire?
             </text>
-            <text size="large">Test your knowledge with 12 questions and win up to $1,000,000!</text>
-
+            <text size="large" color={COLORS.NEUTRAL_700}>Test your knowledge with 12 questions and win up to $1,000,000!</text>
 
             <button 
               appearance="primary" 
@@ -723,8 +722,8 @@ Devvit.addCustomPostType({
           renderGameOver()}
         
         {/* Footer */}
-        <hstack width="100%" padding="small" backgroundColor="#F0F0F0" cornerRadius="small">
-          <text size="small" color="#666666">Redditionaire Game - Test Your Knowledge</text>
+        <hstack width="100%" padding="small" backgroundColor={COLORS.NEUTRAL_200} cornerRadius="small">
+          <text size="small" color={COLORS.NEUTRAL_600}>Redditionaire Game - Test Your Knowledge</text>
         </hstack>
       </vstack>
     );
