@@ -1,7 +1,7 @@
 # Redditionaire Theme System
 
 ## Overview
-Redditionaire now includes a professional theme system that allows subreddit moderators to customize the game's appearance while maintaining consistency and usability.
+Redditionaire includes a professional theme system for consistent, game show styling throughout the application.
 
 ## Features
 
@@ -10,22 +10,6 @@ Redditionaire now includes a professional theme system that allows subreddit mod
 - **Consistent color palette** with semantic meanings
 - **Professional shadows and borders** throughout the interface
 - **Game show specific colors** for money ladder, lifelines, and answers
-
-### 🎛️ **Mod Customization**
-Moderators can customize the game's appearance through Reddit settings:
-
-#### Available Settings:
-- `enable_custom_theme` - Enable/disable custom theming
-- `accent_color` - Main accent color (hex format)
-- `card_background` - Background color for cards
-- `primary_color` - Primary brand color
-- `text_color` - Main text color
-
-#### Theme Presets:
-1. **Classic Game Show** - Traditional golden theme (default)
-2. **Modern Dark** - Contemporary dark theme
-3. **Vintage Retro** - Retro 70s style
-4. **Neon Cyberpunk** - Bright neon theme
 
 ### 🧩 **Theme Constants**
 The theme system provides consistent styling tokens:
@@ -69,23 +53,6 @@ import { COLORS, RADIUS, SHADOWS } from './theme.js';
 </vstack>
 ```
 
-### Custom Theme Configuration
-```typescript
-import { getThemeFromSettings } from './themeConfig.js';
-
-// Get custom theme from mod settings
-const customTheme = await getThemeFromSettings(context);
-const accentColor = customTheme.accentColor;
-```
-
-### Theme Presets
-```typescript
-import { THEME_PRESETS, applyThemePreset } from './themeConfig.js';
-
-// Apply a preset theme
-const modernTheme = applyThemePreset('MODERN');
-```
-
 ## Color Meanings
 
 ### Primary Colors
@@ -112,39 +79,12 @@ const modernTheme = applyThemePreset('MODERN');
 - Use semantic color constants (e.g., `COLORS.SUCCESS` for correct answers)
 - Maintain consistent spacing with `SPACING` constants
 - Use appropriate shadow levels for depth
-- Test themes with different color combinations
 
 ### ❌ **Don't:**
 - Hardcode hex colors directly in components
 - Use arbitrary spacing values
 - Override theme colors without considering accessibility
-- Create themes that reduce contrast below WCAG guidelines
-
-## Accessibility
-
-The theme system is designed with accessibility in mind:
-- **High contrast ratios** for text readability
-- **Semantic color usage** that works with screen readers
-- **Consistent visual hierarchy** for navigation
-- **Fallback colors** for custom theme failures
-
-## Future Enhancements
-
-Planned improvements to the theme system:
-- **CSS custom properties** for dynamic theming
-- **Animation presets** for interactive elements
-- **Seasonal themes** (holiday, special events)
-- **User preference themes** (light/dark mode)
-- **Advanced color schemes** with multiple accent colors
-
-## Support
-
-For theme-related issues or customization requests:
-1. Check the theme configuration in Reddit settings
-2. Verify color values are valid hex codes
-3. Test with different color combinations
-4. Ensure sufficient contrast for readability
 
 ---
 
-*The Redditionaire theme system provides a professional, customizable appearance while maintaining the excitement and polish of a real game show experience.*
+*The Redditionaire theme system provides a professional, consistent appearance for the game show experience.*

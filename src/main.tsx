@@ -2,7 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
-import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW } from "./theme.js";
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW, BUTTONS } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -341,7 +341,7 @@ Devvit.addCustomPostType({
         const currentQ = gameQuestions[currentQuestion];
         if (currentQ) {
           const userId = context.userId || 'anonymous';
-          const questionId = currentQ.id;
+          const questionId = currentQ.id.toString();
           const results = generateAudienceResults(currentQ, userId, questionId);
           
           setAudienceResults(results);
@@ -495,8 +495,8 @@ Devvit.addCustomPostType({
               <text size="small" weight="bold" color="#DAA520" alignment="center">Audience Results</text>
               <vstack gap="small" width="100%">
                 {audienceResults.map((percentage, index) => (
-                  <hstack key={index} width="100%" gap="small" alignment="start">
-                    <text size="small" width="30px" weight="bold">
+                  <hstack key={index.toString()} width="100%" gap="small" alignment="start">
+                    <text size="small" width="30px" weight="bold" key={index.toString()}>
                       {String.fromCharCode(65 + index)}:
                     </text>
                     <vstack width="100%" gap="small">
@@ -656,29 +656,46 @@ Devvit.addCustomPostType({
     );
 
     return (
-      <vstack height="100%" width="100%" gap="medium">
-        {/* Header */}
-        <hstack width="100%" padding="small" backgroundColor={COLORS.PRIMARY_LIGHT} cornerRadius="small">
-          <text size="medium" weight="bold" color={COLORS.NEUTRAL_900}>🎯 Redditionaire Game</text>
-        </hstack>
-        
+      <vstack height="100%" width="100%" backgroundColor={COLORS.BACKGROUND}>
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
-          <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium" backgroundColor={COLORS.NEUTRAL_200}>
-            <text size="xlarge" weight="bold" alignment="center" color={COLORS.PRIMARY}>
-              Who Wants to Be a Redditionaire?
-            </text>
-            <text size="large" color={COLORS.NEUTRAL_700}>Test your knowledge with 12 questions and win up to $1,000,000!</text>
+          <vstack 
+            gap="large" 
+            width="100%" 
+            height="100%" 
+            alignment="center" 
+            padding="large" 
+            backgroundColor={COLORS.BACKGROUND}
+          >
+            <vstack gap="medium" alignment="center">
+              <text size="xxlarge" weight="bold" color={COLORS.NEUTRAL_100}>
+                Reddionaire
+              </text>
+              <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
+                Test your knowledge with 12 questions and win up to
+              </text>
+              <text size="xxlarge" weight="bold" color={COLORS.ACCENT}>
+                R$1,000,000
+              </text>
+            </vstack>
 
-            <button 
-              appearance="primary" 
-              onPress={startGame} 
-              size="large"
-              disabled={gameStatus !== 'waiting'}
-            >
-              {gameStatus !== 'waiting' ? 'Game in Progress' : 'Start Game'}
-            </button>
-            <hstack gap="medium" width="100%" alignment="center">
-                          <button appearance="secondary" onPress={async () => {
+            <vstack gap="medium" width="100%" maxWidth="400px">
+              <hstack 
+                width={`${BUTTONS.BASE.WIDTH}%`}
+                height={`${BUTTONS.BASE.HEIGHT}px`}
+                backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
+                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+                onPress={startGame}
+                alignment={BUTTONS.BASE.ALIGNMENT}
+              >
+                <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
+              </hstack>
+              <hstack 
+                width={`${BUTTONS.BASE.WIDTH}%`}
+                height={`${BUTTONS.BASE.HEIGHT}px`}
+                backgroundColor={BUTTONS.SECONDARY.BACKGROUND}
+                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+                alignment={BUTTONS.BASE.ALIGNMENT}
+                onPress={async () => {
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
                 const leaderboard = await LeaderboardService.getLeaderboard(context, subreddit.name);
@@ -691,15 +708,26 @@ Devvit.addCustomPostType({
                 setShowLeaderboard(true);
                 setShowHowToPlay(false);
               }
-            }} size="medium">
-              Leaderboard
-            </button>
-              <button appearance="secondary" onPress={handleShowHowToPlay} size="medium">
-                How to Play
-              </button>
+            }} 
+          >
+            <hstack alignment="center" gap={BUTTONS.SECONDARY.ICON.GAP}>
+              <text size={BUTTONS.BASE.TEXT_SIZE}>{BUTTONS.SECONDARY.ICON.TYPE}</text>
+              <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
             </hstack>
-          </vstack>
-        )}
+          </hstack>
+          <hstack 
+            width={`${BUTTONS.BASE.WIDTH}%`}
+            height={`${BUTTONS.BASE.HEIGHT}px`}
+            backgroundColor={BUTTONS.ACCENT.BACKGROUND}
+            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            alignment={BUTTONS.BASE.ALIGNMENT}
+            onPress={handleShowHowToPlay}
+          >
+            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.ACCENT.TEXT}>How to Play</text>
+          </hstack>
+        </vstack>
+      </vstack>
+    )}
 
         {showLeaderboard && renderLeaderboard()}
         {showHowToPlay && renderHowToPlay()}
@@ -720,11 +748,6 @@ Devvit.addCustomPostType({
         
         {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
           renderGameOver()}
-        
-        {/* Footer */}
-        <hstack width="100%" padding="small" backgroundColor={COLORS.NEUTRAL_200} cornerRadius="small">
-          <text size="small" color={COLORS.NEUTRAL_600}>Redditionaire Game - Test Your Knowledge</text>
-        </hstack>
       </vstack>
     );
   },

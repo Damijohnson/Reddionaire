@@ -2,25 +2,19 @@
 // Professional styling tokens for Redditionaire
 
 export const COLORS = {
-  // Primary Brand Colors
-  PRIMARY: '#FFD700', // Golden yellow - main brand
-  PRIMARY_DARK: '#FFB800', // Darker gold for hover states
-  PRIMARY_LIGHT: '#FFE55C', // Lighter gold for highlights
+  // Brand Colors
+  BACKGROUND: '#6B5ECD', // Main purple background
+  PRIMARY: '#3CCFCF', // Light blue for Start Game button
+  PRIMARY_DARK: '#35B9B9', // Darker blue for hover states
+  PRIMARY_LIGHT: '#4DDBDB', // Lighter blue for highlights
   
-  // Secondary Colors
-  SECONDARY: '#1E3A8A', // Deep blue for contrast
-  SECONDARY_DARK: '#1E40AF',
-  SECONDARY_LIGHT: '#3B82F6',
+  // Action Colors
+  SECONDARY: '#FF69B4', // Pink for Leaderboard button
+  ACCENT: '#FFD700', // Yellow for How to Play button
   
-  // Success/Correct Colors
+  // Status Colors
   SUCCESS: '#10B981', // Green for correct answers
-  SUCCESS_DARK: '#059669',
-  SUCCESS_LIGHT: '#34D399',
-  
-  // Error/Wrong Colors
   ERROR: '#EF4444', // Red for wrong answers
-  ERROR_DARK: '#DC2626',
-  ERROR_LIGHT: '#F87171',
   
   // Neutral Colors
   NEUTRAL_100: '#FFFFFF', // Pure white
@@ -101,6 +95,39 @@ export const ANIMATIONS = {
 };
 
 // Game Show Specific Theme Values
+export const BUTTONS = {
+  // Common button styles
+  BASE: {
+    WIDTH: 100,
+    HEIGHT: 40,
+    CORNER_RADIUS: "small" as const,
+    ALIGNMENT: "middle center" as const,
+    TEXT_SIZE: "large" as const
+  },
+  
+  // Start Game button
+  PRIMARY: {
+    BACKGROUND: COLORS.PRIMARY,
+    TEXT: COLORS.NEUTRAL_100
+  },
+
+  // Leaderboard button
+  SECONDARY: {
+    BACKGROUND: COLORS.SECONDARY,
+    TEXT: COLORS.NEUTRAL_100,
+    ICON: {
+      TYPE: "🪙",
+      GAP: "small" as const
+    }
+  },
+
+  // How to Play button
+  ACCENT: {
+    BACKGROUND: COLORS.ACCENT,
+    TEXT: COLORS.NEUTRAL_900
+  }
+};
+
 export const GAME_SHOW = {
   QUESTION_CARD: {
     BACKGROUND: COLORS.NEUTRAL_100,
@@ -123,24 +150,4 @@ export const GAME_SHOW = {
     WRONG_COLOR: COLORS.ERROR,
     DISABLED_COLOR: COLORS.NEUTRAL_300,
   },
-};
-
-// Theme configuration that can be customized by mods
-export interface ThemeConfig {
-  accentColor?: string;
-  cardBackground?: string;
-  primaryColor?: string;
-  textColor?: string;
-}
-
-export const DEFAULT_THEME: ThemeConfig = {
-  accentColor: COLORS.PRIMARY,
-  cardBackground: COLORS.NEUTRAL_100,
-  primaryColor: COLORS.SECONDARY,
-  textColor: COLORS.NEUTRAL_900,
-};
-
-// Helper function to merge custom theme with defaults
-export const createTheme = (customTheme: Partial<ThemeConfig> = {}): ThemeConfig => {
-  return { ...DEFAULT_THEME, ...customTheme };
 };
