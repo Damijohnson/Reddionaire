@@ -600,10 +600,7 @@ Devvit.addCustomPostType({
 
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        <hstack width="100%" alignment="end middle">
-          <text size="xlarge" weight="bold" color={COLORS.PRIMARY}>
-            Leaderboard
-          </text>
+        <hstack width="100%" alignment="end middle" padding="medium">
           <hstack 
             onPress={handleBackToStart} 
             padding="small" 
@@ -614,19 +611,19 @@ Devvit.addCustomPostType({
             <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
           </hstack>
         </hstack>
-        <vstack gap="none" width="100%" height="100%" padding="medium">
+        <vstack gap="none" width="100%" height="100%">
           {leaderboardData.length > 0 ? (
             <vstack width="100%" gap="none">
               <hstack width="100%" padding="small">
                 <text size="small" width="48px" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
-                <text size="small" width="60%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
-                <text size="small" color={COLORS.NEUTRAL_400} weight="bold">SCORE</text>
+                <text size="small" width="70%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
+                <text size="small" width="100px" color={COLORS.NEUTRAL_400} weight="bold" alignment="end">SCORE</text>
               </hstack>
               {leaderboardData.map((entry, index) => (
                 <hstack key={entry.userId} width="100%" padding="small">
                   <text size="medium" weight="bold" width="48px" color={COLORS.SECONDARY}>{index + 1}</text>
-                  <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
-                  <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
+                  <text size="medium" width="70%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
+                  <text size="medium" width="100px" weight="bold" color={COLORS.PRIMARY} alignment="end">${entry.score.toLocaleString()}</text>
                 </hstack>
               ))}
             </vstack>
