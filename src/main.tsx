@@ -600,7 +600,7 @@ Devvit.addCustomPostType({
 
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        <hstack width="100%" alignment="start middle">
+        <hstack width="100%" alignment="end middle">
           <text size="xlarge" weight="bold" color={COLORS.PRIMARY}>
             Leaderboard
           </text>
@@ -609,19 +609,27 @@ Devvit.addCustomPostType({
             padding="small" 
             cornerRadius="small"
             backgroundColor={COLORS.NEUTRAL_200}
+            alignment="middle center"
           >
             <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
           </hstack>
         </hstack>
-        <vstack gap="small" width="100%" height="100%" padding="medium">
+        <vstack gap="none" width="100%" height="100%" padding="medium">
           {leaderboardData.length > 0 ? (
-            leaderboardData.map((entry, index) => (
-              <hstack key={entry.userId} width="100%" padding="small" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
-                <text size="medium" weight="bold" width="40px" color={COLORS.SECONDARY}>#{index + 1}</text>
-                <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
-                <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
+            <vstack width="100%" gap="none">
+              <hstack width="100%" padding="small">
+                <text size="small" width="48px" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
+                <text size="small" width="60%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
+                <text size="small" color={COLORS.NEUTRAL_400} weight="bold">SCORE</text>
               </hstack>
-            ))
+              {leaderboardData.map((entry, index) => (
+                <hstack key={entry.userId} width="100%" padding="small">
+                  <text size="medium" weight="bold" width="48px" color={COLORS.SECONDARY}>{index + 1}</text>
+                  <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
+                  <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
+                </hstack>
+              ))}
+            </vstack>
           ) : (
             <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small" alignment="center">
               <text size="medium" weight="bold" color={COLORS.NEUTRAL_600}>No scores yet!</text>
