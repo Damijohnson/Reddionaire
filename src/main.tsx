@@ -392,10 +392,16 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
+        <text 
+          size={GAME_UI.MONEY_LADDER.HEADER.SIZE} 
+          weight={GAME_UI.MONEY_LADDER.HEADER.WEIGHT} 
+          color={GAME_UI.MONEY_LADDER.HEADER.COLOR}
+        >
+          Money Ladder
+        </text>
         <hstack gap="small" alignment="middle center">
-          <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>Money Ladder</text>
           <hstack 
-            backgroundColor={COLORS.PRIMARY}
+            backgroundColor={COLORS.MONEY_LADDER_BG}
             cornerRadius={GAME_UI.MONEY_LADDER.CONTAINER.CORNER_RADIUS}
             padding={GAME_UI.MONEY_LADDER.CONTAINER.PADDING}
           >
@@ -407,9 +413,12 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
           {MONEY_LADDER[currentQuestion].milestone && (
-            <text size="medium" color={GAME_UI.MONEY_LADDER.MILESTONE.COLOR}>
-              {GAME_UI.MONEY_LADDER.MILESTONE.ICON} Milestone
-            </text>
+            <vstack 
+              width={`${GAME_UI.MONEY_LADDER.MILESTONE.SIZE}px`} 
+              height={`${GAME_UI.MONEY_LADDER.MILESTONE.SIZE}px`}
+              backgroundColor={GAME_UI.MONEY_LADDER.MILESTONE.COLOR}
+              cornerRadius="full"
+            />
           )}
         </hstack>
       </vstack>
@@ -418,7 +427,7 @@ Devvit.addCustomPostType({
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
         <text size="small" weight="bold" alignment="center">Lifelines</text>
-        <hstack gap="medium" width="100%" alignment="center">
+        <hstack gap={GAME_UI.LIFELINES.BUTTON.GAP} width="100%" alignment="middle center">
           <hstack 
             width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
             height={`${GAME_UI.LIFELINES.BUTTON.HEIGHT}px`}
@@ -427,7 +436,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size="medium" color={COLORS.NEUTRAL_100}>50:50</text>
+            <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>50:50</text>
           </hstack>
           <hstack 
             width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
@@ -437,7 +446,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size="medium" color={COLORS.NEUTRAL_900}>Ask</text>
+            <text size="medium" weight="bold" color={COLORS.NEUTRAL_900}>Ask</text>
           </hstack>
           <hstack 
             width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
@@ -447,7 +456,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size="medium" color={COLORS.NEUTRAL_100}>Call</text>
+            <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>Call</text>
           </hstack>
         </hstack>
       </vstack>
@@ -467,24 +476,27 @@ Devvit.addCustomPostType({
       const currentQ = gameQuestions[currentQuestion];
       return (
         <vstack gap="medium" width="100%">
-          <vstack width="100%" cornerRadius={GAME_UI.QUESTION.CONTAINER.CORNER_RADIUS}>
-            <hstack 
-              width="100%" 
-              backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
-              cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
-              padding={GAME_UI.QUESTION.HEADER.PADDING}
-            >
-              <text size="large" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
-                Question {currentQuestion + 1}
-              </text>
+          <vstack width="100%" gap="medium">
+            <hstack alignment="start">
+              <hstack 
+                width={`${GAME_UI.QUESTION.HEADER.WIDTH}px`}
+                backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
+                cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
+                padding={GAME_UI.QUESTION.HEADER.PADDING}
+              >
+                <text size="large" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
+                  Question {currentQuestion + 1}
+                </text>
+              </hstack>
             </hstack>
             <vstack 
               width="100%" 
               backgroundColor={GAME_UI.QUESTION.CONTAINER.BACKGROUND}
               padding={GAME_UI.QUESTION.CONTAINER.PADDING}
-              cornerRadius="medium"
+              cornerRadius={GAME_UI.QUESTION.CONTAINER.CORNER_RADIUS}
+              alignment="middle center"
             >
-              <text size="xlarge" weight="bold" alignment="center" color={COLORS.BACKGROUND}>
+              <text size="xlarge" weight="bold" color={COLORS.BACKGROUND}>
                 {currentQ.question}
               </text>
             </vstack>
@@ -497,11 +509,17 @@ Devvit.addCustomPostType({
                 height={`${GAME_UI.ANSWERS.BUTTON.HEIGHT}px`}
                 backgroundColor={hiddenOptions.includes(index) ? COLORS.NEUTRAL_400 : GAME_UI.ANSWERS.BUTTON.BACKGROUND}
                 cornerRadius={GAME_UI.ANSWERS.BUTTON.CORNER_RADIUS}
+                padding={GAME_UI.ANSWERS.BUTTON.PADDING}
                 onPress={() => { if (!hiddenOptions.includes(index)) answerQuestion(index); }}
                 alignment="middle center"
               >
+                <hstack width={`${GAME_UI.ANSWERS.BUTTON.PREFIX.WIDTH}px`} alignment="middle center">
+                  <text size="large" weight={GAME_UI.ANSWERS.BUTTON.PREFIX.WEIGHT} color={GAME_UI.ANSWERS.BUTTON.TEXT_COLOR}>
+                    {String.fromCharCode(65 + index)}.
+                  </text>
+                </hstack>
                 <text size="large" color={GAME_UI.ANSWERS.BUTTON.TEXT_COLOR}>
-                  {String.fromCharCode(65 + index)}. {option}
+                  {option}
                 </text>
               </hstack>
             ))}

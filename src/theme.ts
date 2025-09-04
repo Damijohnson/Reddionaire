@@ -142,42 +142,54 @@ export const BUTTONS = {
 export const GAME_UI = {
   QUESTION: {
     CONTAINER: {
-      PADDING: "medium" as const,
-      CORNER_RADIUS: "medium" as const,
+      PADDING: "large" as const,
+      CORNER_RADIUS: "large" as const,
       BACKGROUND: COLORS.QUESTION_BG
     },
     HEADER: {
+      WIDTH: 200,
       BACKGROUND: COLORS.QUESTION_HEADER,
       TEXT_COLOR: COLORS.NEUTRAL_100,
       PADDING: "medium" as const,
-      CORNER_RADIUS: "medium" as const
+      CORNER_RADIUS: "large" as const
     }
   },
   ANSWERS: {
     BUTTON: {
-      HEIGHT: 48,
+      HEIGHT: 56,
+      PADDING: "small" as const,
       CORNER_RADIUS: "medium" as const,
       BACKGROUND: COLORS.ANSWER_BUTTON,
       TEXT_COLOR: COLORS.ANSWER_TEXT,
-      GAP: "medium" as const
+      GAP: "none" as const,
+      PREFIX: {
+        WIDTH: 40,
+        WEIGHT: "bold" as const
+      }
     }
   },
   LIFELINES: {
     BUTTON: {
       HEIGHT: 40,
-      WIDTH: 80,
-      CORNER_RADIUS: "medium" as const
+      WIDTH: 100,
+      CORNER_RADIUS: "large" as const,
+      GAP: "medium" as const
     }
   },
   MONEY_LADDER: {
+    HEADER: {
+      COLOR: COLORS.NEUTRAL_100,
+      SIZE: "medium" as const,
+      WEIGHT: "bold" as const
+    },
     CONTAINER: {
       PADDING: "medium" as const,
-      CORNER_RADIUS: "medium" as const,
+      CORNER_RADIUS: "large" as const,
       BACKGROUND: COLORS.MONEY_LADDER_BG
     },
     MILESTONE: {
       COLOR: COLORS.MILESTONE_COLOR,
-      ICON: "⭐"
+      SIZE: 8
     }
   }
 };
