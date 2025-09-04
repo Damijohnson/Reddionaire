@@ -611,21 +611,21 @@ Devvit.addCustomPostType({
             <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
           </hstack>
         </hstack>
-        <vstack gap="none" width="100%" height="100%">
+        <vstack gap="none" width="100%" height="100%" padding="none">
           {leaderboardData.length > 0 ? (
             <vstack width="100%" gap="none">
               <hstack width="100%" padding="small">
-                <text size="small" width="48px" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
-                <text size="small" width="70%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
-                <hstack width="100px" alignment="end">
+                <text size="small" width="15%" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
+                <text size="small" width="55%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
+                <hstack width="30%" alignment="end">
                   <text size="small" color={COLORS.NEUTRAL_400} weight="bold">SCORE</text>
                 </hstack>
               </hstack>
               {leaderboardData.map((entry, index) => (
                 <hstack key={entry.userId} width="100%" padding="small">
-                  <text size="medium" weight="bold" width="48px" color={COLORS.SECONDARY}>{index + 1}</text>
-                  <text size="medium" width="70%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
-                  <hstack width="100px" alignment="end">
+                  <text size="medium" weight="bold" width="15%" color={COLORS.SECONDARY}>{index + 1}</text>
+                  <text size="medium" width="55%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
+                  <hstack width="30%" alignment="end">
                     <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
                   </hstack>
                 </hstack>
