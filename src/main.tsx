@@ -600,7 +600,7 @@ Devvit.addCustomPostType({
 
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        <hstack width="100%" alignment="end middle" padding="medium">
+        <hstack width="100%" alignment="end middle" padding="none">
           <hstack 
             onPress={handleBackToStart} 
             padding="small" 
@@ -614,18 +614,18 @@ Devvit.addCustomPostType({
         <vstack gap="none" width="100%" height="100%" padding="none">
           {leaderboardData.length > 0 ? (
             <vstack width="100%" gap="none">
-              {/* <hstack width="100%" padding="small">
-                <text size="small" width="5%" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
-                <text size="small" width="65%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
+              <hstack width="100%" padding="small">
+                <text size="small" width="10%" color={COLORS.NEUTRAL_400} weight="bold">RANK</text>
+                <text size="small" width="60%" color={COLORS.NEUTRAL_400} weight="bold">USER</text>
                 <hstack width="30%" alignment="end">
                   <text size="small" color={COLORS.NEUTRAL_400} weight="bold">SCORE</text>
                 </hstack>
-              </hstack> */}
+              </hstack>
               {leaderboardData.map((entry, index) => (
                 <hstack key={entry.userId} width="100%" padding="small">
-                  <text size="medium" weight="bold" width="5%" color={COLORS.SECONDARY}>{index + 1}.</text>
+                  <text size="medium" weight="bold" width="10%" color={COLORS.SECONDARY}>{index + 1}.</text>
                   <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
-                  <hstack width="35%" alignment="end">
+                  <hstack width="30%" alignment="end">
                     <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
                   </hstack>
                 </hstack>
@@ -644,10 +644,18 @@ Devvit.addCustomPostType({
     );
 
     const renderHowToPlay = () => (
-      <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
-        <text size="xlarge" weight="bold" alignment="center">
-          How to Play
-        </text>
+      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
+        <hstack width="100%" alignment="end middle" padding="none">
+          <hstack 
+            onPress={handleBackToStart} 
+            padding="small" 
+            cornerRadius="small"
+            backgroundColor={COLORS.NEUTRAL_200}
+            alignment="middle center"
+          >
+            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
+          </hstack>
+        </hstack>
         <vstack gap="small" width="100%" maxHeight="60%">
           <text size="medium" weight="bold">Objective:</text>
           <text size="small">Answer 12 questions correctly to win $1,000,000!</text>
@@ -665,9 +673,6 @@ Devvit.addCustomPostType({
           <text size="small">• One wrong answer and you lose everything!</text>
           <text size="small">• Use lifelines wisely to maximize your chances</text>
         </vstack>
-        <button appearance="primary" onPress={handleBackToStart}>
-          Back to Start
-        </button>
       </vstack>
     );
 
