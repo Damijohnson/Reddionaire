@@ -599,11 +599,21 @@ Devvit.addCustomPostType({
     );
 
     const renderLeaderboard = () => (
-      <vstack gap="medium" width="100%" height="85%" alignment="center" padding="medium">
-        <text size="xlarge" weight="bold" alignment="center" color={COLORS.PRIMARY}>
-          🏆 Leaderboard
-        </text>
-        <vstack gap="small" width="100%" maxHeight="60%">
+      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
+        <hstack width="100%" alignment="start middle">
+          <text size="xlarge" weight="bold" color={COLORS.PRIMARY}>
+            Leaderboard
+          </text>
+          <hstack 
+            onPress={handleBackToStart} 
+            padding="small" 
+            cornerRadius="small"
+            backgroundColor={COLORS.NEUTRAL_200}
+          >
+            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
+          </hstack>
+        </hstack>
+        <vstack gap="small" width="100%" height="100%" padding="medium">
           {leaderboardData.length > 0 ? (
             leaderboardData.map((entry, index) => (
               <hstack key={entry.userId} width="100%" padding="small" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
@@ -621,9 +631,6 @@ Devvit.addCustomPostType({
             </vstack>
           )}
         </vstack>
-        <button appearance="primary" onPress={handleBackToStart}>
-          Back to Start
-        </button>
       </vstack>
     );
 
