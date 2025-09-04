@@ -11,6 +11,17 @@ export const COLORS = {
   // Action Colors
   SECONDARY: '#FF69B4', // Pink for Leaderboard button
   ACCENT: '#FFD700', // Yellow for How to Play button
+
+  // Game Colors
+  QUESTION_HEADER: '#FF69B4', // Pink header
+  QUESTION_BG: '#F8E4FF', // Light pink/purple question background
+  ANSWER_BUTTON: '#6B5ECD', // Purple answer buttons
+  ANSWER_TEXT: '#FFFFFF', // White text for answers
+  LIFELINE_50_50: '#3CCFCF', // Blue 50:50 button
+  LIFELINE_ASK: '#FFD700', // Yellow Ask button
+  LIFELINE_CALL: '#FF69B4', // Pink Call button
+  MONEY_LADDER_BG: '#6B5ECD', // Purple money ladder background
+  MILESTONE_COLOR: '#FFD700', // Yellow milestone indicator
   
   // Status Colors
   SUCCESS: '#10B981', // Green for correct answers
@@ -125,6 +136,49 @@ export const BUTTONS = {
   ACCENT: {
     BACKGROUND: COLORS.ACCENT,
     TEXT: COLORS.NEUTRAL_900
+  }
+};
+
+export const GAME_UI = {
+  QUESTION: {
+    CONTAINER: {
+      PADDING: "medium" as const,
+      CORNER_RADIUS: "medium" as const,
+      BACKGROUND: COLORS.QUESTION_BG
+    },
+    HEADER: {
+      BACKGROUND: COLORS.QUESTION_HEADER,
+      TEXT_COLOR: COLORS.NEUTRAL_100,
+      PADDING: "medium" as const,
+      CORNER_RADIUS: "medium" as const
+    }
+  },
+  ANSWERS: {
+    BUTTON: {
+      HEIGHT: 48,
+      CORNER_RADIUS: "medium" as const,
+      BACKGROUND: COLORS.ANSWER_BUTTON,
+      TEXT_COLOR: COLORS.ANSWER_TEXT,
+      GAP: "medium" as const
+    }
+  },
+  LIFELINES: {
+    BUTTON: {
+      HEIGHT: 40,
+      WIDTH: 80,
+      CORNER_RADIUS: "medium" as const
+    }
+  },
+  MONEY_LADDER: {
+    CONTAINER: {
+      PADDING: "medium" as const,
+      CORNER_RADIUS: "medium" as const,
+      BACKGROUND: COLORS.MONEY_LADDER_BG
+    },
+    MILESTONE: {
+      COLOR: COLORS.MILESTONE_COLOR,
+      ICON: "⭐"
+    }
   }
 };
 

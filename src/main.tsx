@@ -2,7 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
-import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW, BUTTONS } from "./theme.js";
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW, BUTTONS, GAME_UI } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -392,64 +392,63 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="start">Money Ladder</text>
-
-        <vstack gap="small" width="100%">
-          {MONEY_LADDER.map((rung, index) => {
-            const questionDifficulty = gameQuestions[index]?.difficulty || "unknown";
-            const difficultyColor = questionDifficulty === "easy" ? "#90EE90" : 
-                                  questionDifficulty === "medium" ? "#FFD700" : 
-                                  questionDifficulty === "hard" ? "#FF6B6B" : "#8B8B8B";
-            
-            return (
-              <hstack 
-                key={index.toString()} 
-                width="100%" 
-                padding="xsmall" 
-                alignment="start"
-                gap="small"
-              >
-                <text size="xsmall" width="25px" weight="bold" color={index === currentQuestion ? "#FFD700" : 
-                              index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.question}</text>
-                <text size="xsmall" weight={rung.milestone ? "bold" : undefined} color={index === currentQuestion ? "#FFD700" : 
-                              index < currentQuestion ? "#90EE90" : "#8B8B8B"}>{rung.amount}</text>
-                {rung.milestone && <text size="xsmall" color="blue">★</text>}
-
-              </hstack>
-            );
-          })}
-        </vstack>
+        <hstack gap="small" alignment="middle center">
+          <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>Money Ladder</text>
+          <hstack 
+            backgroundColor={COLORS.PRIMARY}
+            cornerRadius={GAME_UI.MONEY_LADDER.CONTAINER.CORNER_RADIUS}
+            padding={GAME_UI.MONEY_LADDER.CONTAINER.PADDING}
+          >
+            <hstack gap="small" alignment="middle center">
+              <text size="large">🪙</text>
+              <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>
+                {MONEY_LADDER[currentQuestion].amount}
+              </text>
+            </hstack>
+          </hstack>
+          {MONEY_LADDER[currentQuestion].milestone && (
+            <text size="medium" color={GAME_UI.MONEY_LADDER.MILESTONE.COLOR}>
+              {GAME_UI.MONEY_LADDER.MILESTONE.ICON} Milestone
+            </text>
+          )}
+        </hstack>
       </vstack>
     );
 
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
         <text size="small" weight="bold" alignment="center">Lifelines</text>
-        <hstack gap="small" width="100%" alignment="center">
-          <button
-            appearance={fiftyFifty ? "primary" : "secondary"}
-            disabled={!fiftyFifty}
-            onPress={() => useLifeline('fiftyFifty')}
-            size="small"
+        <hstack gap="medium" width="100%" alignment="center">
+          <hstack 
+            width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
+            height={`${GAME_UI.LIFELINES.BUTTON.HEIGHT}px`}
+            backgroundColor={fiftyFifty ? COLORS.LIFELINE_50_50 : COLORS.NEUTRAL_400}
+            cornerRadius={GAME_UI.LIFELINES.BUTTON.CORNER_RADIUS}
+            alignment="middle center"
+            onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            50:50
-          </button>
-          <button
-            appearance={askAudience ? "primary" : "secondary"}
-            disabled={!askAudience}
-            onPress={() => useLifeline('askAudience')}
-            size="small"
+            <text size="medium" color={COLORS.NEUTRAL_100}>50:50</text>
+          </hstack>
+          <hstack 
+            width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
+            height={`${GAME_UI.LIFELINES.BUTTON.HEIGHT}px`}
+            backgroundColor={askAudience ? COLORS.LIFELINE_ASK : COLORS.NEUTRAL_400}
+            cornerRadius={GAME_UI.LIFELINES.BUTTON.CORNER_RADIUS}
+            alignment="middle center"
+            onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            Ask
-          </button>
-          <button
-            appearance={phoneFriend ? "primary" : "secondary"}
-            disabled={!phoneFriend}
-            onPress={() => useLifeline('phoneFriend')}
-            size="small"
+            <text size="medium" color={COLORS.NEUTRAL_900}>Ask</text>
+          </hstack>
+          <hstack 
+            width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
+            height={`${GAME_UI.LIFELINES.BUTTON.HEIGHT}px`}
+            backgroundColor={phoneFriend ? COLORS.LIFELINE_CALL : COLORS.NEUTRAL_400}
+            cornerRadius={GAME_UI.LIFELINES.BUTTON.CORNER_RADIUS}
+            alignment="middle center"
+            onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            Call
-          </button>
+            <text size="medium" color={COLORS.NEUTRAL_100}>Call</text>
+          </hstack>
         </hstack>
       </vstack>
     );
@@ -468,24 +467,43 @@ Devvit.addCustomPostType({
       const currentQ = gameQuestions[currentQuestion];
       return (
         <vstack gap="medium" width="100%">
-          <text size="large" weight="bold" alignment="center">
-            Question {currentQuestion + 1}
-          </text>
-          <text size="medium" alignment="center">
-            {currentQ.question}
-          </text>
-          <vstack gap="small" width="100%">
+          <vstack width="100%" cornerRadius={GAME_UI.QUESTION.CONTAINER.CORNER_RADIUS}>
+            <hstack 
+              width="100%" 
+              backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
+              cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
+              padding={GAME_UI.QUESTION.HEADER.PADDING}
+            >
+              <text size="large" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
+                Question {currentQuestion + 1}
+              </text>
+            </hstack>
+            <vstack 
+              width="100%" 
+              backgroundColor={GAME_UI.QUESTION.CONTAINER.BACKGROUND}
+              padding={GAME_UI.QUESTION.CONTAINER.PADDING}
+              cornerRadius="medium"
+            >
+              <text size="xlarge" weight="bold" alignment="center" color={COLORS.BACKGROUND}>
+                {currentQ.question}
+              </text>
+            </vstack>
+          </vstack>
+          <vstack gap={GAME_UI.ANSWERS.BUTTON.GAP} width="100%">
             {currentQ.options.map((option, index) => (
-              <button
+              <hstack
                 key={index.toString()}
-                appearance={hiddenOptions.includes(index) ? "secondary" : "primary"}
-                disabled={hiddenOptions.includes(index)}
-                onPress={() => answerQuestion(index)}
                 width="100%"
-                size="small"
+                height={`${GAME_UI.ANSWERS.BUTTON.HEIGHT}px`}
+                backgroundColor={hiddenOptions.includes(index) ? COLORS.NEUTRAL_400 : GAME_UI.ANSWERS.BUTTON.BACKGROUND}
+                cornerRadius={GAME_UI.ANSWERS.BUTTON.CORNER_RADIUS}
+                onPress={() => { if (!hiddenOptions.includes(index)) answerQuestion(index); }}
+                alignment="middle center"
               >
-                {String.fromCharCode(65 + index)}. {option}
-              </button>
+                <text size="large" color={GAME_UI.ANSWERS.BUTTON.TEXT_COLOR}>
+                  {String.fromCharCode(65 + index)}. {option}
+                </text>
+              </hstack>
             ))}
           </vstack>
           
@@ -754,15 +772,19 @@ Devvit.addCustomPostType({
         {showHowToPlay && renderHowToPlay()}
 
         {gameStatus === 'playing' && gameQuestions.length > 0 && !showWalkAway && (
-          <hstack gap="medium" width="100%" height="85%" padding="medium">
-            <vstack width="70%" height="100%" gap="small">
-              {renderQuestion()}
+          <vstack width="100%" height="100%" padding="medium" gap="medium">
+            <hstack width="100%" gap="medium" alignment="start">
+              <vstack width="80%" gap="medium">
+                {renderQuestion()}
+              </vstack>
+              <vstack width="20%" gap="small">
+                {renderMoneyLadder()}
+              </vstack>
+            </hstack>
+            <vstack width="100%" alignment="center">
               {renderLifelines()}
             </vstack>
-            <vstack width="30%" height="100%">
-              {renderMoneyLadder()}
-            </vstack>
-          </hstack>
+          </vstack>
         )}
 
         {showWalkAway && renderWalkAwayPrompt()}
