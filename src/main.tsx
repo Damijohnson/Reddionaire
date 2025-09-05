@@ -479,12 +479,12 @@ Devvit.addCustomPostType({
           <vstack width="100%" gap="medium">
             <hstack alignment="start">
               <hstack 
-                width={`${GAME_UI.QUESTION.HEADER.WIDTH}px`}
-                backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
-                cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
-                padding={GAME_UI.QUESTION.HEADER.PADDING}
+                // width={`${GAME_UI.QUESTION.HEADER.WIDTH}px`}
+                // backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
+                // cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
+                // padding={GAME_UI.QUESTION.HEADER.PADDING}
               >
-                <text size="large" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
+                <text size="small" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
                   Question {currentQuestion + 1}
                 </text>
               </hstack>
