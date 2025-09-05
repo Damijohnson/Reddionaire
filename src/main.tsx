@@ -399,6 +399,8 @@ Devvit.addCustomPostType({
         >
           Money Ladder
         </text>
+
+        {/* Amount row */}
         <hstack gap="small" alignment="middle center">
           <hstack 
             backgroundColor={COLORS.MONEY_LADDER_BG}
@@ -412,15 +414,12 @@ Devvit.addCustomPostType({
               </text>
             </hstack>
           </hstack>
-          {MONEY_LADDER[currentQuestion].milestone && (
-            <vstack 
-              width={`${GAME_UI.MONEY_LADDER.MILESTONE.SIZE}px`} 
-              height={`${GAME_UI.MONEY_LADDER.MILESTONE.SIZE}px`}
-              backgroundColor={GAME_UI.MONEY_LADDER.MILESTONE.COLOR}
-              cornerRadius="full"
-            />
-          )}
         </hstack>
+
+        {/* Milestone label on its own line */}
+        {MONEY_LADDER[currentQuestion].milestone && (
+          <text size="small" color={COLORS.NEUTRAL_100}>Milestone</text>
+        )}
       </vstack>
     );
 

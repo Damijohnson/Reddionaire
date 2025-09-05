@@ -144,7 +144,7 @@ export const BUTTONS = {
 export const GAME_UI = {
   QUESTION: {
     CONTAINER: {
-      PADDING: "large" as const,
+      PADDING: "none" as const,
       CORNER_RADIUS: "large" as const,
       BACKGROUND: COLORS.QUESTION_BG
     },
@@ -185,7 +185,7 @@ export const GAME_UI = {
       WEIGHT: "bold" as const
     },
     CONTAINER: {
-      PADDING: "medium" as const,
+      PADDING: "none" as const,
       CORNER_RADIUS: "large" as const,
       BACKGROUND: COLORS.MONEY_LADDER_BG
     },
