@@ -3,7 +3,7 @@
 
 export const COLORS = {
   // Brand Colors
-  BACKGROUND: '#6B5ECD', // Main purple background
+  BACKGROUND: '#5A4FCC', // Main purple background
   PRIMARY: '#3CCFCF', // Light blue for Start Game button
   PRIMARY_DARK: '#35B9B9', // Darker blue for hover states
   PRIMARY_LIGHT: '#4DDBDB', // Lighter blue for highlights
@@ -13,14 +13,16 @@ export const COLORS = {
   ACCENT: '#FFD700', // Yellow for How to Play button
 
   // Game Colors
-  QUESTION_HEADER: '#FF69B4', // Pink header
-  QUESTION_BG: '#F8E4FF', // Light pink/purple question background
-  ANSWER_BUTTON: '#6B5ECD', // Purple answer buttons
+  QUESTION_HEADER: '#8E68F0', // Updated purple badge
+  QUESTION_BG: '#F2D6FF', // Updated lighter purple background
+  QUESTION_TEXT: '#3F2C90', // New: dark purple question text
+  ANSWER_BUTTON: '#5B4FD6', // Updated answer button purple
   ANSWER_TEXT: '#FFFFFF', // White text for answers
+  QUESTION_BADGE_BG: '#8E68F0', // New: badge background purple
   LIFELINE_50_50: '#3CCFCF', // Blue 50:50 button
   LIFELINE_ASK: '#FFD700', // Yellow Ask button
   LIFELINE_CALL: '#FF69B4', // Pink Call button
-  MONEY_LADDER_BG: '#6B5ECD', // Purple money ladder background
+  MONEY_LADDER_BG: '#5449C8', // Purple money ladder background
   MILESTONE_COLOR: '#FFD700', // Yellow milestone indicator
   
   // Status Colors
@@ -147,16 +149,16 @@ export const GAME_UI = {
       BACKGROUND: COLORS.QUESTION_BG
     },
     HEADER: {
-      WIDTH: 200,
-      BACKGROUND: COLORS.QUESTION_HEADER,
+      WIDTH: 140,
+      BACKGROUND: COLORS.QUESTION_BADGE_BG,
       TEXT_COLOR: COLORS.NEUTRAL_100,
-      PADDING: "medium" as const,
+      PADDING: "small" as const,
       CORNER_RADIUS: "large" as const
     }
   },
   ANSWERS: {
     BUTTON: {
-      HEIGHT: 56,
+      HEIGHT: 52,
       PADDING: "small" as const,
       CORNER_RADIUS: "medium" as const,
       BACKGROUND: COLORS.ANSWER_BUTTON,
@@ -179,7 +181,7 @@ export const GAME_UI = {
   MONEY_LADDER: {
     HEADER: {
       COLOR: COLORS.NEUTRAL_100,
-      SIZE: "medium" as const,
+      SIZE: "small" as const,
       WEIGHT: "bold" as const
     },
     CONTAINER: {
