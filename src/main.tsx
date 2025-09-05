@@ -476,27 +476,23 @@ Devvit.addCustomPostType({
       const currentQ = gameQuestions[currentQuestion];
       return (
         <vstack gap="medium" width="100%">
-          <vstack width="100%" gap="medium">
-            <hstack alignment="start">
-              <hstack 
-                // width={`${GAME_UI.QUESTION.HEADER.WIDTH}px`}
-                // backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
-                // cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
-                // padding={GAME_UI.QUESTION.HEADER.PADDING}
+          <vstack
+            width="100%"
+            backgroundColor={GAME_UI.QUESTION.CONTAINER.BACKGROUND}
+            cornerRadius={GAME_UI.QUESTION.CONTAINER.CORNER_RADIUS}
+          >
+            {/* Move padding to an inner wrapper so the card looks like it sits behind the text */}
+            <vstack padding={GAME_UI.QUESTION.CONTAINER.PADDING} gap="small" alignment="start">
+              <hstack
+                backgroundColor={GAME_UI.QUESTION.HEADER.BACKGROUND}
+                cornerRadius={GAME_UI.QUESTION.HEADER.CORNER_RADIUS}
+                padding={GAME_UI.QUESTION.HEADER.PADDING}
               >
                 <text size="small" weight="bold" color={GAME_UI.QUESTION.HEADER.TEXT_COLOR}>
                   Question {currentQuestion + 1}
                 </text>
               </hstack>
-            </hstack>
-            <vstack 
-              width="100%" 
-              backgroundColor={GAME_UI.QUESTION.CONTAINER.BACKGROUND}
-              padding={GAME_UI.QUESTION.CONTAINER.PADDING}
-              cornerRadius={GAME_UI.QUESTION.CONTAINER.CORNER_RADIUS}
-              alignment="middle center"
-            >
-              <text size="xlarge" weight="bold" color={COLORS.BACKGROUND}>
+              <text size="xlarge" weight="bold" color={COLORS.QUESTION_TEXT}>
                 {currentQ.question}
               </text>
             </vstack>
@@ -792,16 +788,14 @@ Devvit.addCustomPostType({
         {gameStatus === 'playing' && gameQuestions.length > 0 && !showWalkAway && (
           <vstack width="100%" height="100%" padding="medium" gap="medium">
             <hstack width="100%" gap="medium" alignment="start">
-              <vstack width="80%" gap="medium">
+              <vstack width="80%" gap="medium" alignment="center">
                 {renderQuestion()}
+                {renderLifelines()}
               </vstack>
               <vstack width="20%" gap="small">
                 {renderMoneyLadder()}
               </vstack>
             </hstack>
-            <vstack width="100%" alignment="center">
-              {renderLifelines()}
-            </vstack>
           </vstack>
         )}
 
