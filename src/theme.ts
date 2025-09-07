@@ -145,7 +145,7 @@ export const GAME_UI = {
   QUESTION: {
     CONTAINER: {
       PADDING: "none" as const,
-      CORNER_RADIUS: "large" as const,
+      CORNER_RADIUS: "small" as const,
       BACKGROUND: COLORS.QUESTION_BG
     },
     HEADER: {
@@ -153,17 +153,17 @@ export const GAME_UI = {
       BACKGROUND: COLORS.QUESTION_BADGE_BG,
       TEXT_COLOR: COLORS.NEUTRAL_100,
       PADDING: "small" as const,
-      CORNER_RADIUS: "large" as const
+      CORNER_RADIUS: "small" as const
     }
   },
   ANSWERS: {
     BUTTON: {
       HEIGHT: 52,
       PADDING: "small" as const,
-      CORNER_RADIUS: "large" as const,
+      CORNER_RADIUS: "small" as const,
       BACKGROUND: COLORS.ANSWER_BUTTON,
       TEXT_COLOR: COLORS.ANSWER_TEXT,
-      GAP: "none" as const,
+      GAP: "small" as const,
       PREFIX: {
         WIDTH: 40,
         WEIGHT: "bold" as const
@@ -174,8 +174,8 @@ export const GAME_UI = {
     BUTTON: {
       HEIGHT: 40,
       WIDTH: 100,
-      CORNER_RADIUS: "large" as const,
-      GAP: "medium" as const
+      CORNER_RADIUS: "small" as const,
+      GAP: "small" as const
     }
   },
   MONEY_LADDER: {
