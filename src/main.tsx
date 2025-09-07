@@ -9,8 +9,7 @@ Devvit.configure({
   redis: true,
 });
 
-// Background image (full-bleed)
-const BGURL = "assets/app_bg_v2.jpg";
+const BGURL = "app_bg_v2.jpg";
 
 // Game constants
 const MONEY_LADDER = [
@@ -108,6 +107,7 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
   return post;
 };
 
+
 // Add a menu item to the subreddit menu for instantiating the new experience post
 Devvit.addMenuItem({
   label: "Start Redditionaire Game",
@@ -122,6 +122,20 @@ Devvit.addMenuItem({
     const post = await createPost(context);
 
     ui.navigateTo(post);
+  },
+});
+
+Devvit.addMenuItem({
+  label: "Debug: Show BG URL",
+  location: "subreddit",
+  forUserType: "moderator",
+  onPress: async (_event, context) => {
+    try {
+      const url = await context.assets.getURL(BGURL);
+      context.ui.showToast(url ?? "(no URL returned)");
+    } catch (e) {
+      context.ui.showToast(`assets.getURL error: ${String(e)}`);
+    }
   },
 });
 
@@ -718,7 +732,7 @@ Devvit.addCustomPostType({
 
     return (
       <zstack width="100%" height="100%">
-      <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" contentMode="cover" />
+      <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
         <vstack height="100%" width="100%">
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
