@@ -13,18 +13,18 @@ const BGURL = "app_bg_v2.jpg";
 
 // Game constants
 const MONEY_LADDER = [
-  { question: 1, amount: "$100K", milestone: false },
-  { question: 2, amount: "$150K", milestone: false },
-  { question: 3, amount: "$200K", milestone: false },
-  { question: 4, amount: "$250K", milestone: true },
-  { question: 5, amount: "$300K", milestone: false },
-  { question: 6, amount: "$400K", milestone: false },
-  { question: 7, amount: "$500K", milestone: false },
-  { question: 8, amount: "$600K", milestone: true },
-  { question: 9, amount: "$700K", milestone: false },
-  { question: 10, amount: "$800K", milestone: false },
-  { question: 11, amount: "$850K", milestone: false },
-  { question: 12, amount: "$1M", milestone: true },
+  { question: 1, amount: "100,000", milestone: false },
+  { question: 2, amount: "150,000", milestone: false },
+  { question: 3, amount: "200,000", milestone: false },
+  { question: 4, amount: "250,000", milestone: true },
+  { question: 5, amount: "300,000", milestone: false },
+  { question: 6, amount: "400,000", milestone: false },
+  { question: 7, amount: "500,000", milestone: false },
+  { question: 8, amount: "600,000", milestone: true },
+  { question: 9, amount: "700,000", milestone: false },
+  { question: 10, amount: "800,000", milestone: false },
+  { question: 11, amount: "850,000", milestone: false },
+  { question: 12, amount: "1,000,000", milestone: true },
 ];
 
 // Question rotation system
@@ -411,15 +411,16 @@ Devvit.addCustomPostType({
         </text>
 
         {/* Amount row */}
-        <hstack gap="small" alignment="middle center">
+        <hstack gap="small" alignment="start">
           <hstack 
+            width="70%"
             backgroundColor={COLORS.MONEY_LADDER_BG}
             cornerRadius={GAME_UI.MONEY_LADDER.CONTAINER.CORNER_RADIUS}
             padding={GAME_UI.MONEY_LADDER.CONTAINER.PADDING}
           >
             <hstack gap="small" alignment="middle center">
               <text size="large">🪙</text>
-              <text size="medium" weight="bold" color={COLORS.NEUTRAL_100}>
+              <text size="xlarge" weight="bold" color={COLORS.NEUTRAL_100}>
                 {MONEY_LADDER[currentQuestion].amount}
               </text>
             </hstack>
@@ -435,7 +436,7 @@ Devvit.addCustomPostType({
 
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="center">Lifelines</text>
+        <text size="small" weight="bold" alignment="center" color={COLORS.NEUTRAL_100}>Lifelines</text>
         <hstack gap={GAME_UI.LIFELINES.BUTTON.GAP} width="100%" alignment="middle center">
           <hstack 
             width={`${GAME_UI.LIFELINES.BUTTON.WIDTH}px`}
