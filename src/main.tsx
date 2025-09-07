@@ -146,8 +146,6 @@ Devvit.addTrigger({
   },
 });
 
-// Leaderboard operations are now handled in server.ts
-
 // Add a post type definition
 Devvit.addCustomPostType({
   name: "Redditionaire Game",
@@ -733,7 +731,7 @@ Devvit.addCustomPostType({
     return (
       <zstack width="100%" height="100%">
       <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
-        <vstack height="100%" width="100%">
+        <vstack height="100%" width="100%" padding="medium">
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
             gap="large" 
