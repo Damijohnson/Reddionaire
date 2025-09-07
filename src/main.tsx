@@ -9,6 +9,9 @@ Devvit.configure({
   redis: true,
 });
 
+// Background image (full-bleed)
+const BGURL = "assets/app_bg_v2.jpg";
+
 // Game constants
 const MONEY_LADDER = [
   { question: 1, amount: "$100K", milestone: false },
@@ -346,11 +349,6 @@ Devvit.addCustomPostType({
           
           setAudienceResults(results);
           setShowAudienceResults(true);
-          
-          // Hide results after 5 seconds
-          setTimeout(() => {
-            setShowAudienceResults(false);
-          }, 5000);
         }
         setAskAudience(false);
         setUsedLifelines(prev => [...prev, lifeline]);
@@ -523,7 +521,18 @@ Devvit.addCustomPostType({
           {/* Show audience results if available */}
           {showAudienceResults && audienceResults.length > 0 && (
             <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
-              <text size="small" weight="bold" color="#DAA520" alignment="center">Audience Results</text>
+              <hstack gap="small" alignment="middle center">
+                <text size="small" weight="bold" color="#DAA520">Audience Results</text>
+                <hstack
+                  padding="small"
+                  cornerRadius="small"
+                  backgroundColor="#FDE68A"
+                  alignment="middle center"
+                  onPress={() => setShowAudienceResults(false)}
+                >
+                  <text size="small" weight="bold" color="#7C5C00">Hide</text>
+                </hstack>
+              </hstack>
               <vstack gap="small" width="100%">
                 {audienceResults.map((percentage, index) => (
                   <hstack key={index.toString()} width="100%" gap="small" alignment="start">
@@ -708,15 +717,16 @@ Devvit.addCustomPostType({
     );
 
     return (
-      <vstack height="100%" width="100%" backgroundColor={COLORS.BACKGROUND}>
+      <zstack width="100%" height="100%">
+      <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" contentMode="cover" />
+        <vstack height="100%" width="100%">
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
             gap="large" 
             width="100%" 
             height="100%" 
             alignment="center" 
-            padding="large" 
-            backgroundColor={COLORS.BACKGROUND}
+            padding="large"
           >
             <vstack gap="medium" alignment="center">
               <text size="xxlarge" weight="bold" color={COLORS.NEUTRAL_100}>
@@ -787,11 +797,11 @@ Devvit.addCustomPostType({
         {gameStatus === 'playing' && gameQuestions.length > 0 && !showWalkAway && (
           <vstack width="100%" height="100%" padding="medium" gap="medium">
             <hstack width="100%" gap="medium" alignment="start">
-              <vstack width="80%" gap="medium" alignment="center">
+              <vstack width="70%" gap="medium" alignment="center">
                 {renderQuestion()}
                 {renderLifelines()}
               </vstack>
-              <vstack width="20%" gap="small">
+              <vstack width="30%" gap="small">
                 {renderMoneyLadder()}
               </vstack>
             </hstack>
@@ -802,7 +812,8 @@ Devvit.addCustomPostType({
         
         {(gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') && 
           renderGameOver()}
-      </vstack>
+        </vstack>
+      </zstack>
     );
   },
 });

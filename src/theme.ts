@@ -160,7 +160,7 @@ export const GAME_UI = {
     BUTTON: {
       HEIGHT: 52,
       PADDING: "small" as const,
-      CORNER_RADIUS: "medium" as const,
+      CORNER_RADIUS: "large" as const,
       BACKGROUND: COLORS.ANSWER_BUTTON,
       TEXT_COLOR: COLORS.ANSWER_TEXT,
       GAP: "none" as const,

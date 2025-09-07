@@ -1,3 +1,5 @@
 name: redditionaire-gm
+assets:
+  - assets
 permissions:
   redis: true
