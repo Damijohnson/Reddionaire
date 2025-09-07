@@ -512,7 +512,7 @@ Devvit.addCustomPostType({
                 key={index.toString()}
                 width="100%"
                 height={`${GAME_UI.ANSWERS.BUTTON.HEIGHT}px`}
-                backgroundColor={hiddenOptions.includes(index) ? COLORS.NEUTRAL_400 : GAME_UI.ANSWERS.BUTTON.BACKGROUND}
+                backgroundColor={hiddenOptions.includes(index) ? GAME_SHOW.ANSWERS.DISABLED_COLOR : GAME_UI.ANSWERS.BUTTON.BACKGROUND}
                 cornerRadius={GAME_UI.ANSWERS.BUTTON.CORNER_RADIUS}
                 padding={GAME_UI.ANSWERS.BUTTON.PADDING}
                 onPress={() => { if (!hiddenOptions.includes(index)) answerQuestion(index); }}
