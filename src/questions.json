@@ -726,14 +726,284 @@
     "category": "science",
     "explanation": "Endotherms regulate body temperature through internal heat production."
   },
+    {
+      "id": 80,
+      "question": "What is the only sea in the world with no coastline?",
+      "options": ["Sargasso Sea", "Caribbean Sea", "Philippine Sea", "Coral Sea"],
+      "correctAnswer": 0,
+      "difficulty": "hard",
+      "category": "geography",
+      "explanation": "The Sargasso Sea lies within the North Atlantic Gyre and is bounded by currents rather than land."
+    },
   {
-    "id": 80,
-    "question": "What is the time complexity of binary search on a sorted array?",
-    "options": ["O(n)", "O(n log n)", "O(log n)", "O(1)"],
+    "id": 81,
+    "question": "Which vitamin do our bodies primarily produce when exposed to sunlight?",
+    "options": ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin B12"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Ultraviolet B exposure enables the skin to synthesize vitamin D."
+  },
+  {
+    "id": 82,
+    "question": "What is the currency of Canada?",
+    "options": ["Canadian pound", "Canadian dollar", "Loonie", "Canadian franc"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Canada uses the Canadian dollar (CAD). The $1 coin is nicknamed the loonie."
+  },
+  {
+    "id": 83,
+    "question": "At sea level, what is the boiling point of water in Celsius?",
+    "options": ["90°C", "95°C", "100°C", "105°C"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Pure water boils at 100°C at standard atmospheric pressure."
+  },
+  {
+    "id": 84,
+    "question": "What is the largest land carnivore?",
+    "options": ["Polar bear", "Grizzly bear", "Lion", "Tiger"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Adult male polar bears can exceed 600 kg, making them the largest land carnivores."
+  },
+  {
+    "id": 85,
+    "question": "Which shape has four equal sides and four right angles?",
+    "options": ["Rectangle", "Parallelogram", "Rhombus", "Square"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "mathematics",
+    "explanation": "A square is a special rectangle and rhombus with all sides equal and angles 90°."
+  },
+  {
+    "id": 86,
+    "question": "Which sport is played with a shuttlecock?",
+    "options": ["Squash", "Badminton", "Tennis", "Table tennis"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "sports",
+    "explanation": "Badminton uses a feathered or synthetic shuttlecock hit over a net."
+  },
+  {
+    "id": 87,
+    "question": "What is the capital of New Zealand?",
+    "options": ["Auckland", "Wellington", "Christchurch", "Hamilton"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Wellington, at the southern tip of the North Island, is the capital."
+  },
+  {
+    "id": 88,
+    "question": "What is the chemical symbol for potassium?",
+    "options": ["Po", "Pt", "K", "P"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Potassium's symbol K comes from 'kalium'."
+  },
+  {
+    "id": 89,
+    "question": "What is the smallest bone in the human body?",
+    "options": ["Stapes", "Incus", "Malleus", "Stirrup"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "The stapes (stirrup) in the middle ear is the smallest human bone."
+  },
+  {
+    "id": 90,
+    "question": "What is the world's largest producer of coffee?",
+    "options": ["Colombia", "Vietnam", "Brazil", "Ethiopia"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Brazil has led global coffee production for over a century."
+  },
+  {
+    "id": 91,
+    "question": "What is the longest river in Europe?",
+    "options": ["Danube", "Volga", "Dnieper", "Rhine"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "The Volga flows about 3,530 km through Russia to the Caspian Sea."
+  },
+  {
+    "id": 92,
+    "question": "Who is often credited as the world's first computer programmer?",
+    "options": ["Alan Turing", "Ada Lovelace", "Charles Babbage", "Grace Hopper"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "technology",
+    "explanation": "Ada Lovelace wrote notes outlining algorithms for Babbage's Analytical Engine."
+  },
+  {
+    "id": 93,
+    "question": "What is the binary representation of the decimal number 13?",
+    "options": ["1011", "1100", "1101", "1110"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "technology",
+    "explanation": "13 in base-10 equals 1101 in base-2."
+  },
+  {
+    "id": 94,
+    "question": "Who composed the 'Moonlight Sonata'?",
+    "options": ["Mozart", "Beethoven", "Chopin", "Liszt"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "music",
+    "explanation": "Ludwig van Beethoven composed Piano Sonata No. 14, nicknamed 'Moonlight'."
+  },
+  {
+    "id": 95,
+    "question": "Which Canadian province is the largest by area?",
+    "options": ["Ontario", "Quebec", "British Columbia", "Nunavut"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Quebec is the largest province by area; Nunavut is a territory."
+  },
+  {
+    "id": 96,
+    "question": "What is the SI unit of pressure?",
+    "options": ["Bar", "Pascal", "Torr", "Atmosphere"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "The pascal (Pa) equals one newton per square meter."
+  },
+  {
+    "id": 97,
+    "question": "Which layer of Earth's atmosphere contains most of the ozone layer?",
+    "options": ["Troposphere", "Stratosphere", "Mesosphere", "Thermosphere"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "The ozone layer resides primarily in the lower stratosphere."
+  },
+  {
+    "id": 98,
+    "question": "Which data structure operates on a First-In, First-Out (FIFO) principle?",
+    "options": ["Stack", "Queue", "Heap", "Tree"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "technology",
+    "explanation": "A queue removes items in the same order they were inserted."
+  },
+  {
+    "id": 99,
+    "question": "In what year was the Dominion of Canada formed (Confederation)?",
+    "options": ["1849", "1867", "1871", "1885"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "history",
+    "explanation": "Canadian Confederation occurred on July 1, 1867."
+  },
+  {
+    "id": 100,
+    "question": "What is the derivative of sin(x) with respect to x?",
+    "options": ["sin(x)", "cos(x)", "-sin(x)", "-cos(x)"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "mathematics",
+    "explanation": "d/dx[sin(x)] = cos(x) for x in radians."
+  },
+  {
+    "id": 101,
+    "question": "Which element has the highest electrical conductivity at room temperature?",
+    "options": ["Copper", "Silver", "Gold", "Aluminum"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Silver has the highest electrical conductivity among elements."
+  },
+  {
+    "id": 102,
+    "question": "What is the capital of Kazakhstan?",
+    "options": ["Almaty", "Astana", "Tashkent", "Bishkek"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "geography",
+    "explanation": "The capital, formerly Nur-Sultan, reverted to the name Astana in 2022."
+  },
+  {
+    "id": 103,
+    "question": "Who painted 'Guernica'?",
+    "options": ["Pablo Picasso", "Salvador Dalí", "Joan Miró", "Diego Rivera"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "art",
+    "explanation": "Picasso painted 'Guernica' in 1937 as a response to the bombing of Guernica."
+  },
+  {
+    "id": 104,
+    "question": "Which formula relates vertices (V), edges (E), and faces (F) of a convex polyhedron?",
+    "options": ["Pythagorean theorem", "Euler's formula", "Fermat's Last Theorem", "Green's theorem"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "mathematics",
+    "explanation": "Euler's formula: V − E + F = 2 for convex polyhedra."
+  },
+  {
+    "id": 105,
+    "question": "What is Planck's constant approximately equal to?",
+    "options": ["6.626×10^-34 J·s", "9.81 m/s^2", "1.602×10^-19 C", "3.00×10^8 m/s"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Planck's constant h ≈ 6.626×10^-34 joule–seconds."
+  },
+  {
+    "id": 106,
+    "question": "Who wrote 'The Wealth of Nations'?",
+    "options": ["David Ricardo", "John Stuart Mill", "Adam Smith", "Thomas Malthus"],
     "correctAnswer": 2,
     "difficulty": "hard",
-    "category": "technology",
-    "explanation": "Binary search halves the search space each step, yielding logarithmic time."
+    "category": "economics",
+    "explanation": "Adam Smith published it in 1776, foundational to classical economics."
+  },
+  {
+    "id": 107,
+    "question": "Which country’s national flag is non‑rectangular?",
+    "options": ["Switzerland", "Vatican City", "Nepal", "Bhutan"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "geography",
+    "explanation": "Nepal’s flag consists of two stacked pennants, making it the only national flag that isn’t rectangular."
+  },
+  {
+    "id": 108,
+    "question": "Which city hosted the 1976 Summer Olympics?",
+    "options": ["Toronto", "Montreal", "Calgary", "Vancouver"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "sports",
+    "explanation": "Montreal, Quebec, hosted the 1976 Summer Games."
+  },
+  {
+    "id": 109,
+    "question": "Which nearby galaxy is on a collision course with the Milky Way?",
+    "options": ["Triangulum Galaxy", "Large Magellanic Cloud", "Andromeda Galaxy", "Sombrero Galaxy"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "The Andromeda Galaxy (M31) is expected to merge with the Milky Way in ~4–5 billion years."
+  },
+  {
+    "id": 110,
+    "question": "What humorous term names the fear of long words?",
+    "options": ["Pneumonoultramicroscopicsilicovolcanoconiosis", "Sesquipedalophobia", "Hippopotomonstrosesquipedaliophobia", "Supercalifragilisticexpialidociousphobia"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "language",
+    "explanation": "The tongue‑in‑cheek term 'hippopotomonstrosesquipedaliophobia' is used to describe a fear of long words."
   }
   ],
   "rotationRules": {
