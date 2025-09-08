@@ -74,8 +74,35 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     selectedQuestions.push(...fallbackQuestions.slice(0, questionsPerGame - selectedQuestions.length));
   }
   
-  // Ensure we have exactly the right number of questions
-  return selectedQuestions.slice(0, questionsPerGame);
+  // Randomize the position of the correct answer for each question
+  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).map(question => {
+    // Create a copy of the question
+    const shuffledQuestion = { ...question };
+    
+    // Create array of indices [0, 1, 2, 3]
+    const indices = [0, 1, 2, 3];
+    
+    // Shuffle the indices using the same hash function
+    let shuffleHash = hash;
+    const shuffledIndices = indices.sort(() => {
+      shuffleHash = (shuffleHash * 9301 + 49297) % 233280;
+      return (shuffleHash / 233280) - 0.5;
+    });
+    
+    // Create new options array with shuffled order
+    const newOptions = shuffledIndices.map(index => question.options[index]);
+    
+    // Find the new position of the correct answer
+    const newCorrectAnswer = shuffledIndices.indexOf(question.correctAnswer);
+    
+    // Update the question with shuffled options and new correct answer position
+    shuffledQuestion.options = newOptions;
+    shuffledQuestion.correctAnswer = newCorrectAnswer;
+    
+    return shuffledQuestion;
+  });
+  
+  return finalQuestions;
 };
 
 // Game state interface

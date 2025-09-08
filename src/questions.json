@@ -18,8 +18,8 @@
     {
       "id": 1,
       "question": "What is the capital of France?",
-      "options": ["London", "Berlin", "Paris", "Madrid"],
-      "correctAnswer": 2,
+      "options": ["London", "Paris", "Madrid", "Berlin"],
+      "correctAnswer": 1,
       "difficulty": "easy",
       "category": "geography",
       "explanation": "Paris is the capital and largest city of France."
@@ -27,8 +27,8 @@
     {
       "id": 2,
       "question": "Which planet is known as the Red Planet?",
-      "options": ["Venus", "Mars", "Jupiter", "Saturn"],
-      "correctAnswer": 1,
+      "options": ["Mars", "Venus", "Jupiter", "Saturn"],
+      "correctAnswer": 0,
       "difficulty": "easy",
       "category": "science",
       "explanation": "Mars is called the Red Planet due to iron oxide on its surface."
@@ -36,8 +36,8 @@
     {
       "id": 3,
       "question": "What is the least common multiple (LCM) of 12 and 18?",
-      "options": ["24", "36", "48", "60"],
-      "correctAnswer": 1,
+      "options": ["24", "60", "48", "36"],
+      "correctAnswer": 3,
       "difficulty": "medium",
       "category": "mathematics",
       "explanation": "LCM(12,18)=36 because 12=2^2·3 and 18=2·3^2; take highest powers: 2^2·3^2=36."
@@ -45,8 +45,8 @@
     {
       "id": 4,
       "question": "Who wrote 'Romeo and Juliet'?",
-      "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
-      "correctAnswer": 1,
+      "options": ["Mark Twain", "Jane Austen", "William Shakespeare", "Charles Dickens"],
+      "correctAnswer": 2,
       "difficulty": "easy",
       "category": "literature",
       "explanation": "William Shakespeare wrote this famous tragedy in the late 16th century."
@@ -54,8 +54,8 @@
     {
       "id": 5,
       "question": "What is the largest ocean on Earth?",
-      "options": ["Atlantic", "Indian", "Arctic", "Pacific"],
-      "correctAnswer": 3,
+      "options": ["Pacific", "Atlantic", "Indian", "Arctic"],
+      "correctAnswer": 0,
       "difficulty": "easy",
       "category": "geography",
       "explanation": "The Pacific Ocean covers about 46% of Earth's water surface."
@@ -63,8 +63,8 @@
     {
       "id": 6,
       "question": "What year did World War II end?",
-      "options": ["1943", "1944", "1945", "1946"],
-      "correctAnswer": 2,
+      "options": ["1946", "1943", "1944", "1945"],
+      "correctAnswer": 3,
       "difficulty": "easy",
       "category": "history",
       "explanation": "World War II ended in 1945 with Germany's surrender in May and Japan's in September."
@@ -72,8 +72,8 @@
     {
       "id": 7,
       "question": "What is the chemical symbol for gold?",
-      "options": ["Ag", "Au", "Fe", "Cu"],
-      "correctAnswer": 1,
+      "options": ["Fe", "Cu", "Ag", "Au"],
+      "correctAnswer": 3,
       "difficulty": "easy",
       "category": "science",
       "explanation": "Au comes from the Latin word for gold, 'aurum'."
@@ -1352,7 +1352,7 @@
     "question": "Who created the fictional detective Sherlock Holmes?",
     "options": ["Agatha Christie", "Arthur Conan Doyle", "Edgar Allan Poe", "Dashiell Hammett"],
     "correctAnswer": 1,
-    "difficulty": "easy",
+    "difficulty": "medium",
     "category": "literature",
     "explanation": "Sir Arthur Conan Doyle introduced Holmes in 1887."
   },
@@ -1361,7 +1361,7 @@
     "question": "Who was the first human to travel into space?",
     "options": ["Neil Armstrong", "Yuri Gagarin", "Alan Shepard", "John Glenn"],
     "correctAnswer": 1,
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "history",
     "explanation": "Soviet cosmonaut Yuri Gagarin orbited Earth on April 12, 1961."
   },
