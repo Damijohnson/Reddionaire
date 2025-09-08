@@ -228,11 +228,11 @@ Devvit.addCustomPostType({
           } else {
             // Check if the CURRENT question they just answered is a milestone
             const isMilestone = MONEY_LADDER[currentQuestion].milestone;
-            console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
-            if (isMilestone) {
-              console.log('Setting showWalkAway to true');
-              setShowWalkAway(true);
-            }
+            // console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
+            // if (isMilestone) {
+            //   console.log('Setting showWalkAway to true');
+            //   setShowWalkAway(true);
+            // }
             
             setCurrentQuestion(nextQuestion);
             setScore(newScore);
