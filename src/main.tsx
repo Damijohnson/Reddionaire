@@ -596,10 +596,16 @@ Devvit.addCustomPostType({
           </text>
         </vstack>
 
-        {lastAnswerExplanation && (
+        {lastAnswerExplanation && gameStatus !== 'won' && (
           <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
             <text size="small" weight="bold" color={COLORS.QUESTION_TEXT}>Final Answer Explanation:</text>
             <text size="small" color={COLORS.NEUTRAL_700} alignment="start">{lastAnswerExplanation}</text>
+          </vstack>
+        )}
+        
+        {gameStatus === 'won' && (
+          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
+            <text size="small" weight="bold" color={COLORS.SUCCESS}>You successfully answered all the correct questions!</text>
           </vstack>
         )}
 
