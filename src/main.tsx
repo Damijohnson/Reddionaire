@@ -544,48 +544,31 @@ Devvit.addCustomPostType({
     };
 
     const renderGameOver = () => (
-      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        {/* Top-right close chip, consistent with other pages */}
-        <hstack width="100%" alignment="end middle" padding="none">
-          <hstack
-            onPress={() => { resetGame(); }}
-            padding="small"
-            cornerRadius="small"
-            backgroundColor={COLORS.NEUTRAL_200}
-            alignment="middle center"
-          >
-            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
-          </hstack>
-        </hstack>
-
-        {/* Centered content card */}
-        <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small" alignment="center">
-          <text size="xlarge" weight="bold" color={
-            gameStatus === 'won' ? COLORS.ACCENT : gameStatus === 'lost' ? COLORS.ERROR : COLORS.PRIMARY
-          }>
-            {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away'}
+      <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
+        <vstack gap="medium" alignment="center">
+          <text size="xxlarge" weight="bold" color={COLORS.NEUTRAL_100}>
+            {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}
           </text>
-
-          <text size="medium" color={COLORS.NEUTRAL_700} alignment="center">
+          <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
             {gameStatus === 'won' ? `You won $1,000,000!` :
-             gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}.` :
-             `You walked away with ${score}.`}
+             gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
+             `You walked away with ${score}!`}
           </text>
+        </vstack>
 
-          {lastAnswerExplanation && (
-            <vstack gap="xsmall" width="100%" padding="small" backgroundColor={COLORS.EXPLANATION_BLUE} cornerRadius="small">
-              <text size="small" weight="bold" color="#0066CC">Explanation</text>
-              <text size="small" color="#333333">{lastAnswerExplanation}</text>
-            </vstack>
-          )}
+        {lastAnswerExplanation && (
+          <vstack gap="small" width="100%" maxWidth="400px" padding="small" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
+            <text size="small" weight="bold" color={COLORS.QUESTION_TEXT}>Final Answer Explanation:</text>
+            <text size="small" color={COLORS.NEUTRAL_700}>{lastAnswerExplanation}</text>
+          </vstack>
+        )}
 
-          {/* Primary action styled like other section buttons */}
-          <hstack
+        <vstack gap="medium" width="100%" maxWidth="400px">
+          <hstack 
             width={`${BUTTONS.BASE.WIDTH}%`}
             height={`${BUTTONS.BASE.HEIGHT}px`}
             backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
             cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
-            alignment={BUTTONS.BASE.ALIGNMENT}
             onPress={async () => {
               if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
                 try {
@@ -595,8 +578,9 @@ Devvit.addCustomPostType({
                   console.error('Error updating leaderboard:', error);
                 }
               }
-              await startGame();
+              resetGame();
             }}
+            alignment={BUTTONS.BASE.ALIGNMENT}
           >
             <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Play Again</text>
           </hstack>
@@ -607,31 +591,51 @@ Devvit.addCustomPostType({
 
 
     const renderWalkAwayPrompt = () => (
-      <vstack gap="medium" width="100%" alignment="center">
-        <text size="large" weight="bold">Milestone Reached!</text>
-        <text size="medium">
-          You've secured {MONEY_LADDER[currentQuestion].amount}!
-        </text>
+      <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
+        <vstack gap="medium" alignment="center">
+          <text size="xxlarge" weight="bold" color={COLORS.NEUTRAL_100}>
+            Milestone Reached!
+          </text>
+          <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
+            You've secured {MONEY_LADDER[currentQuestion].amount}!
+          </text>
+          <text size="medium" color={COLORS.NEUTRAL_100} alignment="center">
+            Do you want to continue or walk away?
+          </text>
+        </vstack>
 
-        <text size="medium">Do you want to continue or walk away?</text>
-        <hstack gap="medium">
-          <button appearance="primary" onPress={continueGame}>
-            Continue Playing
-          </button>
-          <button appearance="secondary" onPress={async () => {
-            // Update leaderboard with current score before walking away
-            try {
-              const subreddit = await context.reddit.getCurrentSubreddit();
-              await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
-            } catch (error) {
-              console.error('Error updating leaderboard:', error);
-            }
-            
-            walkAway();
-          }}>
-            Walk Away
-          </button>
-        </hstack>
+        <vstack gap="medium" width="100%" maxWidth="400px">
+          <hstack 
+            width={`${BUTTONS.BASE.WIDTH}%`}
+            height={`${BUTTONS.BASE.HEIGHT}px`}
+            backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
+            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            onPress={continueGame}
+            alignment={BUTTONS.BASE.ALIGNMENT}
+          >
+            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Continue Playing</text>
+          </hstack>
+          <hstack 
+            width={`${BUTTONS.BASE.WIDTH}%`}
+            height={`${BUTTONS.BASE.HEIGHT}px`}
+            backgroundColor={BUTTONS.SECONDARY.BACKGROUND}
+            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            onPress={async () => {
+              // Update leaderboard with current score before walking away
+              try {
+                const subreddit = await context.reddit.getCurrentSubreddit();
+                await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+              } catch (error) {
+                console.error('Error updating leaderboard:', error);
+              }
+              
+              walkAway();
+            }}
+            alignment={BUTTONS.BASE.ALIGNMENT}
+          >
+            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.SECONDARY.TEXT}>Walk Away</text>
+          </hstack>
+        </vstack>
       </vstack>
     );
 
