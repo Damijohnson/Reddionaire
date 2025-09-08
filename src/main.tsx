@@ -46,23 +46,24 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     return (hash / 233280) - 0.5;
   });
   
-  // Select questions based on difficulty distribution
-  const { easy, medium, hard } = questionsData.rotationRules.difficultyBuckets;
+  // Select questions with progression: easy -> medium -> hard (random selection from each tier)
   const questionsPerGame = questionsData.metadata.questionsPerGame;
-  
   const selectedQuestions: typeof questionsData.questions = [];
   
-  // Add easy questions
-  const easyQuestions = shuffledQuestions.filter(q => q.difficulty === "easy").slice(0, easy);
-  selectedQuestions.push(...easyQuestions);
+  // Separate questions by difficulty (already shuffled, so random selection)
+  const easyQuestions = shuffledQuestions.filter(q => q.difficulty === "easy");
+  const mediumQuestions = shuffledQuestions.filter(q => q.difficulty === "medium");
+  const hardQuestions = shuffledQuestions.filter(q => q.difficulty === "hard");
   
-  // Add medium questions
-  const mediumQuestions = shuffledQuestions.filter(q => q.difficulty === "medium").slice(0, medium);
-  selectedQuestions.push(...mediumQuestions);
+  // Progressive difficulty: first 4 questions easy, next 4 medium, last 4 hard
+  const easyCount = Math.min(4, questionsPerGame);
+  const mediumCount = Math.min(4, Math.max(0, questionsPerGame - 4));
+  const hardCount = Math.max(0, questionsPerGame - 8);
   
-  // Add hard questions
-  const hardQuestions = shuffledQuestions.filter(q => q.difficulty === "hard").slice(0, hard);
-  selectedQuestions.push(...hardQuestions);
+  // Add random questions from each difficulty tier in progression order
+  selectedQuestions.push(...easyQuestions.slice(0, easyCount));
+  selectedQuestions.push(...mediumQuestions.slice(0, mediumCount));
+  selectedQuestions.push(...hardQuestions.slice(0, hardCount));
   
   // If we don't have enough questions, add from fallback
   if (selectedQuestions.length < questionsPerGame) {
