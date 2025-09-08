@@ -461,7 +461,7 @@ Devvit.addCustomPostType({
             <hstack gap="small" alignment="middle center">
               <text size="large">🪙</text>
               <text size="xlarge" weight="bold" color={COLORS.NEUTRAL_100}>
-                {MONEY_LADDER[currentQuestion].amount}
+                R${MONEY_LADDER[currentQuestion].amount}
               </text>
             </hstack>
           </hstack>
@@ -592,7 +592,7 @@ Devvit.addCustomPostType({
           <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
             {gameStatus === 'won' ? `You won $1,000,000!` :
              gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
-             `You walked away with ${score}!`}
+             `You walked away with R$${score}!`}
           </text>
         </vstack>
 
@@ -643,7 +643,7 @@ Devvit.addCustomPostType({
             Milestone Reached!
           </text>
           <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
-            You've secured {MONEY_LADDER[currentQuestion].amount}!
+            You've secured R${MONEY_LADDER[currentQuestion].amount}!
           </text>
           <text size="medium" color={COLORS.NEUTRAL_100} alignment="center">
             Do you want to continue or walk away?
@@ -713,7 +713,7 @@ Devvit.addCustomPostType({
                   <text size="medium" weight="bold" width="10%" color={COLORS.SECONDARY}>{index + 1}.</text>
                   <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
                   <hstack width="30%" alignment="end">
-                    <text size="medium" weight="bold" color={COLORS.PRIMARY}>${entry.score.toLocaleString()}</text>
+                    <text size="medium" weight="bold" color={COLORS.PRIMARY}>R${entry.score}</text>
                   </hstack>
                 </hstack>
               ))}
@@ -870,7 +870,7 @@ Devvit.addCustomPostType({
                       {audienceResults.map((percentage, index) => {
                         const currentQ = gameQuestions[currentQuestion];
                         return (
-                          <hstack key={index.toString()} width="100%" gap="xsmall" alignment="start">
+                          <hstack key={index.toString()} width="100%" gap="small" alignment="start">
                             <text size="small" width="25px" weight="bold" key={index.toString()}>
                               {String.fromCharCode(65 + index)}:
                             </text>

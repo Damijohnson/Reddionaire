@@ -24,7 +24,6 @@ export class LeaderboardService {
       // Get current leaderboard
       const currentLeaderboard = await context.redis.get(leaderboardKey);
       let leaderboard = currentLeaderboard ? JSON.parse(currentLeaderboard) : [];
-    
       
       // Get current user's name
       let username = 'Anonymous';
@@ -40,12 +39,19 @@ export class LeaderboardService {
         console.error('Error getting username:', error);
       }
 
-      // Add new score
-      const newEntry = { userId: username, score: scoreNumber };
-      leaderboard.push(newEntry);
+      // Add new score (only if not 0)
+      if (score !== "0") {
+        // Score should already be in format like "100,000"
+        const newEntry = { userId: username, score: score };
+        leaderboard.push(newEntry);
+      }
       
       // Sort by score (highest first) and keep top 10
-      leaderboard.sort((a: any, b: any) => b.score - a.score);
+      leaderboard.sort((a: any, b: any) => {
+        const scoreA = parseInt(a.score.replace(/,/g, ''), 10);
+        const scoreB = parseInt(b.score.replace(/,/g, ''), 10);
+        return scoreB - scoreA;
+      });
       leaderboard = leaderboard.slice(0, 10);
       
       // Save back to Redis
