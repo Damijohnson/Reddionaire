@@ -996,7 +996,7 @@
     "category": "science",
     "explanation": "The Andromeda Galaxy (M31) is expected to merge with the Milky Way in ~4–5 billion years."
   },
-  {
+    {
     "id": 110,
     "question": "What humorous term names the fear of long words?",
     "options": ["Pneumonoultramicroscopicsilicovolcanoconiosis", "Sesquipedalophobia", "Hippopotomonstrosesquipedaliophobia", "Supercalifragilisticexpialidociousphobia"],
@@ -1004,6 +1004,186 @@
     "difficulty": "hard",
     "category": "language",
     "explanation": "The tongue‑in‑cheek term 'hippopotomonstrosesquipedaliophobia' is used to describe a fear of long words."
+  },
+  {
+    "id": 111,
+    "question": "Who sings the hit song 'Blinding Lights'?",
+    "options": ["Drake", "The Weeknd", "Post Malone", "Bruno Mars"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "music",
+    "explanation": "'Blinding Lights' is a 2019–2020 global hit by The Weeknd."
+  },
+  {
+    "id": 112,
+    "question": "Who sings 'bad guy'?",
+    "options": ["Billie Eilish", "Lorde", "Olivia Rodrigo", "Dua Lipa"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "music",
+    "explanation": "Billie Eilish released 'bad guy' in 2019 on her debut album."
+  },
+  {
+    "id": 113,
+    "question": "Complete the sentence: 'A picture is worth a thousand ____.'",
+    "options": ["ideas", "moments", "words", "memories"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "language",
+    "explanation": "The common proverb ends with 'words'."
+  },
+  {
+    "id": 114,
+    "question": "Complete the sentence: 'The early bird catches the ____.'",
+    "options": ["fish", "train", "worm", "wind"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "language",
+    "explanation": "Classic proverb encouraging promptness."
+  },
+  {
+    "id": 115,
+    "question": "What do you add to bread dough to make it rise?",
+    "options": ["Baking soda", "Yeast", "Cornstarch", "Salt"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Yeast ferments sugars releasing CO₂, which leavens dough."
+  },
+  {
+    "id": 116,
+    "question": "What do you call a word that reads the same backward as forward?",
+    "options": ["Anagram", "Homophone", "Palindrome", "Acronym"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "language",
+    "explanation": "Examples include 'level' and 'radar'."
+  },
+  {
+    "id": 117,
+    "question": "Who played Neo in 'The Matrix' (1999)?",
+    "options": ["Keanu Reeves", "Johnny Depp", "Tom Cruise", "Brad Pitt"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "movies",
+    "explanation": "Keanu Reeves starred as Neo in 'The Matrix'."
+  },
+  {
+    "id": 118,
+    "question": "Who played Jack Dawson in 'Titanic' (1997)?",
+    "options": ["Matt Damon", "Leonardo DiCaprio", "Ben Affleck", "Jude Law"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "movies",
+    "explanation": "Leonardo DiCaprio played Jack opposite Kate Winslet."
+  },
+  {
+    "id": 119,
+    "question": "Complete the sentence: 'When in Rome, do as the ____ do.'",
+    "options": ["natives", "Romans", "locals", "tourists"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "language",
+    "explanation": "The saying advises following local customs—'Romans'."
+  },
+  {
+    "id": 120,
+    "question": "What do you call animals that eat both plants and meat?",
+    "options": ["Carnivores", "Herbivores", "Omnivores", "Detritivores"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Omnivores have diets of both plant and animal matter."
+  },
+  {
+    "id": 121,
+    "question": "Who sings 'Shape of You'?",
+    "options": ["Ed Sheeran", "Shawn Mendes", "Sam Smith", "Justin Bieber"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "music",
+    "explanation": "Ed Sheeran released the hit single in 2017."
+  },
+  {
+    "id": 122,
+    "question": "Who played Wolverine in the 'X‑Men' film series (2000–2017)?",
+    "options": ["Hugh Jackman", "Chris Hemsworth", "Gerard Butler", "Clive Owen"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "movies",
+    "explanation": "Hugh Jackman portrayed Logan/Wolverine across multiple films."
+  },
+  {
+    "id": 123,
+    "question": "What do you use to measure wind speed?",
+    "options": ["Barometer", "Hygrometer", "Anemometer", "Altimeter"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "An anemometer measures wind speed."
+  },
+  {
+    "id": 124,
+    "question": "Who played T’Challa (Black Panther) in 'Black Panther' (2018)?",
+    "options": ["Michael B. Jordan", "Chadwick Boseman", "John David Washington", "Daniel Kaluuya"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "movies",
+    "explanation": "Chadwick Boseman starred as T’Challa in the 2018 film."
+  },
+  {
+    "id": 125,
+    "question": "Complete the line from Shakespeare: 'To be, or not to be, that is the ____.'",
+    "options": ["answer", "question", "problem", "dilemma"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "literature",
+    "explanation": "From Hamlet's soliloquy in Act 3, Scene 1."
+  },
+  {
+    "id": 126,
+    "question": "Who sings 'Smells Like Teen Spirit'?",
+    "options": ["Pearl Jam", "Nirvana", "Soundgarden", "Foo Fighters"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "music",
+    "explanation": "Nirvana released it in 1991 on 'Nevermind'."
+  },
+  {
+    "id": 127,
+    "question": "Who played Furiosa in 'Mad Max: Fury Road' (2015)?",
+    "options": ["Charlize Theron", "Scarlett Johansson", "Emily Blunt", "Gal Gadot"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "movies",
+    "explanation": "Charlize Theron portrayed Imperator Furiosa."
+  },
+  {
+    "id": 128,
+    "question": "Complete the proverb: 'Fortune favors the ____.'",
+    "options": ["rich", "bold", "quick", "prepared"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "language",
+    "explanation": "Latin: 'Fortes Fortuna adiuvat'—'Fortune favors the bold.'"
+  },
+  {
+    "id": 129,
+    "question": "What do you call the fear of spiders?",
+    "options": ["Acrophobia", "Arachnophobia", "Ophidiophobia", "Claustrophobia"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Arachnophobia is an intense fear of spiders."
+  },
+  {
+    "id": 130,
+    "question": "Who voiced Elsa in Disney's 'Frozen' (2013)?",
+    "options": ["Kristen Bell", "Idina Menzel", "Mandy Moore", "Demi Lovato"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "movies",
+    "explanation": "Idina Menzel provided Elsa's speaking and singing voice."
   }
   ],
   "rotationRules": {
