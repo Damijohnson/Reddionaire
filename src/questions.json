@@ -1188,8 +1188,8 @@
   {
     "id": 131,
     "question": "Which team won the 2019 NBA Finals?",
-    "options": ["Golden State Warriors", "Toronto Raptors", "Cleveland Cavaliers", "Los Angeles Lakers"],
-    "correctAnswer": 1,
+    "options": ["Golden State Warriors", "Cleveland Cavaliers", "Toronto Raptors", "Los Angeles Lakers"],
+    "correctAnswer": 2,
     "difficulty": "medium",
     "category": "sports",
     "explanation": "The Toronto Raptors defeated the Golden State Warriors 4–2 in 2019."
@@ -1197,8 +1197,8 @@
   {
     "id": 132,
     "question": "How many players does each team have on the field in soccer (association football)?",
-    "options": ["9", "10", "11", "12"],
-    "correctAnswer": 2,
+    "options": ["9", "10", "12", "11"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
     "explanation": "Each side fields 11 players, including the goalkeeper."
@@ -1206,8 +1206,8 @@
   {
     "id": 133,
     "question": "Who holds the record for the most Olympic gold medals?",
-    "options": ["Usain Bolt", "Michael Phelps", "Larisa Latynina", "Mark Spitz"],
-    "correctAnswer": 1,
+    "options": ["Usain Bolt", "Larisa Latynina", "Michael Phelps", "Mark Spitz"],
+    "correctAnswer": 2,
     "difficulty": "medium",
     "category": "sports",
     "explanation": "Swimmer Michael Phelps won 23 Olympic gold medals."
@@ -1215,8 +1215,8 @@
   {
     "id": 134,
     "question": "In American football, how many points is a touchdown worth?",
-    "options": ["3", "6", "7", "8"],
-    "correctAnswer": 1,
+    "options": ["3", "7", "8", "6"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
     "explanation": "A touchdown is 6 points before any conversion attempt."
@@ -1224,8 +1224,8 @@
   {
     "id": 135,
     "question": "Which country has won the most FIFA Men's World Cup titles?",
-    "options": ["Germany", "Italy", "Brazil", "Argentina"],
-    "correctAnswer": 2,
+    "options": ["Germany", "Italy", "Argentina", "Brazil"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "sports",
     "explanation": "Brazil leads with five World Cup titles."
@@ -1233,8 +1233,8 @@
   {
     "id": 136,
     "question": "Who is nicknamed 'The Great One' in ice hockey?",
-    "options": ["Mario Lemieux", "Sidney Crosby", "Wayne Gretzky", "Gordie Howe"],
-    "correctAnswer": 2,
+    "options": ["Mario Lemieux", "Sidney Crosby", "Gordie Howe", "Wayne Gretzky"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "sports",
     "explanation": "Wayne Gretzky earned the nickname 'The Great One' due to his unparalleled dominance and numerous NHL records."
@@ -1242,8 +1242,8 @@
   {
     "id": 137,
     "question": "How many Grand Slam tournaments are there in professional tennis each year?",
-    "options": ["2", "3", "4", "5"],
-    "correctAnswer": 2,
+    "options": ["2", "3", "5", "4"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
     "explanation": "The Australian Open, French Open, Wimbledon, and US Open make four."
@@ -1251,8 +1251,8 @@
   {
     "id": 138,
     "question": "Which city is famously known as the 'City of Canals'?",
-    "options": ["Amsterdam", "Venice", "Hamburg", "Bruges"],
-    "correctAnswer": 1,
+    "options": ["Amsterdam", "Hamburg", "Venice", "Bruges"],
+    "correctAnswer": 2,
     "difficulty": "easy",
     "category": "geography",
     "explanation": "Venice is built on a network of canals in a lagoon."
@@ -1260,8 +1260,8 @@
   {
     "id": 139,
     "question": "Which river flows through Cairo?",
-    "options": ["Tigris", "Euphrates", "Nile", "Jordan"],
-    "correctAnswer": 2,
+    "options": ["Tigris", "Euphrates", "Jordan", "Nile"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
     "explanation": "Cairo sits on the banks of the Nile River."
@@ -1269,8 +1269,8 @@
   {
     "id": 140,
     "question": "What is the deepest known point in Earth's oceans?",
-    "options": ["Mariana Trench", "Tonga Trench", "Puerto Rico Trench", "Java Trench"],
-    "correctAnswer": 0,
+    "options": ["Tonga Trench", "Puerto Rico Trench", "Mariana Trench", "Java Trench"],
+    "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
     "explanation": "The Challenger Deep in the Mariana Trench is the deepest measured point."
@@ -1278,8 +1278,8 @@
   {
     "id": 141,
     "question": "What is the largest moon of Saturn?",
-    "options": ["Europa", "Ganymede", "Titan", "Enceladus"],
-    "correctAnswer": 2,
+    "options": ["Europa", "Ganymede", "Enceladus", "Titan"],
+    "correctAnswer": 3,
     "difficulty": "hard",
     "category": "science",
     "explanation": "Titan is larger than Mercury and has a dense atmosphere."
@@ -1287,8 +1287,8 @@
   {
     "id": 142,
     "question": "Besides mercury, which element is a liquid at or near room temperature?",
-    "options": ["Bromine", "Gallium", "Cesium", "Francium"],
-    "correctAnswer": 0,
+    "options": ["Gallium", "Cesium", "Bromine", "Francium"],
+    "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
     "explanation": "Bromine (Br) is a reddish-brown liquid near room temperature."
@@ -1296,8 +1296,8 @@
   {
     "id": 143,
     "question": "Which organ in the human body produces insulin?",
-    "options": ["Liver", "Pancreas", "Spleen", "Gallbladder"],
-    "correctAnswer": 1,
+    "options": ["Liver", "Spleen", "Gallbladder", "Pancreas"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
     "explanation": "Beta cells in the pancreas secrete insulin."
@@ -1305,8 +1305,8 @@
   {
     "id": 144,
     "question": "What is the chemical formula for table salt?",
-    "options": ["NaCl", "KCl", "NaCO3", "CaCl2"],
-    "correctAnswer": 0,
+    "options": ["KCl", "NaCO3", "NaCl", "CaCl2"],
+    "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
     "explanation": "Common table salt is sodium chloride (NaCl)."
@@ -1314,8 +1314,8 @@
   {
     "id": 145,
     "question": "What is the largest internal organ in the human body?",
-    "options": ["Liver", "Lungs", "Brain", "Kidneys"],
-    "correctAnswer": 0,
+    "options": ["Lungs", "Brain", "Kidneys", "Liver"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
     "explanation": "By mass, the liver is the largest internal organ."
@@ -1323,8 +1323,8 @@
   {
     "id": 146,
     "question": "Which planet has the Great Red Spot?",
-    "options": ["Mars", "Jupiter", "Saturn", "Neptune"],
-    "correctAnswer": 1,
+    "options": ["Mars", "Saturn", "Jupiter", "Neptune"],
+    "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
     "explanation": "Jupiter's Great Red Spot is a massive storm."
@@ -1332,8 +1332,8 @@
   {
     "id": 147,
     "question": "Who directed the film 'Inception' (2010)?",
-    "options": ["Christopher Nolan", "Steven Spielberg", "James Cameron", "Ridley Scott"],
-    "correctAnswer": 0,
+    "options": ["Steven Spielberg", "James Cameron", "Ridley Scott", "Christopher Nolan"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "movies",
     "explanation": "'Inception' was written and directed by Christopher Nolan."
@@ -1341,8 +1341,8 @@
   {
     "id": 148,
     "question": "Who wrote the novel 'The Alchemist'?",
-    "options": ["Gabriel García Márquez", "Paulo Coelho", "Isabel Allende", "Jorge Luis Borges"],
-    "correctAnswer": 1,
+    "options": ["Gabriel García Márquez", "Isabel Allende", "Paulo Coelho", "Jorge Luis Borges"],
+    "correctAnswer": 2,
     "difficulty": "medium",
     "category": "literature",
     "explanation": "Brazilian author Paulo Coelho published it in 1988."
@@ -1350,8 +1350,8 @@
   {
     "id": 149,
     "question": "Who created the fictional detective Sherlock Holmes?",
-    "options": ["Agatha Christie", "Arthur Conan Doyle", "Edgar Allan Poe", "Dashiell Hammett"],
-    "correctAnswer": 1,
+    "options": ["Agatha Christie", "Edgar Allan Poe", "Dashiell Hammett", "Arthur Conan Doyle"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "literature",
     "explanation": "Sir Arthur Conan Doyle introduced Holmes in 1887."
@@ -1359,8 +1359,8 @@
   {
     "id": 150,
     "question": "Who was the first human to travel into space?",
-    "options": ["Neil Armstrong", "Yuri Gagarin", "Alan Shepard", "John Glenn"],
-    "correctAnswer": 1,
+    "options": ["Neil Armstrong", "Alan Shepard", "Yuri Gagarin", "John Glenn"],
+    "correctAnswer": 2,
     "difficulty": "easy",
     "category": "history",
     "explanation": "Soviet cosmonaut Yuri Gagarin orbited Earth on April 12, 1961."
@@ -1368,8 +1368,8 @@
   {
     "id": 151,
     "question": "Which desert is often cited as the driest non‑polar place on Earth?",
-    "options": ["Sahara", "Atacama Desert", "Gobi", "Kalahari"],
-    "correctAnswer": 1,
+    "options": ["Sahara", "Gobi", "Kalahari", "Atacama Desert"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "geography",
     "explanation": "Parts of Chile's Atacama Desert receive virtually no rainfall."
@@ -1377,8 +1377,8 @@
   {
     "id": 152,
     "question": "In which Indian city is the Taj Mahal located?",
-    "options": ["Delhi", "Agra", "Jaipur", "Varanasi"],
-    "correctAnswer": 1,
+    "options": ["Delhi", "Jaipur", "Agra", "Varanasi"],
+    "correctAnswer": 2,
     "difficulty": "easy",
     "category": "geography",
     "explanation": "The Taj Mahal sits on the Yamuna River in Agra."
@@ -1386,8 +1386,8 @@
   {
     "id": 153,
     "question": "Which country uses the Swiss franc as its currency?",
-    "options": ["Austria", "Switzerland", "Sweden", "Denmark"],
-    "correctAnswer": 1,
+    "options": ["Austria", "Sweden", "Denmark", "Switzerland"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
     "explanation": "The Swiss franc (CHF) is Switzerland's official currency."
@@ -1395,8 +1395,8 @@
   {
     "id": 154,
     "question": "Which spice is typically the most expensive in the world by weight?",
-    "options": ["Saffron", "Vanilla", "Cardamom", "Cinnamon"],
-    "correctAnswer": 0,
+    "options": ["Vanilla", "Cardamom", "Saffron", "Cinnamon"],
+    "correctAnswer": 2,
     "difficulty": "medium",
     "category": "food",
     "explanation": "Saffron's labor‑intensive harvest makes it extremely costly."
@@ -1404,8 +1404,8 @@
   {
     "id": 155,
     "question": "What term describes animals that are primarily active at night?",
-    "options": ["Diurnal", "Nocturnal", "Crepuscular", "Cathemeral"],
-    "correctAnswer": 1,
+    "options": ["Diurnal", "Crepuscular", "Cathemeral", "Nocturnal"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "science",
     "explanation": "Nocturnal species are active during night hours."
@@ -1413,8 +1413,8 @@
   {
     "id": 156,
     "question": "Who painted 'The Persistence of Memory'?",
-    "options": ["René Magritte", "Salvador Dalí", "Pablo Picasso", "Joan Miró"],
-    "correctAnswer": 1,
+    "options": ["René Magritte", "Pablo Picasso", "Joan Miró", "Salvador Dalí"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "art",
     "explanation": "Dalí's 1931 work is famous for its melting clocks."
@@ -1422,8 +1422,8 @@
   {
     "id": 157,
     "question": "What is the scientific study of fungi called?",
-    "options": ["Bryology", "Mycology", "Algology", "Lichenology"],
-    "correctAnswer": 1,
+    "options": ["Bryology", "Algology", "Mycology", "Lichenology"],
+    "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
     "explanation": "Mycology covers the biology and classification of fungi."
@@ -1431,8 +1431,8 @@
   {
     "id": 158,
     "question": "What instrument is used to measure and record earthquakes?",
-    "options": ["Barometer", "Seismograph", "Hygrometer", "Anemometer"],
-    "correctAnswer": 1,
+    "options": ["Barometer", "Hygrometer", "Anemometer", "Seismograph"],
+    "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
     "explanation": "A seismograph (or seismometer) detects ground motion from quakes."
@@ -1440,8 +1440,8 @@
   {
     "id": 159,
     "question": "Which ocean current helps keep Western Europe relatively mild in winter?",
-    "options": ["Humboldt Current", "Gulf Stream", "Kuroshio Current", "Benguela Current"],
-    "correctAnswer": 1,
+    "options": ["Humboldt Current", "Kuroshio Current", "Gulf Stream", "Benguela Current"],
+    "correctAnswer": 2,
     "difficulty": "medium",
     "category": "geography",
     "explanation": "The Gulf Stream transports warm water from the Gulf of Mexico across the Atlantic."
@@ -1449,8 +1449,8 @@
   {
     "id": 160,
     "question": "What is the capital of South Korea?",
-    "options": ["Busan", "Incheon", "Seoul", "Daegu"],
-    "correctAnswer": 2,
+    "options": ["Busan", "Incheon", "Daegu", "Seoul"],
+    "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
     "explanation": "Seoul is South Korea's capital and largest city."
