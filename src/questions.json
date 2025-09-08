@@ -35,12 +35,12 @@
     },
     {
       "id": 3,
-      "question": "What is 2 + 2?",
-      "options": ["3", "4", "5", "6"],
+      "question": "What is the least common multiple (LCM) of 12 and 18?",
+      "options": ["24", "36", "48", "60"],
       "correctAnswer": 1,
-      "difficulty": "easy",
+      "difficulty": "medium",
       "category": "mathematics",
-      "explanation": "Basic arithmetic: 2 + 2 = 4"
+      "explanation": "LCM(12,18)=36 because 12=2^2·3 and 18=2·3^2; take highest powers: 2^2·3^2=36."
     },
     {
       "id": 4,
@@ -284,7 +284,457 @@
       "difficulty": "hard",
       "category": "geography",
       "explanation": "Canada has the longest coastline in the world at 202,080 kilometers."
-    }
+    },
+    {
+    "id": 31,
+    "question": "What is the chemical symbol for sodium?",
+    "options": ["Na", "So", "Sn", "Nd"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Sodium's chemical symbol is Na, from the Latin 'natrium'."
+  },
+  {
+    "id": 32,
+    "question": "Which continent is the Sahara Desert located on?",
+    "options": ["Asia", "Africa", "Australia", "South America"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "The Sahara is in North Africa and is the world's largest hot desert."
+  },
+  {
+    "id": 33,
+    "question": "Who is the author of '1984'?",
+    "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Arthur C. Clarke"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "literature",
+    "explanation": "George Orwell published 'Nineteen Eighty-Four' in 1949."
+  },
+  {
+    "id": 34,
+    "question": "How many sides does a hexagon have?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "mathematics",
+    "explanation": "A hexagon is a six-sided polygon."
+  },
+  {
+    "id": 35,
+    "question": "What gas do plants primarily absorb for photosynthesis?",
+    "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Plants take in carbon dioxide and release oxygen during photosynthesis."
+  },
+  {
+    "id": 36,
+    "question": "Which instrument has keys, pedals, and strings?",
+    "options": ["Violin", "Trumpet", "Piano", "Drum"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "music",
+    "explanation": "A piano contains strings struck by hammers, with keys and pedals to modify sound."
+  },
+  {
+    "id": 37,
+    "question": "What is the tallest animal on Earth?",
+    "options": ["Elephant", "Giraffe", "Polar Bear", "Moose"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Adult giraffes can exceed 5.5 meters (18 feet) in height."
+  },
+  {
+    "id": 38,
+    "question": "Which country hosted the 2016 Summer Olympics?",
+    "options": ["China", "Brazil", "United Kingdom", "Russia"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "sports",
+    "explanation": "Rio de Janeiro, Brazil, hosted the 2016 Summer Olympics."
+  },
+  {
+    "id": 39,
+    "question": "Which language has the most native speakers?",
+    "options": ["English", "Mandarin Chinese", "Spanish", "Hindi"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "language",
+    "explanation": "Mandarin Chinese has the highest number of native speakers globally."
+  },
+  {
+    "id": 40,
+    "question": "What is H2SO4 commonly known as?",
+    "options": ["Hydrochloric acid", "Sulfuric acid", "Nitric acid", "Acetic acid"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "H2SO4 is sulfuric acid, a strong mineral acid."
+  },
+  {
+    "id": 41,
+    "question": "Who painted 'Girl with a Pearl Earring'?",
+    "options": ["Johannes Vermeer", "Rembrandt", "Peter Paul Rubens", "Caravaggio"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "art",
+    "explanation": "The Dutch painter Johannes Vermeer created it around 1665."
+  },
+  {
+    "id": 42,
+    "question": "What is the smallest country in the world by area?",
+    "options": ["Monaco", "Vatican City", "Nauru", "San Marino"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Vatican City covers about 44 hectares (110 acres)."
+  },
+  {
+    "id": 43,
+    "question": "Which river flows through Paris?",
+    "options": ["Rhine", "Danube", "Seine", "Thames"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "The Seine River runs through Paris before emptying into the English Channel."
+  },
+  {
+    "id": 44,
+    "question": "What is the freezing point of water in Fahrenheit?",
+    "options": ["0°", "32°", "100°", "212°"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Pure water freezes at 32°F (0°C) at standard atmospheric pressure."
+  },
+  {
+    "id": 45,
+    "question": "Who developed the theory of general relativity?",
+    "options": ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Max Planck"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Einstein published general relativity in 1915."
+  },
+  {
+    "id": 46,
+    "question": "Which device measures atmospheric pressure?",
+    "options": ["Thermometer", "Barometer", "Hygrometer", "Anemometer"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "A barometer measures atmospheric pressure; mercury and aneroid types are common."
+  },
+  {
+    "id": 47,
+    "question": "What is the hardest naturally occurring mineral?",
+    "options": ["Diamond", "Corundum", "Topaz", "Quartz"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Diamond ranks 10 on the Mohs hardness scale."
+  },
+  {
+    "id": 48,
+    "question": "Which economist wrote 'The General Theory of Employment, Interest and Money'?",
+    "options": ["Adam Smith", "John Maynard Keynes", "Milton Friedman", "Friedrich Hayek"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "economics",
+    "explanation": "Keynes published it in 1936, shaping modern macroeconomics."
+  },
+  {
+    "id": 49,
+    "question": "What is the approximate age of the universe?",
+    "options": ["4.5 billion years", "13.8 billion years", "1.3 billion years", "46.8 billion years"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Cosmological measurements estimate the universe at ~13.8 billion years old."
+  },
+    {
+    "id": 50,
+    "question": "Which treaty ended World War I?",
+    "options": ["Treaty of Versailles", "Treaty of Paris (1783)", "Treaty of Tordesillas", "Treaty of Utrecht"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "history",
+    "explanation": "The Treaty of Versailles was signed in 1919, formally ending WWI."
+  },
+  {
+    "id": 51,
+    "question": "Which metal is liquid at room temperature?",
+    "options": ["Mercury", "Sodium", "Aluminum", "Iron"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Mercury (Hg) is a liquid metal at standard conditions."
+  },
+  {
+    "id": 52,
+    "question": "What is the largest planet in our solar system?",
+    "options": ["Earth", "Saturn", "Jupiter", "Neptune"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Jupiter is the largest planet by mass and volume."
+  },
+  {
+    "id": 53,
+    "question": "What is the currency of Japan?",
+    "options": ["Won", "Yen", "Yuan", "Ringgit"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Japan's currency is the Japanese yen (JPY)."
+  },
+  {
+    "id": 54,
+    "question": "Who is the author of the 'Harry Potter' series?",
+    "options": ["J.K. Rowling", "Suzanne Collins", "Rick Riordan", "C.S. Lewis"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "literature",
+    "explanation": "J.K. Rowling wrote the seven-book 'Harry Potter' series."
+  },
+  {
+    "id": 55,
+    "question": "Which set lists the primary colors of light?",
+    "options": ["Red, Green, Blue", "Red, Yellow, Blue", "Cyan, Magenta, Yellow", "Red, Black, White"],
+    "correctAnswer": 0,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Additive color primaries for light are RGB."
+  },
+  {
+    "id": 56,
+    "question": "How many continents are there on Earth?",
+    "options": ["5", "6", "7", "8"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Most models count seven continents."
+  },
+  {
+    "id": 57,
+    "question": "What is the chemical symbol for silver?",
+    "options": ["Si", "Ag", "Au", "Sr"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Silver's symbol Ag comes from Latin 'argentum'."
+  },
+  {
+    "id": 58,
+    "question": "How many chambers does the human heart have?",
+    "options": ["2", "3", "4", "5"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Humans have two atria and two ventricles."
+  },
+  {
+    "id": 59,
+    "question": "The cello belongs to which instrument family?",
+    "options": ["Brass", "Woodwind", "Percussion", "Strings"],
+    "correctAnswer": 3,
+    "difficulty": "easy",
+    "category": "music",
+    "explanation": "Cello is a bowed string instrument."
+  },
+  {
+    "id": 60,
+    "question": "Which language structures content on most web pages?",
+    "options": ["Python", "HTML", "C++", "Java"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "technology",
+    "explanation": "HTML provides the markup structure of web pages."
+  },
+  {
+    "id": 61,
+    "question": "In which city is Big Ben located?",
+    "options": ["Edinburgh", "London", "Dublin", "Cardiff"],
+    "correctAnswer": 1,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Big Ben is the nickname for the Great Bell in London."
+  },
+  {
+    "id": 62,
+    "question": "What gas makes up the largest proportion of Earth's atmosphere?",
+    "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Argon"],
+    "correctAnswer": 2,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Nitrogen accounts for about 78% of the atmosphere."
+  },
+  {
+    "id": 63,
+    "question": "What is the first element on the periodic table?",
+    "options": ["Helium", "Hydrogen", "Lithium", "Neon"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Hydrogen has atomic number 1."
+  },
+  {
+    "id": 64,
+    "question": "Who developed the first widely used polio vaccine?",
+    "options": ["Albert Sabin", "Louis Pasteur", "Jonas Salk", "Edward Jenner"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "history",
+    "explanation": "Jonas Salk's inactivated polio vaccine was introduced in 1955."
+  },
+  {
+    "id": 65,
+    "question": "What is the capital of Switzerland?",
+    "options": ["Geneva", "Basel", "Bern", "Zurich"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Bern is the de facto capital (federal city) of Switzerland."
+  },
+  {
+    "id": 66,
+    "question": "Which is the largest bone in the human body?",
+    "options": ["Tibia", "Femur", "Humerus", "Pelvis"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "The femur (thigh bone) is the longest and strongest."
+  },
+  {
+    "id": 67,
+    "question": "Who discovered penicillin?",
+    "options": ["Alexander Fleming", "Marie Curie", "Robert Koch", "Joseph Lister"],
+    "correctAnswer": 0,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Fleming observed penicillin's antibacterial properties in 1928."
+  },
+  {
+    "id": 68,
+    "question": "Timbuktu is a historic city in which country?",
+    "options": ["Niger", "Mali", "Chad", "Sudan"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Timbuktu is in Mali, near the Niger River."
+  },
+  {
+    "id": 69,
+    "question": "In which year did the Berlin Wall fall?",
+    "options": ["1987", "1988", "1989", "1990"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "history",
+    "explanation": "The wall opened on November 9, 1989."
+  },
+  {
+    "id": 70,
+    "question": "What does the acronym HTTP stand for?",
+    "options": ["Hyperlink Transfer Text Protocol", "HyperText Transfer Protocol", "High Throughput Transport Protocol", "Host Transfer Type Protocol"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "technology",
+    "explanation": "HTTP is the foundation of data communication for the web."
+  },
+  {
+    "id": 71,
+    "question": "Which planet has the longest day (slowest rotation)?",
+    "options": ["Mercury", "Venus", "Mars", "Neptune"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Venus rotates once every ~243 Earth days, retrograde."
+  },
+  {
+    "id": 72,
+    "question": "Which painter famously cut off part of his ear?",
+    "options": ["Claude Monet", "Pablo Picasso", "Vincent van Gogh", "Paul Cézanne"],
+    "correctAnswer": 2,
+    "difficulty": "medium",
+    "category": "art",
+    "explanation": "Van Gogh cut off part of his left ear in 1888."
+  },
+  {
+    "id": 73,
+    "question": "The loss of water vapor from plant leaves is called what?",
+    "options": ["Respiration", "Transpiration", "Photosynthesis", "Guttation"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Transpiration occurs mainly through stomata in leaves."
+  },
+  {
+    "id": 74,
+    "question": "What is the approximate value of the mathematical constant e?",
+    "options": ["2.414", "2.718", "3.142", "1.618"],
+    "correctAnswer": 1,
+    "difficulty": "medium",
+    "category": "mathematics",
+    "explanation": "e ≈ 2.71828, the base of natural logarithms."
+  },
+  {
+    "id": 75,
+    "question": "Which letter does not appear in the name of any U.S. state?",
+    "options": ["Q", "Z", "X", "J"],
+    "correctAnswer": 0,
+    "difficulty": "hard",
+    "category": "language",
+    "explanation": "No U.S. state name contains the letter Q."
+  },
+  {
+    "id": 76,
+    "question": "What is the heaviest naturally occurring element by atomic number?",
+    "options": ["Plutonium", "Uranium", "Thorium", "Polonium"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Uranium (Z=92) is the highest atomic-number element found in significant natural quantities."
+  },
+  {
+    "id": 77,
+    "question": "Which enzyme synthesizes RNA primers during DNA replication?",
+    "options": ["DNA polymerase III", "Ligase", "Primase", "Helicase"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Primase synthesizes short RNA primers needed for DNA polymerases to extend."
+  },
+  {
+    "id": 78,
+    "question": "Which treaty formally created the European Union in 1993?",
+    "options": ["Treaty of Lisbon", "Treaty of Rome", "Maastricht Treaty", "Schengen Agreement"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "history",
+    "explanation": "The Maastricht Treaty (Treaty on European Union) entered into force in 1993."
+  },
+  {
+    "id": 79,
+    "question": "Animals that maintain a constant internal body temperature are called what?",
+    "options": ["Ectotherms", "Endotherms", "Poikilotherms", "Osmotherms"],
+    "correctAnswer": 1,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "Endotherms regulate body temperature through internal heat production."
+  },
+  {
+    "id": 80,
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "options": ["O(n)", "O(n log n)", "O(log n)", "O(1)"],
+    "correctAnswer": 2,
+    "difficulty": "hard",
+    "category": "technology",
+    "explanation": "Binary search halves the search space each step, yielding logarithmic time."
+  }
   ],
   "rotationRules": {
     "dailySeed": "date + subredditId",
