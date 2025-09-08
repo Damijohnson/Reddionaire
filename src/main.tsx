@@ -40,7 +40,7 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     hash = hash & hash; // Convert to 32-bit integer
   }
   
-  // Use the hash to shuffle questions consistently
+  // Use the hash to shuffle questions consistently with better randomization
   const shuffledQuestions = [...questionsData.questions].sort(() => {
     hash = (hash * 9301 + 49297) % 233280;
     return (hash / 233280) - 0.5;
@@ -61,9 +61,23 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   const hardCount = Math.max(0, questionsPerGame - 8);
   
   // Add random questions from each difficulty tier in progression order
-  selectedQuestions.push(...easyQuestions.slice(0, easyCount));
-  selectedQuestions.push(...mediumQuestions.slice(0, mediumCount));
-  selectedQuestions.push(...hardQuestions.slice(0, hardCount));
+  // Shuffle each difficulty tier separately to get different random selections
+  const shuffledEasy = [...easyQuestions].sort(() => {
+    hash = (hash * 9301 + 49297) % 233280;
+    return (hash / 233280) - 0.5;
+  });
+  const shuffledMedium = [...mediumQuestions].sort(() => {
+    hash = (hash * 9301 + 49297) % 233280;
+    return (hash / 233280) - 0.5;
+  });
+  const shuffledHard = [...hardQuestions].sort(() => {
+    hash = (hash * 9301 + 49297) % 233280;
+    return (hash / 233280) - 0.5;
+  });
+  
+  selectedQuestions.push(...shuffledEasy.slice(0, easyCount));
+  selectedQuestions.push(...shuffledMedium.slice(0, mediumCount));
+  selectedQuestions.push(...shuffledHard.slice(0, hardCount));
   
   // If we don't have enough questions, add from fallback
   if (selectedQuestions.length < questionsPerGame) {
@@ -75,18 +89,18 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   }
   
   // Randomize the position of the correct answer for each question
-  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).map(question => {
+  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).map((question, questionIndex) => {
     // Create a copy of the question
     const shuffledQuestion = { ...question };
     
     // Create array of indices [0, 1, 2, 3]
     const indices = [0, 1, 2, 3];
     
-    // Shuffle the indices using the same hash function
-    let shuffleHash = hash;
+    // Create a unique hash for each question to ensure different shuffling
+    let questionHash = hash + questionIndex * 1000;
     const shuffledIndices = indices.sort(() => {
-      shuffleHash = (shuffleHash * 9301 + 49297) % 233280;
-      return (shuffleHash / 233280) - 0.5;
+      questionHash = (questionHash * 9301 + 49297) % 233280;
+      return (questionHash / 233280) - 0.5;
     });
     
     // Create new options array with shuffled order
