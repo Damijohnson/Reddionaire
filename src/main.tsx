@@ -193,7 +193,7 @@ Devvit.addCustomPostType({
   height: "tall",
   render: (context) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState<string>("$0");
+    const [score, setScore] = useState<string>("0");
     const [gameStatus, setGameStatus] = useState<'waiting' | 'playing' | 'won' | 'lost' | 'walked'>('waiting');
     const [fiftyFifty, setFiftyFifty] = useState(true);
     const [askAudience, setAskAudience] = useState(true);
@@ -226,7 +226,7 @@ Devvit.addCustomPostType({
         setGameQuestions(questions);
         
         setCurrentQuestion(0);
-        setScore("$0");
+        setScore("0");
         setGameStatus('playing');
         setFiftyFifty(true);
         setAskAudience(true);
@@ -412,7 +412,7 @@ Devvit.addCustomPostType({
 
     const resetGame = () => {
       setCurrentQuestion(0);
-      setScore("$0");
+      setScore("0");
       setGameStatus('waiting');
       setFiftyFifty(true);
       setAskAudience(true);
@@ -619,6 +619,7 @@ Devvit.addCustomPostType({
               if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
                 try {
                   const subreddit = await context.reddit.getCurrentSubreddit();
+                  console.log('Updating leaderboard with score:', score);
                   await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
                 } catch (error) {
                   console.error('Error updating leaderboard:', error);
@@ -670,6 +671,7 @@ Devvit.addCustomPostType({
               // Update leaderboard with current score before walking away
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
+                console.log('Updating leaderboard with score (walk away):', score);
                 await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
