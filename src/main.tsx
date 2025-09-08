@@ -531,45 +531,6 @@ Devvit.addCustomPostType({
             ))}
           </vstack>
           
-          {/* Show audience results if available */}
-          {showAudienceResults && audienceResults.length > 0 && (
-            <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
-              <hstack gap="small" alignment="middle center">
-                <text size="small" weight="bold" color="#DAA520">Audience Results</text>
-                <hstack
-                  padding="small"
-                  cornerRadius="small"
-                  backgroundColor="#FDE68A"
-                  alignment="middle center"
-                  onPress={() => setShowAudienceResults(false)}
-                >
-                  <text size="small" weight="bold" color="#7C5C00">Hide</text>
-                </hstack>
-              </hstack>
-              <vstack gap="small" width="100%">
-                {audienceResults.map((percentage, index) => (
-                  <hstack key={index.toString()} width="100%" gap="small" alignment="start">
-                    <text size="small" width="30px" weight="bold" key={index.toString()}>
-                      {String.fromCharCode(65 + index)}:
-                    </text>
-                    <vstack width="100%" gap="small">
-                      <hstack width="100%" gap="small" alignment="start">
-                        <vstack 
-                          width={`${percentage}%`} 
-                          height="20px" 
-                          backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
-                          cornerRadius="small"
-                        />
-                        <text size="small" weight="bold" width="40px">
-                          {percentage.toString()}%
-                        </text>
-                      </hstack>
-                    </vstack>
-                  </hstack>
-                ))}
-              </vstack>
-            </vstack>
-          )}
           
           {/* Show explanation if available */}
           {lastAnswerExplanation && (
@@ -837,8 +798,51 @@ Devvit.addCustomPostType({
                 {renderQuestion()}
                 {renderLifelines()}
               </vstack>
-              <vstack width="30%" gap="small">
+              <vstack width="30%" gap="large">
                 {renderMoneyLadder()}
+                
+                {/* Show audience results if available */}
+                {showAudienceResults && audienceResults.length > 0 && gameQuestions.length > 0 && (
+                  <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
+                    <hstack gap="small" alignment="middle center">
+                      <text size="small" weight="bold" color="#DAA520">Audience Results</text>
+                      <hstack
+                        padding="small"
+                        cornerRadius="small"
+                        backgroundColor="#FDE68A"
+                        alignment="middle center"
+                        onPress={() => setShowAudienceResults(false)}
+                      >
+                        <text size="small" weight="bold" color="#7C5C00">Hide</text>
+                      </hstack>
+                    </hstack>
+                    <vstack gap="small" width="100%">
+                      {audienceResults.map((percentage, index) => {
+                        const currentQ = gameQuestions[currentQuestion];
+                        return (
+                          <hstack key={index.toString()} width="100%" gap="small" alignment="start">
+                            <text size="small" width="30px" weight="bold" key={index.toString()}>
+                              {String.fromCharCode(65 + index)}:
+                            </text>
+                            <vstack width="100%" gap="small">
+                              <hstack width="100%" gap="small" alignment="start">
+                                <vstack 
+                                  width={`${percentage}%`} 
+                                  height="20px" 
+                                  backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
+                                  cornerRadius="small"
+                                />
+                                <text size="small" weight="bold" width="40px">
+                                  {percentage.toString()}%
+                                </text>
+                              </hstack>
+                            </vstack>
+                          </hstack>
+                        );
+                      })}
+                    </vstack>
+                  </vstack>
+                )}
               </vstack>
             </hstack>
           </vstack>
