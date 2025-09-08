@@ -27,16 +27,15 @@ const MONEY_LADDER = [
   { question: 12, amount: "1,000,000", milestone: true },
 ];
 
-// Question rotation system
-// TODO: Look into daily rotation system - currently has issues with fallback questions and hash function
-const getQuestionsForGame = (subredditId: string, date: string): typeof questionsData.questions => {
-  // Create a daily seed based on date and subreddit
-  const dailySeed = `${date}_${subredditId}`;
+// Question rotation system - rotates on every gameplay session
+const getQuestionsForGame = (subredditId: string): typeof questionsData.questions => {
+  // Create a session seed based on timestamp and subreddit for fresh questions each game
+  const sessionSeed = `${Date.now()}_${subredditId}`;
   
   // Simple hash function for consistent seeding
   let hash = 0;
-  for (let i = 0; i < dailySeed.length; i++) {
-    const char = dailySeed.charCodeAt(i);
+  for (let i = 0; i < sessionSeed.length; i++) {
+    const char = sessionSeed.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
     hash = hash & hash; // Convert to 32-bit integer
   }
@@ -170,8 +169,7 @@ Devvit.addCustomPostType({
 
     const startGame = async () => {
       try {
-        // Get current date and subreddit info for question rotation
-        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+        // Get subreddit info for question rotation
         let subredditId = 'default';
         
         try {
@@ -181,8 +179,8 @@ Devvit.addCustomPostType({
           console.warn('Could not get subreddit, using default:', e);
         }
         
-        // Generate questions for this game
-        const questions = getQuestionsForGame(subredditId, today);
+        // Generate questions for this game session
+        const questions = getQuestionsForGame(subredditId);
         setGameQuestions(questions);
         
         setCurrentQuestion(0);
