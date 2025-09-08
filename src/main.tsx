@@ -277,19 +277,19 @@ Devvit.addCustomPostType({
       const correctAnswer = question.correctAnswer;
       const difficulty = question.difficulty;
       
-      // Base percentages by difficulty
+      // Base percentages by difficulty with balanced variance
       let correctPercentage: number;
       if (difficulty === 'easy') {
-        correctPercentage = 65 + Math.floor(seededRandom() * 15); // 65-80%
+        correctPercentage = 50 + Math.floor(seededRandom() * 30); // 50-80%
       } else if (difficulty === 'medium') {
-        correctPercentage = 50 + Math.floor(seededRandom() * 15); // 50-65%
+        correctPercentage = 35 + Math.floor(seededRandom() * 35); // 35-70%
       } else {
-        correctPercentage = 30 + Math.floor(seededRandom() * 15); // 30-45%
+        correctPercentage = 20 + Math.floor(seededRandom() * 40); // 20-60%
       }
       
-      // Add small noise (±5-10 points total)
-      const noise = (seededRandom() - 0.5) * 10;
-      correctPercentage = Math.max(0, Math.min(100, correctPercentage + noise));
+      // Add moderate noise (±15-20 points total)
+      const noise = (seededRandom() - 0.5) * 20;
+      correctPercentage = Math.max(5, Math.min(85, correctPercentage + noise));
       
       // Calculate remaining percentage for wrong answers
       const remainingPercentage = 100 - correctPercentage;
@@ -301,7 +301,7 @@ Devvit.addCustomPostType({
       
       for (let i = 0; i < wrongOptions.length; i++) {
         const basePercentage = remainingPercentage / wrongOptions.length;
-        const variation = (seededRandom() - 0.5) * 20; // ±10% variation
+        const variation = (seededRandom() - 0.5) * 30; // ±15% variation
         let percentage = Math.max(3, basePercentage + variation); // Floor at 3%
         wrongPercentages.push(percentage);
         totalWrong += percentage;
@@ -820,15 +820,15 @@ Devvit.addCustomPostType({
                       {audienceResults.map((percentage, index) => {
                         const currentQ = gameQuestions[currentQuestion];
                         return (
-                          <hstack key={index.toString()} width="100%" gap="small" alignment="start">
-                            <text size="small" width="30px" weight="bold" key={index.toString()}>
+                          <hstack key={index.toString()} width="100%" gap="xsmall" alignment="start">
+                            <text size="small" width="25px" weight="bold" key={index.toString()}>
                               {String.fromCharCode(65 + index)}:
                             </text>
                             <vstack width="100%" gap="small">
                               <hstack width="100%" gap="small" alignment="start">
                                 <vstack 
-                                  width={`${percentage}%`} 
-                                  height="20px" 
+                                  width={`${Math.min(percentage, 60)}%`} 
+                                  height="15px" 
                                   backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
                                   cornerRadius="small"
                                 />
