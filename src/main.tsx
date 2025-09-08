@@ -29,8 +29,8 @@ const MONEY_LADDER = [
 
 // Question rotation system - rotates on every gameplay session
 const getQuestionsForGame = (subredditId: string): typeof questionsData.questions => {
-  // Create a session seed based on timestamp and subreddit for fresh questions each game
-  const sessionSeed = `${Date.now()}_${subredditId}`;
+  // Create a session seed with timestamp, random number, and subreddit for truly unique questions each game
+  const sessionSeed = `${Date.now()}_${Math.random()}_${subredditId}`;
   
   // Simple hash function for consistent seeding
   let hash = 0;
@@ -555,9 +555,9 @@ Devvit.addCustomPostType({
         </vstack>
 
         {lastAnswerExplanation && (
-          <vstack gap="small" width="100%" maxWidth="400px" padding="small" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
+          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small">
             <text size="small" weight="bold" color={COLORS.QUESTION_TEXT}>Final Answer Explanation:</text>
-            <text size="small" color={COLORS.NEUTRAL_700}>{lastAnswerExplanation}</text>
+            <text size="small" color={COLORS.NEUTRAL_700} alignment="start">{lastAnswerExplanation}</text>
           </vstack>
         )}
 
