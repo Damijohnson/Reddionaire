@@ -24,9 +24,7 @@ export class LeaderboardService {
       // Get current leaderboard
       const currentLeaderboard = await context.redis.get(leaderboardKey);
       let leaderboard = currentLeaderboard ? JSON.parse(currentLeaderboard) : [];
-      
-      // Convert score string to number (e.g., "$300K" -> 300000)
-      const scoreNumber = parseInt(score.replace(/[$,K]/g, '')) * 1000;
+    
       
       // Get current user's name
       let username = 'Anonymous';
