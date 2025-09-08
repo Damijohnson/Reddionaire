@@ -583,40 +583,63 @@ Devvit.addCustomPostType({
     };
 
     const renderGameOver = () => (
-      <vstack gap="medium" width="100%" alignment="center">
-        <text size="xlarge" weight="bold">
-          {gameStatus === 'won' ? 'CONGRATULATIONS!' : 
-           gameStatus === 'lost' ? 'Game Over!' : 'Walked Away!'}
-        </text>
-        <text size="large">
-          {gameStatus === 'won' ? `You won $1,000,000!` :
-           gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
-           `You walked away with ${score}!`}
-        </text>
-        
-        {/* Show final explanation if available */}
-        {lastAnswerExplanation && (
-          <vstack gap="small" width="100%" padding="small" backgroundColor="#F0F8FF" cornerRadius="small">
-            <text size="small" weight="bold" color="#0066CC">Final Answer Explanation:</text>
-            <text size="small" color="#333333">{lastAnswerExplanation}</text>
-          </vstack>
-        )}
-        
-                <button appearance="primary" onPress={async () => {
-          // Update leaderboard with final score before resetting
-          if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
-            try {
-              const subreddit = await context.reddit.getCurrentSubreddit();
-              await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
-            } catch (error) {
-              console.error('Error updating leaderboard:', error);
-            }
-          }
-          
-          resetGame();
-        }}>
-          Play Again
-        </button>
+      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
+        {/* Top-right close chip, consistent with other pages */}
+        <hstack width="100%" alignment="end middle" padding="none">
+          <hstack
+            onPress={() => { resetGame(); }}
+            padding="small"
+            cornerRadius="small"
+            backgroundColor={COLORS.NEUTRAL_200}
+            alignment="middle center"
+          >
+            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
+          </hstack>
+        </hstack>
+
+        {/* Centered content card */}
+        <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small" alignment="center">
+          <text size="xlarge" weight="bold" color={
+            gameStatus === 'won' ? COLORS.ACCENT : gameStatus === 'lost' ? COLORS.ERROR : COLORS.PRIMARY
+          }>
+            {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away'}
+          </text>
+
+          <text size="medium" color={COLORS.NEUTRAL_700} alignment="center">
+            {gameStatus === 'won' ? `You won $1,000,000!` :
+             gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}.` :
+             `You walked away with ${score}.`}
+          </text>
+
+          {lastAnswerExplanation && (
+            <vstack gap="xsmall" width="100%" padding="small" backgroundColor={COLORS.EXPLANATION_BLUE} cornerRadius="small">
+              <text size="small" weight="bold" color="#0066CC">Explanation</text>
+              <text size="small" color="#333333">{lastAnswerExplanation}</text>
+            </vstack>
+          )}
+
+          {/* Primary action styled like other section buttons */}
+          <hstack
+            width={`${BUTTONS.BASE.WIDTH}%`}
+            height={`${BUTTONS.BASE.HEIGHT}px`}
+            backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
+            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            alignment={BUTTONS.BASE.ALIGNMENT}
+            onPress={async () => {
+              if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
+                try {
+                  const subreddit = await context.reddit.getCurrentSubreddit();
+                  await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+                } catch (error) {
+                  console.error('Error updating leaderboard:', error);
+                }
+              }
+              await startGame();
+            }}
+          >
+            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Play Again</text>
+          </hstack>
+        </vstack>
       </vstack>
     );
 
