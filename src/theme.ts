@@ -1,7 +1,7 @@
 // Game Show Theme System
 // Professional styling tokens for Redditionaire
 
-export const COLORS = {
+export const colors = {
   // Brand Colors
   background: '#5A4FCC', // Main purple background
   primary: '#37BDF9', // Light blue for Start Game button
@@ -9,26 +9,26 @@ export const COLORS = {
   accent: '#F9CC13', // Yellow for How to Play button
 
   // Game Colors
-  QUESTION_HEADER: '#8E68F0', // Updated purple badge
+  questionHeader: '#8E68F0', // Updated purple badge
   questionBackground: '#F2D6FF', // Updated lighter purple background
-  QUESTION_TEXT: '#3F2C90', // New: dark purple question text
-  ANSWER_BUTTON: '#5B4FD6', // Updated answer button purple
-  ANSWER_TEXT: '#FFFFFF', // White text for answers
-  LIFELINE_50_50: '#3CCFCF', // Blue 50:50 button
-  LIFELINE_ASK: '#FFD700', // Yellow Ask button
-  LIFELINE_CALL: '#FF69B4', // Pink Call button
-  MONEY_LADDER_BG: '#5449C8', // Purple money ladder background
-  MILESTONE_COLOR: '#FFD700', // Yellow milestone indicator
+  questionText: '#3F2C90', // New: dark purple question text
+  answerButton: '#5B4FD6', // Updated answer button purple
+  answerText: '#FFFFFF', // White text for answers
+  lifeline5050: '#3CCFCF', // Blue 50:50 button
+  lifelineAsk: '#FFD700', // Yellow Ask button
+  lifelineCall: '#FF69B4', // Pink Call button
+  moneyLadderBg: '#5449C8', // Purple money ladder background
+  milestoneColor: '#FFD700', // Yellow milestone indicator
   
   // Status Colors
-  SUCCESS: '#10B981', // Green for correct answers
-  ERROR: '#EF4444', // Red for wrong answers
+  success: '#10B981', // Green for correct answers
+  error: '#EF4444', // Red for wrong answers
   
   // Neutral Colors
-  NEUTRAL_100: '#FFFFFF', // Pure white
-  NEUTRAL_400: '#CBD5E1', // Medium gray
-  NEUTRAL_700: '#475569',
-  NEUTRAL_900: '#1E293B', // Almost black
+  neutral100: '#FFFFFF', // Pure white
+  neutral400: '#CBD5E1', // Medium gray
+  neutral700: '#475569',
+  neutral900: '#1E293B', // Almost black
   
 };
 
@@ -51,7 +51,7 @@ export const typography = {
 };
 
 // Game Show Specific Theme Values
-export const BUTTONS = {
+export const buttons = {
   // Common button styles
   base: {
     width: 100,
@@ -64,14 +64,14 @@ export const BUTTONS = {
   
   // Start Game button
   primary: {
-    background: COLORS.primary,
-    text: COLORS.NEUTRAL_100
+    background: colors.primary,
+    text: colors.neutral100
   },
 
   // Leaderboard button
   secondary: {
-    background: COLORS.secondary,
-    text: COLORS.NEUTRAL_100,
+    background: colors.secondary,
+    text: colors.neutral100,
     icon: {
       gap: "small" as const
     }
@@ -79,62 +79,63 @@ export const BUTTONS = {
 
   // How to Play button
   accent: {
-    background: COLORS.accent,
-    text: COLORS.NEUTRAL_100
+    background: colors.accent,
+    text: colors.neutral100
   }
 };
 
-export const GAME_UI = {
-  QUESTION: {
-    CONTAINER: {
-      PADDING: "medium" as const,
-      CORNER_RADIUS: "small" as const,
-      BACKGROUND: COLORS.questionBackground
+export const gameUI = {
+  question: {
+    container: {
+      padding: "medium" as const,
+      cornerRadius: "small" as const,
+      background: colors.questionBackground
     },
-    HEADER: {
-      WIDTH: 140,
-      BACKGROUND: COLORS.secondary,
-      TEXT_COLOR: COLORS.NEUTRAL_100,
-      PADDING: "small" as const,
-      CORNER_RADIUS: "small" as const
+    header: {
+      width: 140,
+      background: colors.secondary,
+      textColor: colors.neutral100,
+      padding: "small" as const,
+      cornerRadius: "small" as const
     }
   },
-  ANSWERS: {
-    BUTTON: {
-      HEIGHT: 52,
-      PADDING: "small" as const,
-      CORNER_RADIUS: "small" as const,
-      BACKGROUND: COLORS.ANSWER_BUTTON,
-      TEXT_COLOR: COLORS.ANSWER_TEXT,
-      GAP: "small" as const,
-      PREFIX: {
-        WIDTH: 40,
-        WEIGHT: "bold" as const
+  answers: {
+    button: {
+      height: 52,
+      padding: "small" as const,
+      cornerRadius: "small" as const,
+      background: colors.answerButton,
+      textColor: colors.answerText,
+      disabledColor: colors.error,
+      gap: "small" as const,
+      prefix: {
+        width: 40,
+        weight: "bold" as const
       }
     }
   },
-  LIFELINES: {
-    BUTTON: {
-      HEIGHT: 40,
-      WIDTH: 100,
-      CORNER_RADIUS: "small" as const,
-      GAP: "small" as const
+    lifelines: {
+    button: {
+      height: 40,
+      width: 100,
+      cornerRadius: "small" as const,
+      gap: "small" as const
     }
   },
-  MONEY_LADDER: {
-    HEADER: {
-      COLOR: COLORS.NEUTRAL_100,
-      SIZE: "small" as const,
-      WEIGHT: "bold" as const
+  moneyLadder: {
+    header: {
+      color: colors.neutral100,
+      size: "small" as const,
+      weight: "bold" as const
     },
-    CONTAINER: {
-      PADDING: "none" as const,
-      CORNER_RADIUS: "large" as const,
-      BACKGROUND: COLORS.MONEY_LADDER_BG
+    container: {
+      padding: "none" as const,
+      cornerRadius: "large" as const,
+      background: colors.moneyLadderBg
     },
-    MILESTONE: {
-      COLOR: COLORS.MILESTONE_COLOR,
-      SIZE: 8
+    milestone: {
+      color: colors.milestoneColor,
+      size: 8
     }
   }
 };
