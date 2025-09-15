@@ -479,37 +479,35 @@ Devvit.addCustomPostType({
         <text size="small" weight="bold" alignment="center" color={colors.neutral100}>Lifelines</text>
         <hstack gap={gameUI.lifelines.button.gap} width="100%" alignment="middle center">
           <hstack 
-            width={`${gameUI.lifelines.button.width}px`}
+            width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
             padding={gameUI.lifelines.button.padding}
             backgroundColor={fiftyFifty ? colors.lifeline5050 : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
-            size={gameUI.lifelines.button.textSize}
-            weight={gameUI.lifelines.button.textWeight}
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size="medium" weight="bold" color={colors.neutral100}>50:50</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral100}>50:50</text>
           </hstack>
           <hstack 
-            width={`${gameUI.lifelines.button.width}px`}
+            width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
             backgroundColor={askAudience ? colors.lifelineAsk : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size="medium" weight="bold" color={colors.neutral900}>Ask</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral900}>Ask</text>
           </hstack>
           <hstack 
-            width={`${gameUI.lifelines.button.width}px`}
+            width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
             backgroundColor={phoneFriend ? colors.lifelineCall : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size="medium" weight="bold" color={colors.neutral100}>Call</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral100}>Call</text>
           </hstack>
         </hstack>
       </vstack>
@@ -691,7 +689,7 @@ Devvit.addCustomPostType({
     );
 
     const renderLeaderboard = () => (
-      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
+      <vstack gap={page.base.gap} width="100%" height="100%" alignment={page.base.alignment} padding={page.base.padding}>
         <hstack width="100%" alignment="start middle" padding="none">
           <hstack width="80%" alignment="start middle" padding="none">
             <image url="leaderboard.png" width={`${page.header.title.width}px`} height={`${page.header.title.height}px`} resizeMode="contain" description="Leaderboard title" />
@@ -757,7 +755,7 @@ Devvit.addCustomPostType({
     );
 
     const renderHowToPlay = () => (
-      <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
+      <vstack gap={page.base.gap} width="100%" height="100%" alignment={page.base.alignment} padding={page.base.padding}>
        <hstack width="100%" alignment="start middle" padding="none">
           <hstack width="80%" alignment="start middle" padding="none">
             <image url="how-to-play.png" width={`${page.header.title.width}px`} height={`${page.header.title.height}px`} resizeMode="contain" description="How to Play title" />
@@ -796,7 +794,7 @@ Devvit.addCustomPostType({
     return (
       <zstack width="100%" height="100%">
       <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
-        <vstack height="100%" width="100%" padding="medium">
+        <vstack height="100%" width="100%" padding={page.base.padding}>
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
             gap="large" 

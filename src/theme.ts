@@ -120,7 +120,7 @@ export const gameUI = {
   },
     lifelines: {
     button: {
-      width: 100,
+      width: 33,
       height: buttons.small.height,
       cornerRadius: buttons.base.cornerRadius,
       padding: buttons.base.padding,
@@ -148,6 +148,11 @@ export const gameUI = {
 };
 
 export const page = {
+  base: {
+    alignment: "center" as const,
+    gap: "medium" as const,
+    padding: "small" as const,
+  },
   header: {
     title: {
       container: 90,
