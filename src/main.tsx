@@ -775,20 +775,19 @@ Devvit.addCustomPostType({
             width="100%" 
             height="100%" 
             alignment="center" 
-            padding="large"
-          >
+            padding="large">
             <vstack gap="medium" alignment="center">
-              <text size="xxlarge" weight="bold" color={COLORS.NEUTRAL_100}>
-                Reddionaire
-              </text>
-              <text size="large" color={COLORS.NEUTRAL_100} alignment="center">
-                Test your knowledge with 12 questions and win up to
-              </text>
-              <text size="xxlarge" weight="bold" color={COLORS.ACCENT}>
-                R$1,000,000
-              </text>
+              <image url="logo.png" imageWidth={315} imageHeight={75} width="315px" height="75px" resizeMode="contain" description="Reddionaire logo" />
+                <vstack alignment="center">
+                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                    Test your knowledge with 12  
+                  </text>
+                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                  questions and win up to
+                  </text>
+                </vstack>
+                 <image url="reddionaire-jackpot.png" imageWidth={175} imageHeight={30} width="175px" height="30px" resizeMode="contain" description="R$1,000,000 jackpot" />
             </vstack>
-
             <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack 
                 width={`${BUTTONS.BASE.WIDTH}%`}
@@ -822,7 +821,7 @@ Devvit.addCustomPostType({
             }} 
           >
             <hstack alignment="center" gap={BUTTONS.SECONDARY.ICON.GAP}>
-              <text size={BUTTONS.BASE.TEXT_SIZE}>{BUTTONS.SECONDARY.ICON.TYPE}</text>
+              <image url="leaderboard.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
               <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
             </hstack>
           </hstack>

@@ -4,13 +4,13 @@
 export const COLORS = {
   // Brand Colors
   BACKGROUND: '#5A4FCC', // Main purple background
-  PRIMARY: '#3CCFCF', // Light blue for Start Game button
+  PRIMARY: '#37BDF9', // Light blue for Start Game button
   PRIMARY_DARK: '#35B9B9', // Darker blue for hover states
   PRIMARY_LIGHT: '#4DDBDB', // Lighter blue for highlights
   
   // Action Colors
-  SECONDARY: '#FF69B4', // Pink for Leaderboard button
-  ACCENT: '#FFD700', // Yellow for How to Play button
+  SECONDARY: '#E979FA', // Pink for Leaderboard button
+  ACCENT: '#F9CC13', // Yellow for How to Play button
 
   // Game Colors
   QUESTION_HEADER: '#8E68F0', // Updated purple badge
@@ -115,7 +115,8 @@ export const BUTTONS = {
     HEIGHT: 40,
     CORNER_RADIUS: "small" as const,
     ALIGNMENT: "middle center" as const,
-    TEXT_SIZE: "large" as const
+    TEXT_SIZE: "large" as const,
+    TEXT_WEIGHT: "semibold" as const
   },
   
   // Start Game button
@@ -129,7 +130,6 @@ export const BUTTONS = {
     BACKGROUND: COLORS.SECONDARY,
     TEXT: COLORS.NEUTRAL_100,
     ICON: {
-      TYPE: "🪙",
       GAP: "small" as const
     }
   },
