@@ -37,14 +37,18 @@ export const typography = {
     textSize: "small" as const,
   },
   heading1: {
-    textSize: "xlarge" as const,
+    textSize: "xxlarge" as const,
     textWeight: "bold" as const
   },
   heading2: {
-    textSize: "large" as const,
+    textSize: "xlarge" as const,
     textWeight: "bold" as const
   },
   heading3: {
+    textSize: "large" as const,
+    textWeight: "bold" as const
+  },
+  heading4: {
     textSize: "medium" as const,
     textWeight: "bold" as const
   },
@@ -54,7 +58,7 @@ export const typography = {
 export const buttons = {
   // Common button styles
   base: {
-    // width: 100,
+    width: 100,
     height: 50,
     cornerRadius: "small" as const,
     padding: "small" as const,
@@ -164,5 +168,33 @@ export const page = {
       width: 25,
       height: 25,
     }
+  },
+  heading: {
+    textSize: typography.heading1.textSize,
+    textWeight: typography.heading1.textWeight,
+    textColor: colors.accent,
+    alignment: "center" as const,
+  },
+  subheading: {
+    textSize: typography.heading1.textSize,
+    textWeight: typography.heading1.textWeight,
+    textColor: colors.accent,
+    alignment: "center" as const,
+  },
+  paragraph: {
+    textSize: typography.paragraph.textSize,
+    textColor: colors.accent,
+    alignment: "center" as const,
+  },
+  mainButton: {
+    width: buttons.base.width,
+    height: buttons.base.height,
+    cornerRadius: buttons.base.cornerRadius,
+    padding: buttons.base.padding,
+    alignment: buttons.base.alignment,
+    textSize: buttons.base.textSize,
+    textWeight: buttons.base.textWeight,
+    textColor: buttons.primary.text,
+    background: buttons.primary.background,
   },
 };

@@ -543,7 +543,7 @@ Devvit.addCustomPostType({
                   Question {currentQuestion + 1}
                   </text>
               </hstack>
-              <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText} wrap={true}>
+              <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText} wrap={true}>
                 {currentQ.question}
               </text>
             </vstack>
@@ -598,15 +598,15 @@ Devvit.addCustomPostType({
         </vstack>
 
         {lastAnswerExplanation && gameStatus !== 'won' && (
-          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={colors.neutral100} cornerRadius="small">
-            <text size="small" weight="bold" color={colors.questionText}>Final Answer Explanation:</text>
-            <text size="small" color={colors.neutral700} alignment="start">{lastAnswerExplanation}</text>
+          <vstack gap="small">
+            <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>Final Answer Explanation:</text>
+            <text size={page.paragraph.textSize} color={page.paragraph.textColor} alignment={page.paragraph.alignment}>{lastAnswerExplanation}</text>
           </vstack>
         )}
         
         {gameStatus === 'won' && (
-          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={colors.neutral100} cornerRadius="small">
-            <text size="small" weight="bold" color={colors.success}>You successfully answered all the correct questions!</text>
+          <vstack gap="small">
+            <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>You successfully answered all the correct questions!</text>
           </vstack>
         )}
 
@@ -726,26 +726,26 @@ Devvit.addCustomPostType({
           ) : (
             <vstack gap="large" width="100%" padding="medium" alignment="center">
               <vstack gap="small">
-                <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">No scores yet!</text>
+                <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>No scores yet!</text>
                 <vstack gap="none" alignment="center">
-                  <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">
+                  <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
                     Leaderboard will be updated as
                   </text>
-                  <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">
+                  <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
                     games are played
                   </text>
                 </vstack>
               </vstack>
               <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack
-                width={`${buttons.base.width}%`}
-                height={`${buttons.base.height}px`}
-                backgroundColor={buttons.primary.background}
-                cornerRadius={buttons.base.cornerRadius}
+                width={`${page.mainButton.width}%`}
+                height={`${page.mainButton.height}px`}
+                backgroundColor={page.mainButton.background}
+                cornerRadius={page.mainButton.cornerRadius}
                 onPress={startGame}
-                alignment={buttons.base.alignment}
+                alignment={page.mainButton.alignment}
               >
-                <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.primary.text}>Start Game</text>
+                <text size={page.mainButton.textSize} weight={page.mainButton.textWeight} color={page.mainButton.textColor}>Start Game</text>
               </hstack>
               </vstack>
             </vstack>
@@ -771,18 +771,18 @@ Devvit.addCustomPostType({
         </hstack>
         <vstack gap="medium" width="100%">
           <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Objective</text>
+            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Objective</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
           </vstack>
           
           <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Money Ladder</text>
+            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Money Ladder</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
           </vstack>
           
           <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Lifelines</text>
+            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Lifelines</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Ask Audience - Shows audience poll results</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
