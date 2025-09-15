@@ -1,17 +1,27 @@
 // Game Show Theme System
 // Professional styling tokens for Redditionaire
 
+
+export const defaultColors = {
+
+};
+
 export const colors = {
   // Brand Colors
   background: '#5A4FCC', // Main purple background
-  primary: '#37BDF9', // Light blue for Start Game button
-  secondary: '#E979FA', // Pink for Leaderboard button
-  accent: '#F9CC13', // Yellow for How to Play button
+  primary: '#37BDF9', // Light blue 
+  secondary: '#E979FA', // Pink
+  accent: '#F9CC13', // Yellow
+  white: '#FFFFFF',
 
-  // Game Colors
+  purple: '#7369D7',
+  darkPurple: '#6157cb',
+  darkerPurple: '#5449C8',
+
+  // UI Specific Colors
   questionHeader: '#8E68F0', // Updated purple badge
-  questionBackground: '#F2D6FF', // Updated lighter purple background
-  questionText: '#3F2C90', // New: dark purple question text
+  questionBackground: '#F2D6FF', // Updated lighter purple 
+  questionText: '#3F2C90', // Purple
   answerButton: '#5B4FD6', // Updated answer button purple
   answerText: '#FFFFFF', // White text for answers
   lifeline5050: '#3CCFCF', // Blue 50:50 button
@@ -25,7 +35,6 @@ export const colors = {
   error: '#EF4444', // Red for wrong answers
   
   // Neutral Colors
-  neutral100: '#FFFFFF', // Pure white
   neutral400: '#CBD5E1', // Medium gray
   neutral700: '#475569',
   neutral900: '#1E293B', // Almost black
@@ -76,19 +85,36 @@ export const buttons = {
   },
   primary: {
     background: colors.primary,
-    text: colors.neutral100
+    text: colors.white
   },
   secondary: {
     background: colors.secondary,
-    text: colors.neutral100,
+    text: colors.white,
     icon: {
       gap: "small" as const
     }
   },
   accent: {
     background: colors.accent,
-    text: colors.neutral100
+    text: colors.white
   }
+};
+
+export const table = {
+background: colors.darkerPurple,
+cornerRadius: "small" as const,
+color: colors.white,
+gold: colors.accent,
+textSize: typography.paragraph.textSize,
+header: {
+  textWeight: "bold" as const
+},
+oddItem: {
+  background: colors.purple,
+},
+evenItem: {
+  background: colors.darkPurple,
+},
 };
 
 export const gameUI = {
@@ -101,7 +127,7 @@ export const gameUI = {
     header: {
       width: 140,
       background: colors.secondary,
-      textColor: colors.neutral100,
+      textColor: colors.white,
       padding: "small" as const,
       cornerRadius: "small" as const
     }
@@ -135,7 +161,7 @@ export const gameUI = {
   },
   moneyLadder: {
     header: {
-      color: colors.neutral100,
+      color: colors.white,
       size: "small" as const,
       weight: "bold" as const
     },

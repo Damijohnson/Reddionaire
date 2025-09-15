@@ -2,7 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
-import { colors, typography, buttons, gameUI, page } from "./theme.js";
+import { colors, typography, buttons, table, gameUI, page } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -460,7 +460,7 @@ Devvit.addCustomPostType({
           >
             <hstack gap="small" alignment="middle center">
               <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
-              <text size="xlarge" weight="bold" color={colors.neutral100}>
+              <text size="xlarge" weight="bold" color={colors.white}>
                 R${MONEY_LADDER[currentQuestion].amount}
               </text>
             </hstack>
@@ -469,14 +469,14 @@ Devvit.addCustomPostType({
 
         {/* Milestone label on its own line */}
         {MONEY_LADDER[currentQuestion].milestone && (
-          <text size="small" color={colors.neutral100}>Milestone</text>
+          <text size="small" color={colors.white}>Milestone</text>
         )}
       </vstack>
     );
 
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="center" color={colors.neutral100}>Lifelines</text>
+        <text size="small" weight="bold" alignment="center" color={colors.white}>Lifelines</text>
         <hstack gap={gameUI.lifelines.button.gap} width="100%" alignment="middle center">
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -487,7 +487,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral100}>50:50</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.white}>50:50</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -507,7 +507,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral100}>Call</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.white}>Call</text>
           </hstack>
         </hstack>
       </vstack>
@@ -587,10 +587,10 @@ Devvit.addCustomPostType({
     const renderGameOver = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
         <vstack gap="medium" alignment="center">
-          <text size="xxlarge" weight="bold" color={colors.neutral100}>
+          <text size="xxlarge" weight="bold" color={colors.white}>
             {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}
           </text>
-          <text size="large" color={colors.neutral100} alignment="center">
+          <text size="large" color={colors.white} alignment="center">
             {gameStatus === 'won' ? `You won $1,000,000!` :
              gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
              `You walked away with R$${score}!`}
@@ -641,13 +641,13 @@ Devvit.addCustomPostType({
     const renderWalkAwayPrompt = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
         <vstack gap="medium" alignment="center">
-          <text size="xxlarge" weight="bold" color={colors.neutral100}>
+          <text size="xxlarge" weight="bold" color={colors.white}>
             Milestone Reached!
           </text>
-          <text size="large" color={colors.neutral100} alignment="center">
+          <text size="large" color={colors.white} alignment="center">
             You've secured R${MONEY_LADDER[currentQuestion].amount}!
           </text>
-          <text size="medium" color={colors.neutral100} alignment="center">
+          <text size="medium" color={colors.white} alignment="center">
             Do you want to continue or walk away?
           </text>
         </vstack>
@@ -703,22 +703,32 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
         </hstack>
-        <vstack gap="none" width="100%" height="100%" padding="none">
+        <vstack gap="none" width="100%" padding="none" backgroundColor={table.background} cornerRadius={table.cornerRadius}>
           {leaderboardData.length > 0 ? (
             <vstack width="100%" gap="none">
               <hstack width="100%" padding="small">
-                <text size="small" width="10%" color={colors.neutral400} weight="bold">RANK</text>
-                <text size="small" width="60%" color={colors.neutral400} weight="bold">USER</text>
+                <text size="small" width="10%" color={table.color} weight={table.header.textWeight}>#</text>
+                <text size="small" width="60%" color={table.color} weight={table.header.textWeight}>Username</text>
                 <hstack width="30%" alignment="end">
-                  <text size="small" color={colors.neutral400} weight="bold">SCORE</text>
+                  <text size="small" color={table.color} weight={table.header.textWeight}>Bank</text>
                 </hstack>
               </hstack>
               {leaderboardData.map((entry, index) => (
-                <hstack key={entry.userId} width="100%" padding="small">
-                  <text size="medium" weight="bold" width="10%" color={colors.secondary}>{index + 1}.</text>
-                  <text size="medium" width="60%" color={colors.neutral700}>u/{entry.userId}</text>
+                <hstack 
+                  key={entry.userId} 
+                  width="100%" 
+                  padding="small"
+                  backgroundColor={index % 2 === 0 ? table.evenItem.background : table.oddItem.background}
+                >
+                  <text size={table.textSize} width="10%" color={table.color}>{index + 1}.</text>
+                  <hstack width="60%" gap="small" alignment="start middle">
+                  <text size={table.textSize} color={table.color}>u/{entry.userId}</text>
+                    {index === 0 && (
+                      <image url="leaderboard-icon.png" imageWidth={16} imageHeight={16} width="16px" height="16px" resizeMode="contain" description="Leaderboard icon" />
+                    )}
+                  </hstack>
                   <hstack width="30%" alignment="end">
-                    <text size="medium" weight="bold" color={colors.primary}>R${entry.score}</text>
+                    <text size={table.textSize} weight={table.header.textWeight} color={table.gold}>R${entry.score}</text>
                   </hstack>
                 </hstack>
               ))}
