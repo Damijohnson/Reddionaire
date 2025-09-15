@@ -723,11 +723,30 @@ Devvit.addCustomPostType({
               ))}
             </vstack>
           ) : (
-            <vstack gap="small" width="100%" padding="medium" alignment="center">
-              <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">No scores yet!</text>
-              <text size="large" weight="bold" color={COLORS.ACCENT} alignment="center">
-                Leaderboard will be updated as games are played
-              </text>
+            <vstack gap="large" width="100%" padding="medium" alignment="center">
+              <vstack gap="small">
+                <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">No scores yet!</text>
+                <vstack gap="none" alignment="center">
+                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                    Leaderboard will be updated as
+                  </text>
+                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                    games are played
+                  </text>
+                </vstack>
+              </vstack>
+              <vstack gap="medium" width="100%" maxWidth="400px">
+              <hstack
+                width={`${BUTTONS.BASE.WIDTH}%`}
+                height={`${BUTTONS.BASE.HEIGHT}px`}
+                backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
+                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+                onPress={startGame}
+                alignment={BUTTONS.BASE.ALIGNMENT}
+              >
+                <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
+              </hstack>
+              </vstack>
             </vstack>
           )}
         </vstack>
@@ -736,12 +755,17 @@ Devvit.addCustomPostType({
 
     const renderHowToPlay = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        <hstack width="100%" alignment="end middle" padding="none">
-          <hstack 
-            onPress={handleBackToStart} 
-            alignment="middle center"
-          >
-            <image url="close.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Close" />
+       <hstack width="100%" alignment="start middle" padding="none">
+          <hstack width="90%" alignment="start middle" padding="none">
+            <image url="how-to-play.png" imageWidth={225} imageHeight={40} width="200px" height="50px" resizeMode="contain" description="Leaderboard title" />
+          </hstack>
+          <hstack width="10%" alignment="end middle" padding="none">
+            <hstack 
+              onPress={handleBackToStart} 
+              alignment="middle center"
+            >
+              <image url="close.png" imageWidth={30} imageHeight={30} width="30px" height="30px" resizeMode="contain" description="Close" />
+            </hstack>
           </hstack>
         </hstack>
         <vstack gap="small" width="100%" maxHeight="60%">
