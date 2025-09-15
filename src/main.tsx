@@ -768,22 +768,24 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
         </hstack>
-        <vstack gap="small" width="100%" maxHeight="60%">
-          <text size="medium" weight="bold">Objective:</text>
-          <text size="small">Answer 12 questions correctly to win $1,000,000!</text>
+        <vstack gap="medium" width="100%">
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Objective:</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>Answer 12 questions correctly to win $1,000,000!</text>
+          </vstack>
           
-          <text size="medium" weight="bold">Money Ladder:</text>
-          <text size="small">• Each correct answer moves you up the money ladder</text>
-          <text size="small">• Milestone questions (★) let you walk away with guaranteed money</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Money Ladder:</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>• Each correct answer moves you up the money ladder</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>• Milestone questions (★) let you walk away with guaranteed money</text>
+          </vstack>
           
-          <text size="medium" weight="bold">Lifelines:</text>
-          <text size="small">• 50:50 - Eliminates two wrong answers</text>
-          <text size="small">• Ask Audience - Shows audience poll results</text>
-          <text size="small">• Phone a Friend - Get a hint from a friend</text>
-          
-          <text size="medium" weight="bold">Game Over:</text>
-          <text size="small">• One wrong answer and you lose everything!</text>
-          <text size="small">• Use lifelines wisely to maximize your chances</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Lifelines:</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>• 50:50 - Eliminates two wrong answers</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>• Ask Audience - Shows audience poll results</text>
+            <text size="medium" color={COLORS.QUESTION_TEXT}>• Phone a Friend - Get a hint from a friend</text>
+          </vstack>
         </vstack>
       </vstack>
     );
