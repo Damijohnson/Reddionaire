@@ -460,7 +460,7 @@ Devvit.addCustomPostType({
           >
             <hstack gap="small" alignment="middle center">
               <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
-              <text size="xlarge" weight="bold" color={COLORS.neutral100}>
+              <text size="xlarge" weight="bold" color={colors.neutral100}>
                 R${MONEY_LADDER[currentQuestion].amount}
               </text>
             </hstack>
@@ -469,44 +469,44 @@ Devvit.addCustomPostType({
 
         {/* Milestone label on its own line */}
         {MONEY_LADDER[currentQuestion].milestone && (
-          <text size="small" color={COLORS.neutral100}>Milestone</text>
+          <text size="small" color={colors.neutral100}>Milestone</text>
         )}
       </vstack>
     );
 
     const renderLifelines = () => (
       <vstack gap="small" width="100%">
-        <text size="small" weight="bold" alignment="center" color={COLORS.neutral100}>Lifelines</text>
+        <text size="small" weight="bold" alignment="center" color={colors.neutral100}>Lifelines</text>
         <hstack gap={gameUI.lifelines.button.gap} width="100%" alignment="middle center">
           <hstack 
             width={`${gameUI.lifelines.button.width}px`}
             height={`${gameUI.lifelines.button.height}px`}
-            backgroundColor={fiftyFifty ? COLORS.lifeline5050 : COLORS.neutral400}
+            backgroundColor={fiftyFifty ? colors.lifeline5050 : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size="medium" weight="bold" color={COLORS.neutral100}>50:50</text>
+            <text size="medium" weight="bold" color={colors.neutral100}>50:50</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}px`}
             height={`${gameUI.lifelines.button.height}px`}
-            backgroundColor={askAudience ? COLORS.lifelineAsk : COLORS.neutral400}
+            backgroundColor={askAudience ? colors.lifelineAsk : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size="medium" weight="bold" color={COLORS.neutral900}>Ask</text>
+            <text size="medium" weight="bold" color={colors.neutral900}>Ask</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}px`}
             height={`${gameUI.lifelines.button.height}px`}
-            backgroundColor={phoneFriend ? COLORS.lifelineCall : COLORS.neutral400}
+            backgroundColor={phoneFriend ? colors.lifelineCall : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size="medium" weight="bold" color={COLORS.neutral100}>Call</text>
+            <text size="medium" weight="bold" color={colors.neutral100}>Call</text>
           </hstack>
         </hstack>
       </vstack>
@@ -542,7 +542,7 @@ Devvit.addCustomPostType({
                   Question {currentQuestion + 1}
                 </text>
               </hstack>
-              <text size="xlarge" weight="bold" color={COLORS.questionText}>
+              <text size="xlarge" weight="bold" color={colors.questionText}>
                 {currentQ.question}
               </text>
             </vstack>
@@ -586,10 +586,10 @@ Devvit.addCustomPostType({
     const renderGameOver = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
         <vstack gap="medium" alignment="center">
-          <text size="xxlarge" weight="bold" color={COLORS.neutral100}>
+          <text size="xxlarge" weight="bold" color={colors.neutral100}>
             {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}
           </text>
-          <text size="large" color={COLORS.neutral100} alignment="center">
+          <text size="large" color={colors.neutral100} alignment="center">
             {gameStatus === 'won' ? `You won $1,000,000!` :
              gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
              `You walked away with R$${score}!`}
@@ -597,15 +597,15 @@ Devvit.addCustomPostType({
         </vstack>
 
         {lastAnswerExplanation && gameStatus !== 'won' && (
-          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={COLORS.neutral100} cornerRadius="small">
-            <text size="small" weight="bold" color={COLORS.questionText}>Final Answer Explanation:</text>
-            <text size="small" color={COLORS.neutral700} alignment="start">{lastAnswerExplanation}</text>
+          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={colors.neutral100} cornerRadius="small">
+            <text size="small" weight="bold" color={colors.questionText}>Final Answer Explanation:</text>
+            <text size="small" color={colors.neutral700} alignment="start">{lastAnswerExplanation}</text>
           </vstack>
         )}
         
         {gameStatus === 'won' && (
-          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={COLORS.neutral100} cornerRadius="small">
-            <text size="small" weight="bold" color={COLORS.success}>You successfully answered all the correct questions!</text>
+          <vstack gap="small" width="100%" maxWidth="600px" padding="medium" backgroundColor={colors.neutral100} cornerRadius="small">
+            <text size="small" weight="bold" color={colors.success}>You successfully answered all the correct questions!</text>
           </vstack>
         )}
 
@@ -640,13 +640,13 @@ Devvit.addCustomPostType({
     const renderWalkAwayPrompt = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
         <vstack gap="medium" alignment="center">
-          <text size="xxlarge" weight="bold" color={COLORS.neutral100}>
+          <text size="xxlarge" weight="bold" color={colors.neutral100}>
             Milestone Reached!
           </text>
-          <text size="large" color={COLORS.neutral100} alignment="center">
+          <text size="large" color={colors.neutral100} alignment="center">
             You've secured R${MONEY_LADDER[currentQuestion].amount}!
           </text>
-          <text size="medium" color={COLORS.neutral100} alignment="center">
+          <text size="medium" color={colors.neutral100} alignment="center">
             Do you want to continue or walk away?
           </text>
         </vstack>
@@ -706,18 +706,18 @@ Devvit.addCustomPostType({
           {leaderboardData.length > 0 ? (
             <vstack width="100%" gap="none">
               <hstack width="100%" padding="small">
-                <text size="small" width="10%" color={COLORS.neutral400} weight="bold">RANK</text>
-                <text size="small" width="60%" color={COLORS.neutral400} weight="bold">USER</text>
+                <text size="small" width="10%" color={colors.neutral400} weight="bold">RANK</text>
+                <text size="small" width="60%" color={colors.neutral400} weight="bold">USER</text>
                 <hstack width="30%" alignment="end">
-                  <text size="small" color={COLORS.neutral400} weight="bold">SCORE</text>
+                  <text size="small" color={colors.neutral400} weight="bold">SCORE</text>
                 </hstack>
               </hstack>
               {leaderboardData.map((entry, index) => (
                 <hstack key={entry.userId} width="100%" padding="small">
-                  <text size="medium" weight="bold" width="10%" color={COLORS.secondary}>{index + 1}.</text>
-                  <text size="medium" width="60%" color={COLORS.neutral700}>u/{entry.userId}</text>
+                  <text size="medium" weight="bold" width="10%" color={colors.secondary}>{index + 1}.</text>
+                  <text size="medium" width="60%" color={colors.neutral700}>u/{entry.userId}</text>
                   <hstack width="30%" alignment="end">
-                    <text size="medium" weight="bold" color={COLORS.primary}>R${entry.score}</text>
+                    <text size="medium" weight="bold" color={colors.primary}>R${entry.score}</text>
                   </hstack>
                 </hstack>
               ))}
@@ -725,12 +725,12 @@ Devvit.addCustomPostType({
           ) : (
             <vstack gap="large" width="100%" padding="medium" alignment="center">
               <vstack gap="small">
-                <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">No scores yet!</text>
+                <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">No scores yet!</text>
                 <vstack gap="none" alignment="center">
-                  <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">
+                  <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">
                     Leaderboard will be updated as
                   </text>
-                  <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">
+                  <text size="xxlarge" weight="bold" color={colors.accent} alignment="center">
                     games are played
                   </text>
                 </vstack>
@@ -769,22 +769,22 @@ Devvit.addCustomPostType({
           </hstack>
         </hstack>
         <vstack gap="medium" width="100%">
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.questionText}>Objective</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Objective</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
           </vstack>
           
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.questionText}>Money Ladder</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Money Ladder</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
           </vstack>
           
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.questionText}>Lifelines</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>• Ask Audience - Shows audience poll results</text>
-            <text size={typography.paragraph.textSize} color={COLORS.questionText} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText}>Lifelines</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Ask Audience - Shows audience poll results</text>
+            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
           </vstack>
         </vstack>
       </vstack>
@@ -804,10 +804,10 @@ Devvit.addCustomPostType({
             <vstack gap="medium" alignment="center">
               <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode="contain" description="Reddionaire logo" />
                 <vstack alignment="center">
-                  <text size="large" weight="bold" color={COLORS.accent} alignment="center">
+                  <text size="large" weight="bold" color={colors.accent} alignment="center">
                     Test your knowledge with 12  
                   </text>
-                  <text size="large" weight="bold" color={COLORS.accent} alignment="center">
+                  <text size="large" weight="bold" color={colors.accent} alignment="center">
                   questions and win up to
                   </text>
                 </vstack>
