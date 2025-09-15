@@ -629,7 +629,7 @@ Devvit.addCustomPostType({
             }}
             alignment={BUTTONS.BASE.ALIGNMENT}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Play Again</text>
+            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Play Again</text>
           </hstack>
         </vstack>
       </vstack>
@@ -660,7 +660,7 @@ Devvit.addCustomPostType({
             onPress={continueGame}
             alignment={BUTTONS.BASE.ALIGNMENT}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Continue Playing</text>
+            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Continue Playing</text>
           </hstack>
           <hstack 
             width={`${BUTTONS.BASE.WIDTH}%`}
@@ -681,7 +681,7 @@ Devvit.addCustomPostType({
             }}
             alignment={BUTTONS.BASE.ALIGNMENT}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.SECONDARY.TEXT}>Walk Away</text>
+            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.SECONDARY.TEXT}>Walk Away</text>
           </hstack>
         </vstack>
       </vstack>
@@ -797,7 +797,7 @@ Devvit.addCustomPostType({
                 onPress={startGame}
                 alignment={BUTTONS.BASE.ALIGNMENT}
               >
-                <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
+                <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
               </hstack>
               <hstack 
                 width={`${BUTTONS.BASE.WIDTH}%`}
@@ -822,7 +822,7 @@ Devvit.addCustomPostType({
           >
             <hstack alignment="center" gap={BUTTONS.SECONDARY.ICON.GAP}>
               <image url="leaderboard.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
-              <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
+              <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
             </hstack>
           </hstack>
           <hstack 
@@ -833,7 +833,7 @@ Devvit.addCustomPostType({
             alignment={BUTTONS.BASE.ALIGNMENT}
             onPress={handleShowHowToPlay}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} color={BUTTONS.ACCENT.TEXT}>How to Play</text>
+            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.ACCENT.TEXT}>How to Play</text>
           </hstack>
         </vstack>
       </vstack>

@@ -112,11 +112,11 @@ export const BUTTONS = {
   // Common button styles
   BASE: {
     WIDTH: 100,
-    HEIGHT: 40,
+    HEIGHT: 50,
     CORNER_RADIUS: "small" as const,
     ALIGNMENT: "middle center" as const,
     TEXT_SIZE: "large" as const,
-    TEXT_WEIGHT: "semibold" as const
+    TEXT_WEIGHT: "bold" as const
   },
   
   // Start Game button
@@ -137,7 +137,7 @@ export const BUTTONS = {
   // How to Play button
   ACCENT: {
     BACKGROUND: COLORS.ACCENT,
-    TEXT: COLORS.NEUTRAL_900
+    TEXT: COLORS.NEUTRAL_100
   }
 };
 
