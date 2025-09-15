@@ -692,12 +692,9 @@ Devvit.addCustomPostType({
         <hstack width="100%" alignment="end middle" padding="none">
           <hstack 
             onPress={handleBackToStart} 
-            padding="small" 
-            cornerRadius="small"
-            backgroundColor={COLORS.NEUTRAL_200}
             alignment="middle center"
           >
-            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
+            <image url="close.png" imageWidth={30} imageHeight={30} width="30px" height="30px" resizeMode="contain" description="Close" />
           </hstack>
         </hstack>
         <vstack gap="none" width="100%" height="100%" padding="none">
@@ -737,12 +734,9 @@ Devvit.addCustomPostType({
         <hstack width="100%" alignment="end middle" padding="none">
           <hstack 
             onPress={handleBackToStart} 
-            padding="small" 
-            cornerRadius="small"
-            backgroundColor={COLORS.NEUTRAL_200}
             alignment="middle center"
           >
-            <text size="large" color={COLORS.NEUTRAL_700}>✕</text>
+            <image url="close.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Close" />
           </hstack>
         </hstack>
         <vstack gap="small" width="100%" maxHeight="60%">
@@ -821,7 +815,7 @@ Devvit.addCustomPostType({
             }} 
           >
             <hstack alignment="center" gap={BUTTONS.SECONDARY.ICON.GAP}>
-              <image url="leaderboard.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
+              <image url="leaderboard-icon.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
               <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
             </hstack>
           </hstack>
