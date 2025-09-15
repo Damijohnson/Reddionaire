@@ -2,7 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
-import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS, GAME_SHOW, BUTTONS, GAME_UI } from "./theme.js";
+import { COLORS, BUTTONS, typography, GAME_UI, page } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -84,7 +84,7 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     const fallbackQuestions = questionsData.rotationRules.fallbackQuestions.map(id => 
       questionsData.questions.find(q => q.id === id)
     ).filter(Boolean) as typeof questionsData.questions;
-    
+     
     selectedQuestions.push(...fallbackQuestions.slice(0, questionsPerGame - selectedQuestions.length));
   }
   
@@ -459,7 +459,7 @@ Devvit.addCustomPostType({
             padding={GAME_UI.MONEY_LADDER.CONTAINER.PADDING}
           >
             <hstack gap="small" alignment="middle center">
-              <text size="large">🪙</text>
+              <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
               <text size="xlarge" weight="bold" color={COLORS.NEUTRAL_100}>
                 R${MONEY_LADDER[currentQuestion].amount}
               </text>
@@ -613,7 +613,7 @@ Devvit.addCustomPostType({
           <hstack 
             width={`${BUTTONS.BASE.WIDTH}%`}
             height={`${BUTTONS.BASE.HEIGHT}px`}
-            backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
+            backgroundColor={BUTTONS.primary.background}
             cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
             onPress={async () => {
               if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
@@ -629,7 +629,7 @@ Devvit.addCustomPostType({
             }}
             alignment={BUTTONS.BASE.ALIGNMENT}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Play Again</text>
+            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.primary.text}>Play Again</text>
           </hstack>
         </vstack>
       </vstack>
@@ -653,20 +653,20 @@ Devvit.addCustomPostType({
 
         <vstack gap="medium" width="100%" maxWidth="400px">
           <hstack 
-            width={`${BUTTONS.BASE.WIDTH}%`}
-            height={`${BUTTONS.BASE.HEIGHT}px`}
-            backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
-            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            width={`${BUTTONS.base.width}%`}
+            height={`${BUTTONS.base.height}px`}
+            backgroundColor={BUTTONS.primary.background}
+            cornerRadius={BUTTONS.base.cornerRadius}
             onPress={continueGame}
-            alignment={BUTTONS.BASE.ALIGNMENT}
+            alignment={BUTTONS.base.alignment}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Continue Playing</text>
+            <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.primary.text}>Continue Playing</text>
           </hstack>
           <hstack 
-            width={`${BUTTONS.BASE.WIDTH}%`}
-            height={`${BUTTONS.BASE.HEIGHT}px`}
-            backgroundColor={BUTTONS.SECONDARY.BACKGROUND}
-            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+            width={`${BUTTONS.base.width}%`}
+            height={`${BUTTONS.base.height}px`}
+            backgroundColor={BUTTONS.secondary.background}
+            cornerRadius={BUTTONS.base.cornerRadius}
             onPress={async () => {
               // Update leaderboard with current score before walking away
               try {
@@ -679,9 +679,9 @@ Devvit.addCustomPostType({
               
               walkAway();
             }}
-            alignment={BUTTONS.BASE.ALIGNMENT}
+            alignment={BUTTONS.base.alignment}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.SECONDARY.TEXT}>Walk Away</text>
+            <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.secondary.text}>Walk Away</text>
           </hstack>
         </vstack>
       </vstack>
@@ -690,10 +690,10 @@ Devvit.addCustomPostType({
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
         <hstack width="100%" alignment="start middle" padding="none">
-          <hstack width="90%" alignment="start middle" padding="none">
-            <image url="leaderboard.png" imageWidth={225} imageHeight={40} width="200px" height="50px" resizeMode="contain" description="Leaderboard title" />
+          <hstack width="80%" alignment="start middle" padding="none">
+            <image url="leaderboard.png" width={`${page.header.title.width}px`} height={`${page.header.title.height}px`} resizeMode="contain" description="Leaderboard title" />
           </hstack>
-          <hstack width="10%" alignment="end middle" padding="none">
+          <hstack width="20%" alignment="end middle" padding="none">
             <hstack 
               onPress={handleBackToStart} 
               alignment="middle center"
@@ -714,10 +714,10 @@ Devvit.addCustomPostType({
               </hstack>
               {leaderboardData.map((entry, index) => (
                 <hstack key={entry.userId} width="100%" padding="small">
-                  <text size="medium" weight="bold" width="10%" color={COLORS.SECONDARY}>{index + 1}.</text>
+                  <text size="medium" weight="bold" width="10%" color={COLORS.secondary}>{index + 1}.</text>
                   <text size="medium" width="60%" color={COLORS.NEUTRAL_700}>u/{entry.userId}</text>
                   <hstack width="30%" alignment="end">
-                    <text size="medium" weight="bold" color={COLORS.PRIMARY}>R${entry.score}</text>
+                    <text size="medium" weight="bold" color={COLORS.primary}>R${entry.score}</text>
                   </hstack>
                 </hstack>
               ))}
@@ -725,26 +725,26 @@ Devvit.addCustomPostType({
           ) : (
             <vstack gap="large" width="100%" padding="medium" alignment="center">
               <vstack gap="small">
-                <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">No scores yet!</text>
+                <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">No scores yet!</text>
                 <vstack gap="none" alignment="center">
-                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                  <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">
                     Leaderboard will be updated as
                   </text>
-                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                  <text size="xxlarge" weight="bold" color={COLORS.accent} alignment="center">
                     games are played
                   </text>
                 </vstack>
               </vstack>
               <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack
-                width={`${BUTTONS.BASE.WIDTH}%`}
-                height={`${BUTTONS.BASE.HEIGHT}px`}
-                backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
-                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+                width={`${BUTTONS.base.width}%`}
+                height={`${BUTTONS.base.height}px`}
+                backgroundColor={BUTTONS.primary.background}
+                cornerRadius={BUTTONS.base.cornerRadius}
                 onPress={startGame}
-                alignment={BUTTONS.BASE.ALIGNMENT}
+                alignment={BUTTONS.base.alignment}
               >
-                <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
+                <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.primary.text}>Start Game</text>
               </hstack>
               </vstack>
             </vstack>
@@ -756,10 +756,10 @@ Devvit.addCustomPostType({
     const renderHowToPlay = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
        <hstack width="100%" alignment="start middle" padding="none">
-          <hstack width="90%" alignment="start middle" padding="none">
-            <image url="how-to-play.png" imageWidth={225} imageHeight={40} width="200px" height="50px" resizeMode="contain" description="Leaderboard title" />
+          <hstack width="80%" alignment="start middle" padding="none">
+            <image url="how-to-play.png" width={`${page.header.title.width}px`} height={`${page.header.title.height}px`} resizeMode="contain" description="How to Play title" />
           </hstack>
-          <hstack width="10%" alignment="end middle" padding="none">
+          <hstack width="20%" alignment="end middle" padding="none">
             <hstack 
               onPress={handleBackToStart} 
               alignment="middle center"
@@ -769,22 +769,22 @@ Devvit.addCustomPostType({
           </hstack>
         </hstack>
         <vstack gap="medium" width="100%">
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+          <vstack gap="small"padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
             <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Objective:</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>Answer 12 questions correctly to win $1,000,000!</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>Answer 12 questions correctly to win $1,000,000!</text>
           </vstack>
           
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
             <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Money Ladder:</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>• Each correct answer moves you up the money ladder</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Each correct answer moves you up the money ladder</text>
             <text size="medium" color={COLORS.QUESTION_TEXT}>• Milestone questions (★) let you walk away with guaranteed money</text>
           </vstack>
           
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.QUESTION_BG} cornerRadius="small">
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
             <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Lifelines:</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>• 50:50 - Eliminates two wrong answers</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>• Ask Audience - Shows audience poll results</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>• Phone a Friend - Get a hint from a friend</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• 50:50 - Eliminates two wrong answers</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Ask Audience - Shows audience poll results</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Phone a Friend - Get a hint from a friend</text>
           </vstack>
         </vstack>
       </vstack>
@@ -797,39 +797,39 @@ Devvit.addCustomPostType({
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
             gap="large" 
-            width="100%" 
-            height="100%" 
+            width="100%"  
+            height="100%"  
             alignment="center" 
             padding="large">
             <vstack gap="medium" alignment="center">
-              <image url="logo.png" imageWidth={315} imageHeight={75} width="315px" height="75px" resizeMode="contain" description="Reddionaire logo" />
+              <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode="contain" description="Reddionaire logo" />
                 <vstack alignment="center">
-                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                  <text size="large" weight="bold" color={COLORS.accent} alignment="center">
                     Test your knowledge with 12  
                   </text>
-                  <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">
+                  <text size="large" weight="bold" color={COLORS.accent} alignment="center">
                   questions and win up to
                   </text>
                 </vstack>
-                 <image url="reddionaire-jackpot.png" imageWidth={175} imageHeight={30} width="175px" height="30px" resizeMode="contain" description="R$1,000,000 jackpot" />
+                 <image url="reddionaire-jackpot.png" imageWidth={125} imageHeight={25} width="125px" height="25px" resizeMode="contain" description="R$1,000,000 jackpot" />
             </vstack>
             <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack 
-                width={`${BUTTONS.BASE.WIDTH}%`}
-                height={`${BUTTONS.BASE.HEIGHT}px`}
-                backgroundColor={BUTTONS.PRIMARY.BACKGROUND}
-                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
+                width={`${BUTTONS.base.width}%`}
+                height={`${BUTTONS.base.height}px`}
+                backgroundColor={BUTTONS.primary.background}
+                cornerRadius={BUTTONS.base.cornerRadius}
                 onPress={startGame}
-                alignment={BUTTONS.BASE.ALIGNMENT}
+                alignment={BUTTONS.base.alignment}
               >
-                <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.PRIMARY.TEXT}>Start Game</text>
+                <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.primary.text}>Start Game</text>
               </hstack>
               <hstack 
-                width={`${BUTTONS.BASE.WIDTH}%`}
-                height={`${BUTTONS.BASE.HEIGHT}px`}
-                backgroundColor={BUTTONS.SECONDARY.BACKGROUND}
-                cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
-                alignment={BUTTONS.BASE.ALIGNMENT}
+                width={`${BUTTONS.base.width}%`}
+                height={`${BUTTONS.base.height}px`}
+                backgroundColor={BUTTONS.secondary.background}
+                cornerRadius={BUTTONS.base.cornerRadius}
+                alignment={BUTTONS.base.alignment}
                 onPress={async () => {
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
@@ -845,20 +845,20 @@ Devvit.addCustomPostType({
               }
             }} 
           >
-            <hstack alignment="center" gap={BUTTONS.SECONDARY.ICON.GAP}>
+            <hstack alignment="center" gap={BUTTONS.secondary.icon.gap}>
               <image url="leaderboard-icon.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
-              <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.SECONDARY.TEXT}>Leaderboard</text>
+              <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.secondary.text}>Leaderboard</text>
             </hstack>
           </hstack>
           <hstack 
-            width={`${BUTTONS.BASE.WIDTH}%`}
-            height={`${BUTTONS.BASE.HEIGHT}px`}
-            backgroundColor={BUTTONS.ACCENT.BACKGROUND}
-            cornerRadius={BUTTONS.BASE.CORNER_RADIUS}
-            alignment={BUTTONS.BASE.ALIGNMENT}
+            width={`${BUTTONS.base.width}%`}
+            height={`${BUTTONS.base.height}px`}
+            backgroundColor={BUTTONS.accent.background}
+            cornerRadius={BUTTONS.base.cornerRadius}
+            alignment={BUTTONS.base.alignment}
             onPress={handleShowHowToPlay}
           >
-            <text size={BUTTONS.BASE.TEXT_SIZE} weight={BUTTONS.BASE.TEXT_WEIGHT} color={BUTTONS.ACCENT.TEXT}>How to Play</text>
+            <text size={BUTTONS.base.textSize} weight={BUTTONS.base.textWeight} color={BUTTONS.accent.text}>How to Play</text>
           </hstack>
         </vstack>
       </vstack>
