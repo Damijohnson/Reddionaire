@@ -689,12 +689,17 @@ Devvit.addCustomPostType({
 
     const renderLeaderboard = () => (
       <vstack gap="medium" width="100%" height="100%" alignment="center" padding="medium">
-        <hstack width="100%" alignment="end middle" padding="none">
-          <hstack 
-            onPress={handleBackToStart} 
-            alignment="middle center"
-          >
-            <image url="close.png" imageWidth={30} imageHeight={30} width="30px" height="30px" resizeMode="contain" description="Close" />
+        <hstack width="100%" alignment="start middle" padding="none">
+          <hstack width="90%" alignment="start middle" padding="none">
+            <image url="leaderboard.png" imageWidth={225} imageHeight={40} width="200px" height="50px" resizeMode="contain" description="Leaderboard title" />
+          </hstack>
+          <hstack width="10%" alignment="end middle" padding="none">
+            <hstack 
+              onPress={handleBackToStart} 
+              alignment="middle center"
+            >
+              <image url="close.png" imageWidth={30} imageHeight={30} width="30px" height="30px" resizeMode="contain" description="Close" />
+            </hstack>
           </hstack>
         </hstack>
         <vstack gap="none" width="100%" height="100%" padding="none">
@@ -718,9 +723,9 @@ Devvit.addCustomPostType({
               ))}
             </vstack>
           ) : (
-            <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.NEUTRAL_100} cornerRadius="small" alignment="center">
-              <text size="medium" weight="bold" color={COLORS.NEUTRAL_600}>No scores yet!</text>
-              <text size="small" color={COLORS.NEUTRAL_500} alignment="center">
+            <vstack gap="small" width="100%" padding="medium" alignment="center">
+              <text size="xxlarge" weight="bold" color={COLORS.ACCENT} alignment="center">No scores yet!</text>
+              <text size="large" weight="bold" color={COLORS.ACCENT} alignment="center">
                 Leaderboard will be updated as games are played
               </text>
             </vstack>
