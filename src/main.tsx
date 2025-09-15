@@ -599,7 +599,7 @@ Devvit.addCustomPostType({
 
         {lastAnswerExplanation && gameStatus !== 'won' && (
           <vstack gap="small">
-            <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>Final Answer Explanation:</text>
+            <text size={page.paragraph.textSize} weight="bold" color={page.paragraph.textColor} alignment={page.paragraph.alignment}>Final Answer Explanation:</text>
             <text size={page.paragraph.textSize} color={page.paragraph.textColor} alignment={page.paragraph.alignment}>{lastAnswerExplanation}</text>
           </vstack>
         )}
