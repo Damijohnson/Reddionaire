@@ -12,15 +12,16 @@ export const colors = {
   primary: '#37BDF9', // Light blue 
   secondary: '#E979FA', // Pink
   accent: '#F9CC13', // Yellow
-  white: '#FFFFFF',
 
+  white: '#FFFFFF',
+  pink: '#F2D6FF',
   purple: '#7369D7',
   darkPurple: '#6157cb',
   darkerPurple: '#5449C8',
 
   // UI Specific Colors
   questionHeader: '#8E68F0', // Updated purple badge
-  questionBackground: '#F2D6FF', // Updated lighter purple 
+  questionBackground: '#F2D6FF',
   questionText: '#3F2C90', // Purple
   answerButton: '#5B4FD6', // Updated answer button purple
   answerText: '#FFFFFF', // White text for answers
@@ -100,6 +101,15 @@ export const buttons = {
   }
 };
 
+export const card = {
+  background: colors.pink,
+  textWeight: "regular" as const,
+  highlight: {
+    background: colors.secondary,
+    text: colors.white
+  }
+};
+
 export const table = {
 background: colors.darkerPurple,
 cornerRadius: "small" as const,
@@ -122,7 +132,7 @@ export const gameUI = {
     container: {
       padding: "medium" as const,
       cornerRadius: "small" as const,
-      background: colors.questionBackground
+      background: colors.pink
     },
     header: {
       width: 140,

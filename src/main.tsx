@@ -2,7 +2,7 @@
 import { Devvit, useState, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
-import { colors, typography, buttons, table, gameUI, page } from "./theme.js";
+import { colors, typography, buttons, card, table, gameUI, page } from "./theme.js";
 
 Devvit.configure({
   redditAPI: true,
@@ -779,23 +779,55 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
         </hstack>
+  
         <vstack gap="medium" width="100%">
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Objective</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
+        <vstack
+            width="100%"
+            backgroundColor={gameUI.question.container.background}
+            cornerRadius={gameUI.question.container.cornerRadius}>
+            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+              <hstack
+                backgroundColor={gameUI.question.header.background}
+                cornerRadius={gameUI.question.header.cornerRadius}
+                padding={gameUI.question.header.padding}
+              >
+                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Objective</text>
+              </hstack>
+              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
+            </vstack>
           </vstack>
-          
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Money Ladder</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
+          <vstack
+            width="100%"
+            backgroundColor={gameUI.question.container.background}
+            cornerRadius={gameUI.question.container.cornerRadius}>
+            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+              <hstack
+                backgroundColor={gameUI.question.header.background}
+                cornerRadius={gameUI.question.header.cornerRadius}
+                padding={gameUI.question.header.padding}
+              >
+                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Money Ladder</text>
+              </hstack>
+              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
+              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
+            </vstack>
           </vstack>
-          
-          <vstack gap="small" width="100%" padding="medium" backgroundColor={colors.questionBackground} cornerRadius="small">
-            <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText}>Lifelines</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
+          <vstack
+            width="100%"
+            backgroundColor={gameUI.question.container.background}
+            cornerRadius={gameUI.question.container.cornerRadius}>
+            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+              <hstack
+                backgroundColor={gameUI.question.header.background}
+                cornerRadius={gameUI.question.header.cornerRadius}
+                padding={gameUI.question.header.padding}
+              >
+                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Lifelines</text>
+              </hstack>
+              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Ask Audience - Shows audience poll results</text>
             <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
+            </vstack>
           </vstack>
         </vstack>
       </vstack>
