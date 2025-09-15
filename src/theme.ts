@@ -54,21 +54,26 @@ export const typography = {
 export const buttons = {
   // Common button styles
   base: {
-    width: 100,
+    // width: 100,
     height: 50,
     cornerRadius: "small" as const,
+    padding: "small" as const,
     alignment: "middle center" as const,
     textSize: "medium" as const,
     textWeight: "bold" as const
   },
-  
-  // Start Game button
+  small: {
+    height: 30,
+    textWeight: "regular" as const,
+    textSize: "small" as const,
+  },
+  medium: {
+    height: 40,
+  },
   primary: {
     background: colors.primary,
     text: colors.neutral100
   },
-
-  // Leaderboard button
   secondary: {
     background: colors.secondary,
     text: colors.neutral100,
@@ -76,8 +81,6 @@ export const buttons = {
       gap: "small" as const
     }
   },
-
-  // How to Play button
   accent: {
     background: colors.accent,
     text: colors.neutral100
@@ -101,24 +104,28 @@ export const gameUI = {
   },
   answers: {
     button: {
-      height: 52,
-      padding: "small" as const,
-      cornerRadius: "small" as const,
+      height: buttons.medium.height,
+      padding: buttons.base.padding,
+      cornerRadius: buttons.base.cornerRadius,
       background: colors.answerButton,
       textColor: colors.answerText,
       disabledColor: colors.error,
+      textSize: buttons.small.textSize,
       gap: "small" as const,
       prefix: {
-        width: 40,
-        weight: "bold" as const
+        width: 20,
+        weight: "regular" as const
       }
     }
   },
     lifelines: {
     button: {
-      height: 40,
       width: 100,
-      cornerRadius: "small" as const,
+      height: buttons.small.height,
+      cornerRadius: buttons.base.cornerRadius,
+      padding: buttons.base.padding,
+      textSize: buttons.small.textSize,
+      textWeight: buttons.small.textWeight,
       gap: "small" as const
     }
   },

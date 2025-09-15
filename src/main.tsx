@@ -481,8 +481,11 @@ Devvit.addCustomPostType({
           <hstack 
             width={`${gameUI.lifelines.button.width}px`}
             height={`${gameUI.lifelines.button.height}px`}
+            padding={gameUI.lifelines.button.padding}
             backgroundColor={fiftyFifty ? colors.lifeline5050 : colors.neutral400}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
+            size={gameUI.lifelines.button.textSize}
+            weight={gameUI.lifelines.button.textWeight}
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
@@ -538,11 +541,11 @@ Devvit.addCustomPostType({
                 cornerRadius={gameUI.question.header.cornerRadius}
                 padding={gameUI.question.header.padding}
               >
-                <text size="small" weight="bold" color={gameUI.question.header.textColor}>
+                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>
                   Question {currentQuestion + 1}
-                </text>
+                  </text>
               </hstack>
-              <text size="xlarge" weight="bold" color={colors.questionText}>
+              <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={colors.questionText} wrap={true}>
                 {currentQ.question}
               </text>
             </vstack>
@@ -560,11 +563,11 @@ Devvit.addCustomPostType({
                 alignment="middle center"
               >
                 <hstack width={`${gameUI.answers.button.prefix.width}px`} alignment="middle center">
-                  <text size="large" weight={gameUI.answers.button.prefix.weight} color={gameUI.answers.button.textColor}>
+                  <text size={gameUI.answers.button.textSize} weight={gameUI.answers.button.prefix.weight} color={gameUI.answers.button.textColor}>
                     {String.fromCharCode(65 + index)}.
                   </text>
                 </hstack>
-                <text size="large" color={gameUI.answers.button.textColor}>
+                <text size={gameUI.answers.button.textSize} color={gameUI.answers.button.textColor}>
                   {option}
                 </text>
               </hstack>
