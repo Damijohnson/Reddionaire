@@ -36,8 +36,17 @@ export const typography = {
   paragraph: {
     textSize: "small" as const,
   },
-  heading: {
+  heading1: {
     textSize: "xlarge" as const,
+    textWeight: "bold" as const
+  },
+  heading2: {
+    textSize: "large" as const,
+    textWeight: "bold" as const
+  },
+  heading3: {
+    textSize: "medium" as const,
+    textWeight: "bold" as const
   },
 };
 

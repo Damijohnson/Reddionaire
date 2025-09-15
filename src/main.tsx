@@ -769,22 +769,22 @@ Devvit.addCustomPostType({
           </hstack>
         </hstack>
         <vstack gap="medium" width="100%">
-          <vstack gap="small"padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Objective:</text>
-            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>Answer 12 questions correctly to win $1,000,000!</text>
+          <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.QUESTION_TEXT}>Objective:</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
           </vstack>
           
           <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Money Ladder:</text>
-            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Each correct answer moves you up the money ladder</text>
-            <text size="medium" color={COLORS.QUESTION_TEXT}>• Milestone questions (★) let you walk away with guaranteed money</text>
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.QUESTION_TEXT}>Money Ladder:</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>• Each correct answer moves you up the money ladder</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
           </vstack>
           
           <vstack gap="small" width="100%" padding="medium" backgroundColor={COLORS.questionBackground} cornerRadius="small">
-            <text size="large" weight="bold" color={COLORS.QUESTION_TEXT}>Lifelines:</text>
-            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• 50:50 - Eliminates two wrong answers</text>
-            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Ask Audience - Shows audience poll results</text>
-            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT}>• Phone a Friend - Get a hint from a friend</text>
+            <text size={typography.heading3.textSize} weight={typography.heading3.textWeight} color={COLORS.QUESTION_TEXT}>Lifelines:</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>• Ask Audience - Shows audience poll results</text>
+            <text size={typography.paragraph.textSize} color={COLORS.QUESTION_TEXT} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
           </vstack>
         </vstack>
       </vstack>
