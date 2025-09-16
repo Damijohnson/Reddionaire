@@ -15,6 +15,7 @@ export const colors = {
 
   // UI Specific Colors
   white: '#FFFFFF',
+  gold: '#F29D0A',
   pink: '#F2D6FF',
   purple: '#7369D7', //Table Odd
   darkPurple: '#6157cb', //Table Even
@@ -176,7 +177,7 @@ export const gameUI = {
       cornerRadius: "small" as const,
       textSize: "small" as const,
       textWeight: "bold" as const,
-      background: colors.darkerPurple
+      background: colors.gold
     },
     milestone: {
       textColor: colors.accent,

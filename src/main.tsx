@@ -478,7 +478,7 @@ Devvit.addCustomPostType({
           Money Ladder
         </text> */}
 
-        {/* Amount row */}
+        {/* Amount row with milestone to the right */}
         <hstack gap="small" alignment="start">
           <hstack 
             backgroundColor={gameUI.moneyLadder.container.background}
@@ -492,12 +492,14 @@ Devvit.addCustomPostType({
               <text size={gameUI.moneyLadder.container.textSize} weight={gameUI.moneyLadder.container.textWeight} color={gameUI.moneyLadder.container.textColor}>R${MONEY_LADDER[currentQuestion].amount}</text>
             </hstack>
           </hstack>
+          
+          {/* Milestone label to the right */}
+          {MONEY_LADDER[currentQuestion].milestone && (
+            <vstack alignment="middle center" padding="small">
+              <text size={gameUI.moneyLadder.milestone.textSize} color={gameUI.moneyLadder.milestone.textColor}>Milestone</text>
+            </vstack>
+          )}
         </hstack>
-
-        {/* Milestone label on its own line */}
-        {MONEY_LADDER[currentQuestion].milestone && (
-          <text size={gameUI.moneyLadder.milestone.textSize} color={gameUI.moneyLadder.milestone.textColor}>Milestone</text>
-        )}
       </vstack>
     );
 
@@ -768,7 +770,7 @@ Devvit.addCustomPostType({
             }}
             alignment={page.button.alignment}
           >
-            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.secondaryBackground}>Walk Away</text>
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Walk Away</text>
           </hstack>
         </vstack>
       </vstack>
