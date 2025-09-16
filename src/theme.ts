@@ -60,7 +60,7 @@ export const buttons = {
     alignment: "middle center" as const,
     textSize: "medium" as const,
     textWeight: "bold" as const,
-    text: colors.white
+    textColor: colors.white
   },
   disabled: {
     background: colors.disabled,
@@ -95,7 +95,7 @@ export const card = {
     gap: "small" as const,
     alignment: "start" as const,
     textColor: colors.darkestPurple,
-    textSize: typography.paragraph.textSize,
+    textSize: typography.heading4.textSize,
     textWeight: "bold" as const,
   },
   highlight: {
@@ -112,7 +112,7 @@ background: colors.darkerPurple,
 cornerRadius: "small" as const,
 color: colors.white,
 gold: colors.accent,
-textSize: typography.paragraph.textSize,
+textSize: typography.heading4.textSize,
 header: {
   textWeight: "bold" as const
 },
@@ -147,7 +147,7 @@ export const gameUI = {
     lifelines: {
     button: {
       width: 33,
-      text: buttons.base.text,
+      textColor: buttons.base.textColor,
       height: buttons.small.height,
       cornerRadius: buttons.base.cornerRadius,
       padding: buttons.base.padding,
@@ -200,7 +200,7 @@ export const gameUI = {
       background: colors.purple,
       textWeight: buttons.base.textWeight,
       textSize: buttons.small.textSize,
-      textColor: buttons.base.text,
+      textColor: buttons.base.textColor,
     }
   }
 };
@@ -248,7 +248,8 @@ export const page = {
     alignment: buttons.base.alignment,
     textSize: buttons.base.textSize,
     textWeight: buttons.base.textWeight,
-    text: buttons.base.text,
+    textColor: buttons.base.textColor,
     background: buttons.primary.background,
+    secondaryBackground: buttons.secondary.background,
   },
 };

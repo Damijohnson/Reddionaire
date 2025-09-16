@@ -486,7 +486,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>50:50</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>50:50</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -496,7 +496,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>Ask</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Ask</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -506,7 +506,7 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>Call</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Call</text>
           </hstack>
         </hstack>
       </vstack>
@@ -654,10 +654,10 @@ Devvit.addCustomPostType({
 
         <vstack gap="medium" width="100%" maxWidth="400px">
           <hstack 
-            width={`${buttons.base.width}%`}
-            height={`${buttons.base.height}px`}
-            backgroundColor={buttons.primary.background}
-            cornerRadius={buttons.base.cornerRadius}
+            width={`${page.button.width}%`}
+            height={`${page.button.height}px`}
+            backgroundColor={page.button.background}
+            cornerRadius={page.button.cornerRadius}
             onPress={async () => {
               if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
                 try {
@@ -670,9 +670,9 @@ Devvit.addCustomPostType({
               }
               resetGame();
             }}
-            alignment={buttons.base.alignment}
+            alignment={page.button.alignment}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.primary.text}>Play Again</text>
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Play Again</text>
           </hstack>
         </vstack>
       </vstack>
@@ -703,7 +703,7 @@ Devvit.addCustomPostType({
             onPress={continueGame}
             alignment={buttons.base.alignment}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Continue Playing</text>
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Continue Playing</text>
           </hstack>
           <hstack 
             width={`${buttons.base.width}%`}
@@ -722,9 +722,9 @@ Devvit.addCustomPostType({
               
               walkAway();
             }}
-            alignment={buttons.base.alignment}
+            alignment={page.button.alignment}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.secondary.text}>Walk Away</text>
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.secondaryBackground}>Walk Away</text>
           </hstack>
         </vstack>
       </vstack>
@@ -797,7 +797,7 @@ Devvit.addCustomPostType({
                 onPress={startGame}
                 alignment={page.button.alignment}
               >
-                <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.text}>Start Game</text>
+                <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Start Game</text>
               </hstack>
               </vstack>
             </vstack>
@@ -834,7 +834,7 @@ Devvit.addCustomPostType({
               >
                 <text size={card.highlight.textSize} color={card.highlight.textColor}>Objective</text>
               </hstack>
-              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
             </vstack>
           </vstack>
           <vstack
@@ -906,7 +906,7 @@ Devvit.addCustomPostType({
                 onPress={startGame}
                 alignment={buttons.base.alignment}
               >
-                <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Start Game</text>
+                <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.textColor}>Start Game</text>
               </hstack>
               <hstack 
                 width={`${buttons.base.width}%`}
@@ -931,7 +931,7 @@ Devvit.addCustomPostType({
           >
             <hstack alignment="center" gap={buttons.secondary.icon.gap}>
               <image url="leaderboard-icon.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
-              <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Leaderboard</text>
+              <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.textColor}>Leaderboard</text>
             </hstack>
           </hstack>
           <hstack 
@@ -942,7 +942,7 @@ Devvit.addCustomPostType({
             alignment={buttons.base.alignment}
             onPress={handleShowHowToPlay}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>How to Play</text>
+            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.textColor}>How to Play</text>
           </hstack>
         </vstack>
       </vstack>
