@@ -518,17 +518,17 @@ Devvit.addCustomPostType({
       const currentQ = gameQuestions[currentQuestion];
       return (
         <vstack gap={gameUI.audienceResults.container.gap} width="100%" padding={gameUI.audienceResults.container.padding} backgroundColor={gameUI.audienceResults.container.background} cornerRadius={gameUI.audienceResults.container.cornerRadius}>
-          <hstack gap={gameUI.audienceResults.container.gap} alignment="middle center">
-            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor}>Audience Results</text>
+          <hstack width="100%">
+            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} alignment="start" width="70%">Audience Results</text>
+            <vstack width="30%" alignment="end">
             <hstack
               padding={gameUI.audienceResults.hide.padding}
               cornerRadius={gameUI.audienceResults.container.cornerRadius}
               backgroundColor={gameUI.audienceResults.hide.background}
-              alignment="middle center"
-              onPress={() => setShowAudienceResults(false)}
-            >
+              onPress={() => setShowAudienceResults(false)}>
               <text size={gameUI.audienceResults.hide.textSize} weight={gameUI.audienceResults.hide.textWeight} color={gameUI.audienceResults.hide.textColor}>Hide</text>
             </hstack>
+            </vstack>
           </hstack>
           <vstack gap="small" width="100%">
             {audienceResults.map((percentage, index) => {

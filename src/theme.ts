@@ -187,7 +187,7 @@ export const gameUI = {
     container: {
       padding: "medium" as const,
       cornerRadius: card.container.cornerRadius,
-      background: colors.purple,
+      background: colors.darkPurple,
       gap: card.container.gap,
       textColor: colors.white,
       textSize: "small" as const,
@@ -197,7 +197,7 @@ export const gameUI = {
     },
     hide: {
       padding: buttons.base.padding,
-      background: colors.darkPurple,
+      background: colors.purple,
       textWeight: buttons.base.textWeight,
       textSize: buttons.small.textSize,
       textColor: buttons.base.text,
