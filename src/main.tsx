@@ -517,35 +517,35 @@ Devvit.addCustomPostType({
       
       const currentQ = gameQuestions[currentQuestion];
       return (
-        <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
-          <hstack gap="small" alignment="middle center">
-            <text size="small" weight="bold" color="#DAA520">Audience Results</text>
+        <vstack gap={gameUI.audienceResults.container.gap} width="100%" padding={gameUI.audienceResults.container.padding} backgroundColor={gameUI.audienceResults.container.background} cornerRadius={gameUI.audienceResults.container.cornerRadius}>
+          <hstack gap={gameUI.audienceResults.container.gap} alignment="middle center">
+            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor}>Audience Results</text>
             <hstack
-              padding="small"
-              cornerRadius="small"
-              backgroundColor="#FDE68A"
+              padding={gameUI.audienceResults.hide.padding}
+              cornerRadius={gameUI.audienceResults.container.cornerRadius}
+              backgroundColor={gameUI.audienceResults.hide.background}
               alignment="middle center"
               onPress={() => setShowAudienceResults(false)}
             >
-              <text size="small" weight="bold" color="#7C5C00">Hide</text>
+              <text size={gameUI.audienceResults.hide.textSize} weight={gameUI.audienceResults.hide.textWeight} color={gameUI.audienceResults.hide.textColor}>Hide</text>
             </hstack>
           </hstack>
           <vstack gap="small" width="100%">
             {audienceResults.map((percentage, index) => {
               return (
-                <hstack key={index.toString()} width="100%" gap="small" alignment="start">
-                  <text size="small" width="25px" weight="bold">
+                <hstack key={index.toString()} width="100%" gap={gameUI.audienceResults.container.gap} alignment="start">
+                  <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} width="25px">
                     {String.fromCharCode(65 + index)}:
                   </text>
-                  <vstack width="100%" gap="small">
-                    <hstack width="100%" gap="small" alignment="start">
+                  <vstack width="100%" gap={gameUI.audienceResults.container.gap}>
+                    <hstack width="100%" gap={gameUI.audienceResults.container.gap} alignment="start">
                       <vstack 
                         width={`${Math.min(percentage, 60)}%`} 
                         height="15px" 
-                        backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
+                        backgroundColor={index === currentQ.correctAnswer ? gameUI.audienceResults.container.correctAnswer : gameUI.audienceResults.container.wrongAnswer}
                         cornerRadius="small"
                       />
-                      <text size="small" weight="bold" width="40px">
+                      <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} width="40px">
                         {percentage.toString()}%
                       </text>
                     </hstack>
@@ -581,7 +581,7 @@ Devvit.addCustomPostType({
                 backgroundColor={card.highlight.background}
                 cornerRadius={card.highlight.cornerRadius}
                 padding={card.highlight.padding}>
-                <text size={card.highlight.textSize} color={card.highlight.textColor}>Question {currentQuestion + 1}</text>
+                <text size={card.highlight.textSize} color={card.highlight.textColor} weight={gameUI.question.textWeight}>Question {currentQuestion + 1}</text>
               </hstack>
               <text size={card.container.textSize} weight={card.container.textWeight} color={card.container.textColor} wrap={true}>
                 {currentQ.question}</text>

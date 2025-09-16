@@ -125,6 +125,9 @@ evenItem: {
 };
 
 export const gameUI = {
+  question: {
+    textWeight: "bold" as const,
+  },
   answers: {
     button: {
       height: buttons.medium.height,
@@ -178,6 +181,26 @@ export const gameUI = {
     milestone: {
       textColor: colors.accent,
       textSize: "small" as const,
+    }
+  },
+  audienceResults: {
+    container: {
+      padding: "medium" as const,
+      cornerRadius: card.container.cornerRadius,
+      background: colors.purple,
+      gap: card.container.gap,
+      textColor: colors.white,
+      textSize: "small" as const,
+      textWeight: "bold" as const,
+      correctAnswer: colors.success,
+      wrongAnswer: colors.error,
+    },
+    hide: {
+      padding: buttons.base.padding,
+      background: colors.darkPurple,
+      textWeight: buttons.base.textWeight,
+      textSize: buttons.small.textSize,
+      textColor: buttons.base.text,
     }
   }
 };
