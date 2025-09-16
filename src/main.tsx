@@ -628,22 +628,38 @@ Devvit.addCustomPostType({
 
     const renderGameOver = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
-        <vstack gap="medium" alignment="center">
-          <text size="xxlarge" weight="bold" color={colors.white}>
-            {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}
-          </text>
-          <text size="large" color={colors.white} alignment="center">
-            {gameStatus === 'won' ? `You won $1,000,000!` :
-             gameStatus === 'lost' ? `You lost at question ${currentQuestion + 1}` :
+      <vstack gap="small">
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>   {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}</text>
+          <vstack gap="none" alignment={page.heading.alignment}>
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>            
+            {gameStatus === 'won' ? `You won` :
+             gameStatus === 'lost' ? `You lost at` :
              `You walked away with R$${score}!`}
-          </text>
+             </text>
+          <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>            
+            {gameStatus === 'won' ? `R$1,000,000!` :
+             gameStatus === 'lost' ? `Question ${currentQuestion + 1}` :
+             `R$${score}!`}
+             </text>
+        </vstack>
         </vstack>
 
         {lastAnswerExplanation && gameStatus !== 'won' && (
-          <vstack gap="small">
-            <text size={page.paragraph.textSize} weight="bold" color={page.paragraph.textColor} alignment={page.paragraph.alignment}>Final Answer Explanation:</text>
-            <text size={page.paragraph.textSize} color={page.paragraph.textColor} alignment={page.paragraph.alignment}>{lastAnswerExplanation}</text>
-          </vstack>
+            <vstack
+              width="100%"
+              backgroundColor={card.container.background}
+              cornerRadius={card.container.cornerRadius}>
+              <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
+                <hstack
+                  backgroundColor={card.highlight.background}
+                  cornerRadius={card.highlight.cornerRadius}
+                  padding={card.highlight.padding}
+                >
+                  <text size={card.highlight.textSize} color={card.highlight.textColor}>Answer</text>
+                </hstack>
+                <text size={card.container.textSize} color={card.container.textColor} wrap={true}>{lastAnswerExplanation}</text>
+              </vstack>
+            </vstack>
         )}
         
         {gameStatus === 'won' && (
@@ -779,7 +795,7 @@ Devvit.addCustomPostType({
             <vstack gap="large" width="100%" padding="medium" alignment="center">
               <vstack gap="small">
                 <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>No scores yet!</text>
-                <vstack gap="none" alignment="center">
+                <vstack gap="none" alignment={page.heading.alignment}>
                   <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
                     Leaderboard will be updated as
                   </text>
