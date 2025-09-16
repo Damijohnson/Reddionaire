@@ -1,5 +1,5 @@
 // Learn more at developers.reddit.com/docs
-import { Devvit, useState, useInterval, TriggerContext } from "@devvit/public-api";
+import { Devvit, useState, useInterval, TriggerContext, svg } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
 import { colors, typography, buttons, card, table, gameUI, page } from "./theme.js";
@@ -521,7 +521,7 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <hstack gap="small" width="100%">
-        <hstack gap="small" alignment="start" width="80%">
+        <hstack gap="small" alignment="start" width="60%">
           <hstack 
             backgroundColor={gameUI.moneyLadder.container.background}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
@@ -542,13 +542,21 @@ Devvit.addCustomPostType({
           )}
         </hstack>
         
-        {gameStatus === 'playing' && (
-          <hstack width="20%">
-            <hstack gap="small" alignment="middle end" width="100%">
-                <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>{timeLeft}s</text>
+          {gameStatus === 'playing' && (
+            <hstack width="40%">
+              <hstack gap="small" alignment="middle end" width="100%">
+                <image 
+                  url={svg`<svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="m479.451 112.98-53.74-53.74c-7.811-7.811-20.474-7.811-28.284 0s-7.811 20.474 0 28.284l12.728 12.728-26.102 26.102c-33.978-28.346-75.292-45.458-119.362-49.441v-36.913h18c11.046 0 20-8.954 20-20s-8.954-20-20-20h-76c-11.046 0-20 8.954-20 20s8.954 20 20 20h18v36.913c-109.724 9.916-198 102.055-198 217.087 0 120.482 97.501 218 218 218 120.482 0 218-97.501 218-218 0-51.511-17.756-100.286-50.354-139.362l26.102-26.102 12.728 12.728c7.81 7.81 20.473 7.811 28.284 0 7.81-7.81 7.81-20.473 0-28.284zm-234.76 359.02c-98.149 0-178-79.851-178-178s79.851-178 178-178 178 79.851 178 178-79.85 178-178 178zm103.923-178c0 11.046-8.954 20-20 20h-83.922c-11.046 0-20-8.954-20-20v-117.675c0-11.046 8.954-20 20-20s20 8.954 20 20v97.675h63.922c11.046 0 20 8.954 20 20z"/></svg>`}
+                  imageWidth={15}
+                  imageHeight={15}
+                  width="15px"
+                  height="15px"
+                  description="Stopwatch icon"
+                />
+                <text size="large" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>{timeLeft}s</text>
               </hstack>
-          </hstack>
-        )}
+            </hstack>
+          )}
       </hstack>
     );
 
@@ -868,6 +876,15 @@ Devvit.addCustomPostType({
               height="40px"
             >
               <hstack gap="small" alignment="middle center" width="100%">
+                <image 
+                  url={svg`<svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path fill="gold" d="m479.451 112.98-53.74-53.74c-7.811-7.811-20.474-7.811-28.284 0s-7.811 20.474 0 28.284l12.728 12.728-26.102 26.102c-33.978-28.346-75.292-45.458-119.362-49.441v-36.913h18c11.046 0 20-8.954 20-20s-8.954-20-20-20h-76c-11.046 0-20 8.954-20 20s8.954 20 20 20h18v36.913c-109.724 9.916-198 102.055-198 217.087 0 120.482 97.501 218 218 218 120.482 0 218-97.501 218-218 0-51.511-17.756-100.286-50.354-139.362l26.102-26.102 12.728 12.728c7.81 7.81 20.473 7.811 28.284 0 7.81-7.81 7.81-20.473 0-28.284zm-234.76 359.02c-98.149 0-178-79.851-178-178s79.851-178 178-178 178 79.851 178 178-79.85 178-178 178zm103.923-178c0 11.046-8.954 20-20 20h-83.922c-11.046 0-20-8.954-20-20v-117.675c0-11.046 8.954-20 20-20s20 8.954 20 20v97.675h63.922c11.046 0 20 8.954 20 20z"/></svg>`}
+                  imageWidth={16}
+                  imageHeight={16}
+                  width="16px"
+                  height="16px"
+                  resizeMode="contain"
+                  description="Stopwatch icon"
+                />
                 <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>
                   {timeLeft}s
                 </text>
