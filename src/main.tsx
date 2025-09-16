@@ -455,6 +455,8 @@ Devvit.addCustomPostType({
           <hstack 
             backgroundColor={gameUI.moneyLadder.container.background}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
+            width={`${gameUI.moneyLadder.container.width}px`}
+            height={`${gameUI.moneyLadder.container.height}px`}
             padding={gameUI.moneyLadder.container.padding}
           >
             <hstack gap="small" alignment="middle center">

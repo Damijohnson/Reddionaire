@@ -166,9 +166,11 @@ export const gameUI = {
   },
   moneyLadder: {
     container: {
+      width: 110,
+      height: 30,
       textColor: colors.white,
       padding: "none" as const,
-      cornerRadius: "medium" as const,
+      cornerRadius: "small" as const,
       textSize: "small" as const,
       textWeight: "bold" as const,
       background: colors.darkerPurple
