@@ -176,7 +176,6 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
   return post;
 };
 
-
 // Add a menu item to the subreddit menu for instantiating the new experience post
 Devvit.addMenuItem({
   label: "Start Reddionaire Game",
@@ -295,7 +294,7 @@ Devvit.addCustomPostType({
         setLastAnswerExplanation("");
         
         // Initialize timer
-        setTimeLeft(30);
+        setTimeLeft(300000);
         setTimerActive(true);
         setTimedOut(false);
         timerInterval.start();
@@ -510,8 +509,6 @@ Devvit.addCustomPostType({
       setTimedOut(false);
     };
 
-
-
     const handleShowHowToPlay = () => {
       setShowHowToPlay(true);
       setShowLeaderboard(false);
@@ -523,17 +520,8 @@ Devvit.addCustomPostType({
     };
 
     const renderMoneyLadder = () => (
-      <vstack gap="small" width="100%">
-        {/* <text 
-          size={gameUI.moneyLadder.header.size} 
-          weight={gameUI.moneyLadder.header.weight} 
-          color={gameUI.moneyLadder.header.color}
-        >
-          Money Ladder
-        </text> */}
-
-        {/* Amount row with milestone to the right */}
-        <hstack gap="small" alignment="start">
+      <hstack gap="small" width="100%">
+        <hstack gap="small" alignment="start" width="80%">
           <hstack 
             backgroundColor={gameUI.moneyLadder.container.background}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
@@ -547,7 +535,6 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
           
-          {/* Milestone label to the right */}
           {MONEY_LADDER[currentQuestion].milestone && (
             <vstack alignment="middle center" padding="small">
               <text size={gameUI.moneyLadder.milestone.textSize} color={gameUI.moneyLadder.milestone.textColor}>Milestone</text>
@@ -555,25 +542,14 @@ Devvit.addCustomPostType({
           )}
         </hstack>
         
-        {/* Timer display */}
         {gameStatus === 'playing' && (
-          <hstack gap="small" alignment="start">
-            <hstack 
-              backgroundColor={colors.darkestPurple}
-              cornerRadius="small"
-              padding="small"
-              width="120px"
-              height="40px"
-            >
-              <hstack gap="small" alignment="middle center" width="100%">
-                <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>
-                  {timeLeft}s
-                </text>
+          <hstack width="20%">
+            <hstack gap="small" alignment="middle end" width="100%">
+                <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>{timeLeft}s</text>
               </hstack>
-            </hstack>
           </hstack>
         )}
-      </vstack>
+      </hstack>
     );
 
     const renderLifelines = () => (
@@ -729,52 +705,25 @@ Devvit.addCustomPostType({
       );
     };
 
-    const renderGameOver = () => (
+    const renderWon = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
-      <vstack gap="small">
-          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>   {gameStatus === 'won' ? 'CONGRATULATIONS!' : gameStatus === 'lost' ? 'Game Over!' : 'You Walked Away!'}</text>
-          <vstack gap="none" alignment={page.heading.alignment}>
-          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>            
-            {gameStatus === 'won' ? `You won` :
-             gameStatus === 'lost' ? `You lost at` :
-             `You walked away with R$${score}!`}
-             </text>
-          <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>            
-            {gameStatus === 'won' ? `R$1,000,000!` :
-             gameStatus === 'lost' ? `Question ${currentQuestion + 1}` :
-             `R$${score}!`}
-             </text>
-          {timedOut && gameStatus === 'lost' && (
-            <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
-              Times up!
-            </text>
-          )}
-        </vstack>
+        <vstack gap="small" alignment="center">
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            CONGRATULATIONS!
+          </text>
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            You won
+          </text>
+          <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
+            R$1,000,000!
+          </text>
         </vstack>
 
-        {lastAnswerExplanation && gameStatus !== 'won' && (
-            <vstack
-              width="100%"
-              backgroundColor={card.container.background}
-              cornerRadius={card.container.cornerRadius}>
-              <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
-                <hstack
-                  backgroundColor={card.highlight.background}
-                  cornerRadius={card.highlight.cornerRadius}
-                  padding={card.highlight.padding}
-                >
-                  <text size={card.highlight.textSize} color={card.highlight.textColor}>Answer</text>
-                </hstack>
-                <text size={card.container.textSize} color={card.container.textColor} wrap={true}>{lastAnswerExplanation}</text>
-              </vstack>
-            </vstack>
-        )}
-        
-        {gameStatus === 'won' && (
-          <vstack gap="small">
-            <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>You successfully answered all the correct questions!</text>
-          </vstack>
-        )}
+        <vstack gap="small">
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            You successfully answered all the correct questions!
+          </text>
+        </vstack>
 
         <vstack gap="medium" width="100%" maxWidth="400px">
           <hstack 
@@ -783,14 +732,12 @@ Devvit.addCustomPostType({
             backgroundColor={page.button.background}
             cornerRadius={page.button.cornerRadius}
             onPress={async () => {
-              if (gameStatus === 'won' || gameStatus === 'lost' || gameStatus === 'walked') {
-                try {
-                  const subreddit = await context.reddit.getCurrentSubreddit();
-                  console.log('Updating leaderboard with score:', score);
-                  await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
-                } catch (error) {
-                  console.error('Error updating leaderboard:', error);
-                }
+              try {
+                const subreddit = await context.reddit.getCurrentSubreddit();
+                console.log('Updating leaderboard with score:', score);
+                await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+              } catch (error) {
+                console.error('Error updating leaderboard:', error);
               }
               resetGame();
             }}
@@ -802,7 +749,101 @@ Devvit.addCustomPostType({
       </vstack>
     );
 
+    const renderLost = () => (
+      <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
+        <vstack gap="small" alignment="center">
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            Game Over!
+          </text>
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            You lost at
+          </text>
+          <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
+            Question {currentQuestion + 1}
+          </text>
+          {timedOut && (
+            <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
+              Times up!
+            </text>
+          )}
+        </vstack>
 
+        {lastAnswerExplanation && (
+          <vstack
+            width="100%"
+            backgroundColor={card.container.background}
+            cornerRadius={card.container.cornerRadius}>
+            <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
+              <hstack
+                backgroundColor={card.highlight.background}
+                cornerRadius={card.highlight.cornerRadius}
+                padding={card.highlight.padding}
+              >
+                <text size={card.highlight.textSize} color={card.highlight.textColor}>Answer</text>
+              </hstack>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>{lastAnswerExplanation}</text>
+            </vstack>
+          </vstack>
+        )}
+
+        <vstack gap="medium" width="100%" maxWidth="400px">
+          <hstack 
+            width={`${page.button.width}%`}
+            height={`${page.button.height}px`}
+            backgroundColor={page.button.background}
+            cornerRadius={page.button.cornerRadius}
+            onPress={async () => {
+              try {
+                const subreddit = await context.reddit.getCurrentSubreddit();
+                console.log('Updating leaderboard with score:', score);
+                await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+              } catch (error) {
+                console.error('Error updating leaderboard:', error);
+              }
+              resetGame();
+            }}
+            alignment={page.button.alignment}
+          >
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Play Again</text>
+          </hstack>
+        </vstack>
+      </vstack>
+    );
+
+    const renderWalked = () => (
+      <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
+        <vstack gap="small" alignment="center">
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            You Walked Away!
+          </text>
+          <text size={page.heading.textSize} weight={page.heading.textWeight} color={page.heading.textColor} alignment={page.heading.alignment}>
+            You walked away with R${score}!
+          </text>
+        </vstack>
+
+        <vstack gap="medium" width="100%" maxWidth="400px">
+          <hstack 
+            width={`${page.button.width}%`}
+            height={`${page.button.height}px`}
+            backgroundColor={page.button.background}
+            cornerRadius={page.button.cornerRadius}
+            onPress={async () => {
+              try {
+                const subreddit = await context.reddit.getCurrentSubreddit();
+                console.log('Updating leaderboard with score:', score);
+                await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
+              } catch (error) {
+                console.error('Error updating leaderboard:', error);
+              }
+              resetGame();
+            }}
+            alignment={page.button.alignment}
+          >
+            <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.textColor}>Play Again</text>
+          </hstack>
+        </vstack>
+      </vstack>
+    );
 
     const renderWalkAwayPrompt = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
@@ -870,6 +911,15 @@ Devvit.addCustomPostType({
         </vstack>
       </vstack>
     );
+
+    const renderGameOver = () => {
+      if (gameStatus === 'won') return renderWon();
+      if (gameStatus === 'lost') return renderLost();
+      if (gameStatus === 'walked') return renderWalked();
+      return null;
+    };
+
+    // Pages Walk Away, Leaderboard, How to Play
 
     const renderLeaderboard = () => (
       <vstack gap={page.base.gap} width="100%" height="100%" alignment={page.base.alignment} padding={page.base.padding}>
