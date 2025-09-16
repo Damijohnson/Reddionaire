@@ -13,33 +13,18 @@ export const colors = {
   secondary: '#E979FA', // Pink
   accent: '#F9CC13', // Yellow
 
+  // UI Specific Colors
   white: '#FFFFFF',
   pink: '#F2D6FF',
-  purple: '#7369D7',
-  darkPurple: '#6157cb',
-  darkerPurple: '#5449C8',
+  purple: '#7369D7', //Table Odd
+  darkPurple: '#6157cb', //Table Even
+  darkerPurple: '#5449C8', //Table Background
+  darkestPurple: '#3F2C90',
 
-  // UI Specific Colors
-  questionHeader: '#8E68F0', // Updated purple badge
-  questionBackground: '#F2D6FF',
-  questionText: '#3F2C90', // Purple
-  answerButton: '#5B4FD6', // Updated answer button purple
-  answerText: '#FFFFFF', // White text for answers
-  lifeline5050: '#3CCFCF', // Blue 50:50 button
-  lifelineAsk: '#FFD700', // Yellow Ask button
-  lifelineCall: '#FF69B4', // Pink Call button
-  moneyLadderBg: '#5449C8', // Purple money ladder background
-  milestoneColor: '#FFD700', // Yellow milestone indicator
-  
   // Status Colors
-  success: '#10B981', // Green for correct answers
-  error: '#EF4444', // Red for wrong answers
-  
-  // Neutral Colors
-  neutral400: '#CBD5E1', // Medium gray
-  neutral700: '#475569',
-  neutral900: '#1E293B', // Almost black
-  
+  success: '#10B981',
+  error: '#EF4444',
+  disabled: '#CBD5E1',
 };
 
 export const typography = {
@@ -74,7 +59,11 @@ export const buttons = {
     padding: "small" as const,
     alignment: "middle center" as const,
     textSize: "medium" as const,
-    textWeight: "bold" as const
+    textWeight: "bold" as const,
+    text: colors.white
+  },
+  disabled: {
+    background: colors.disabled,
   },
   small: {
     height: 30,
@@ -85,28 +74,36 @@ export const buttons = {
     height: 40,
   },
   primary: {
-    background: colors.primary,
-    text: colors.white
+    background: colors.primary
   },
   secondary: {
     background: colors.secondary,
-    text: colors.white,
     icon: {
       gap: "small" as const
     }
   },
   accent: {
-    background: colors.accent,
-    text: colors.white
+    background: colors.accent
   }
 };
 
 export const card = {
-  background: colors.pink,
-  textWeight: "regular" as const,
+  container: {
+    padding: "small" as const,
+    cornerRadius: "small" as const,
+    background: colors.pink,
+    gap: "small" as const,
+    alignment: "start" as const,
+    textColor: colors.darkestPurple,
+    textSize: typography.paragraph.textSize,
+    textWeight: "bold" as const,
+  },
   highlight: {
     background: colors.secondary,
-    text: colors.white
+    textColor: colors.white,
+    padding: "small" as const,
+    cornerRadius: "small" as const,
+    textSize: typography.paragraph.textSize,
   }
 };
 
@@ -128,27 +125,13 @@ evenItem: {
 };
 
 export const gameUI = {
-  question: {
-    container: {
-      padding: "medium" as const,
-      cornerRadius: "small" as const,
-      background: colors.pink
-    },
-    header: {
-      width: 140,
-      background: colors.secondary,
-      textColor: colors.white,
-      padding: "small" as const,
-      cornerRadius: "small" as const
-    }
-  },
   answers: {
     button: {
       height: buttons.medium.height,
       padding: buttons.base.padding,
       cornerRadius: buttons.base.cornerRadius,
-      background: colors.answerButton,
-      textColor: colors.answerText,
+      background: colors.darkerPurple,
+      textColor: colors.white,
       disabledColor: colors.error,
       textSize: buttons.small.textSize,
       gap: "small" as const,
@@ -161,28 +144,38 @@ export const gameUI = {
     lifelines: {
     button: {
       width: 33,
+      text: buttons.base.text,
       height: buttons.small.height,
       cornerRadius: buttons.base.cornerRadius,
       padding: buttons.base.padding,
       textSize: buttons.small.textSize,
-      textWeight: buttons.small.textWeight,
+      textWeight: buttons.base.textWeight,
+      disabledColor: buttons.disabled.background,
       gap: "small" as const
-    }
+    },
+    fiftyFifty: {
+      background: buttons.primary.background,
+    
+    },
+    ask: {
+      background: buttons.accent.background,
+    },
+    call: {
+      background: buttons.secondary.background,
+    },
   },
   moneyLadder: {
-    header: {
-      color: colors.white,
-      size: "small" as const,
-      weight: "bold" as const
-    },
     container: {
+      textColor: colors.white,
       padding: "none" as const,
-      cornerRadius: "large" as const,
-      background: colors.moneyLadderBg
+      cornerRadius: "medium" as const,
+      textSize: "small" as const,
+      textWeight: "bold" as const,
+      background: colors.darkerPurple
     },
     milestone: {
-      color: colors.milestoneColor,
-      size: 8
+      textColor: colors.accent,
+      textSize: "small" as const,
     }
   }
 };
@@ -222,7 +215,7 @@ export const page = {
     textColor: colors.accent,
     alignment: "center" as const,
   },
-  mainButton: {
+  button: {
     width: buttons.base.width,
     height: buttons.base.height,
     cornerRadius: buttons.base.cornerRadius,
@@ -230,7 +223,7 @@ export const page = {
     alignment: buttons.base.alignment,
     textSize: buttons.base.textSize,
     textWeight: buttons.base.textWeight,
-    textColor: buttons.primary.text,
+    text: buttons.base.text,
     background: buttons.primary.background,
   },
 };

@@ -453,22 +453,20 @@ Devvit.addCustomPostType({
         {/* Amount row */}
         <hstack gap="small" alignment="start">
           <hstack 
-            backgroundColor={colors.moneyLadderBg}
+            backgroundColor={gameUI.moneyLadder.container.background}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
             padding={gameUI.moneyLadder.container.padding}
           >
             <hstack gap="small" alignment="middle center">
               <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
-              <text size="medium" weight="bold" color={colors.white}>
-                R${MONEY_LADDER[currentQuestion].amount}
-              </text>
+              <text size={gameUI.moneyLadder.container.textSize} weight={gameUI.moneyLadder.container.textWeight} color={gameUI.moneyLadder.container.textColor}>R${MONEY_LADDER[currentQuestion].amount}</text>
             </hstack>
           </hstack>
         </hstack>
 
         {/* Milestone label on its own line */}
         {MONEY_LADDER[currentQuestion].milestone && (
-          <text size="small" color={colors.white}>Milestone</text>
+          <text size={gameUI.moneyLadder.milestone.textSize} color={gameUI.moneyLadder.milestone.textColor}>Milestone</text>
         )}
       </vstack>
     );
@@ -481,36 +479,82 @@ Devvit.addCustomPostType({
             width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
             padding={gameUI.lifelines.button.padding}
-            backgroundColor={fiftyFifty ? colors.lifeline5050 : colors.neutral400}
+            backgroundColor={fiftyFifty ? gameUI.lifelines.fiftyFifty.background : gameUI.lifelines.button.disabledColor}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.white}>50:50</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>50:50</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
-            backgroundColor={askAudience ? colors.lifelineAsk : colors.neutral400}
+            backgroundColor={askAudience ? gameUI.lifelines.ask.background : gameUI.lifelines.button.disabledColor}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.neutral900}>Ask</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>Ask</text>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
             height={`${gameUI.lifelines.button.height}px`}
-            backgroundColor={phoneFriend ? colors.lifelineCall : colors.neutral400}
+            backgroundColor={phoneFriend ? gameUI.lifelines.call.background : gameUI.lifelines.button.disabledColor}
             cornerRadius={gameUI.lifelines.button.cornerRadius}
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={colors.white}>Call</text>
+            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.text}>Call</text>
           </hstack>
         </hstack>
       </vstack>
     );
+
+    const renderAudienceResults = () => {
+      if (audienceResults.length === 0 || gameQuestions.length === 0) return null;
+      
+      const currentQ = gameQuestions[currentQuestion];
+      return (
+        <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
+          <hstack gap="small" alignment="middle center">
+            <text size="small" weight="bold" color="#DAA520">Audience Results</text>
+            <hstack
+              padding="small"
+              cornerRadius="small"
+              backgroundColor="#FDE68A"
+              alignment="middle center"
+              onPress={() => setShowAudienceResults(false)}
+            >
+              <text size="small" weight="bold" color="#7C5C00">Hide</text>
+            </hstack>
+          </hstack>
+          <vstack gap="small" width="100%">
+            {audienceResults.map((percentage, index) => {
+              return (
+                <hstack key={index.toString()} width="100%" gap="small" alignment="start">
+                  <text size="small" width="25px" weight="bold">
+                    {String.fromCharCode(65 + index)}:
+                  </text>
+                  <vstack width="100%" gap="small">
+                    <hstack width="100%" gap="small" alignment="start">
+                      <vstack 
+                        width={`${Math.min(percentage, 60)}%`} 
+                        height="15px" 
+                        backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
+                        cornerRadius="small"
+                      />
+                      <text size="small" weight="bold" width="40px">
+                        {percentage.toString()}%
+                      </text>
+                    </hstack>
+                  </vstack>
+                </hstack>
+              );
+            })}
+          </vstack>
+        </vstack>
+      );
+    };
 
     const renderQuestion = () => {
       if (gameQuestions.length === 0) {
@@ -528,49 +572,46 @@ Devvit.addCustomPostType({
         <vstack gap="medium" width="100%">
           <vstack
             width="100%"
-            backgroundColor={gameUI.question.container.background}
-            cornerRadius={gameUI.question.container.cornerRadius}
-          >
-            {/* Move padding to an inner wrapper so the card looks like it sits behind the text */}
-            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+            backgroundColor={card.container.background}
+            cornerRadius={card.container.cornerRadius}>
+            <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
               <hstack
-                backgroundColor={gameUI.question.header.background}
-                cornerRadius={gameUI.question.header.cornerRadius}
-                padding={gameUI.question.header.padding}
-              >
-                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>
-                  Question {currentQuestion + 1}
-                  </text>
+                backgroundColor={card.highlight.background}
+                cornerRadius={card.highlight.cornerRadius}
+                padding={card.highlight.padding}>
+                <text size={card.highlight.textSize} color={card.highlight.textColor}>Question {currentQuestion + 1}</text>
               </hstack>
-              <text size={typography.heading4.textSize} weight={typography.heading4.textWeight} color={colors.questionText} wrap={true}>
-                {currentQ.question}
-              </text>
+              <text size={card.container.textSize} weight={card.container.textWeight} color={card.container.textColor} wrap={true}>
+                {currentQ.question}</text>
             </vstack>
           </vstack>
-          <vstack gap={gameUI.answers.button.gap} width="100%">
-            {currentQ.options.map((option, index) => (
-              <hstack
-                key={index.toString()}
-                width="100%"
-                height={`${gameUI.answers.button.height}px`}
-                backgroundColor={hiddenOptions.includes(index) ? gameUI.answers.button.disabledColor : gameUI.answers.button.background}
-                cornerRadius={gameUI.answers.button.cornerRadius}
-                padding={gameUI.answers.button.padding}
-                onPress={() => { if (!hiddenOptions.includes(index)) answerQuestion(index); }}
-                alignment="middle center"
-              >
-                <hstack width={`${gameUI.answers.button.prefix.width}px`} alignment="middle center">
-                  <text size={gameUI.answers.button.textSize} weight={gameUI.answers.button.prefix.weight} color={gameUI.answers.button.textColor}>
-                    {String.fromCharCode(65 + index)}.
+          
+          {/* Show either audience results or answer options */}
+          {showAudienceResults ? renderAudienceResults() : (
+            <vstack gap={gameUI.answers.button.gap} width="100%">
+              {currentQ.options.map((option, index) => (
+                <hstack
+                  key={index.toString()}
+                  width="100%"
+                  height={`${gameUI.answers.button.height}px`}
+                  backgroundColor={hiddenOptions.includes(index) ? gameUI.answers.button.disabledColor : gameUI.answers.button.background}
+                  cornerRadius={gameUI.answers.button.cornerRadius}
+                  padding={gameUI.answers.button.padding}
+                  onPress={() => { if (!hiddenOptions.includes(index)) answerQuestion(index); }}
+                  alignment="middle center"
+                >
+                  <hstack width={`${gameUI.answers.button.prefix.width}px`} alignment="middle center">
+                    <text size={gameUI.answers.button.textSize} weight={gameUI.answers.button.prefix.weight} color={gameUI.answers.button.textColor}>
+                      {String.fromCharCode(65 + index)}.
+                    </text>
+                  </hstack>
+                  <text size={gameUI.answers.button.textSize} color={gameUI.answers.button.textColor}>
+                    {option}
                   </text>
                 </hstack>
-                <text size={gameUI.answers.button.textSize} color={gameUI.answers.button.textColor}>
-                  {option}
-                </text>
-              </hstack>
-            ))}
-          </vstack>
-          
+              ))}
+            </vstack>
+          )}
           
           {/* Show explanation if available */}
           {lastAnswerExplanation && (
@@ -660,7 +701,7 @@ Devvit.addCustomPostType({
             onPress={continueGame}
             alignment={buttons.base.alignment}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.primary.text}>Continue Playing</text>
+            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Continue Playing</text>
           </hstack>
           <hstack 
             width={`${buttons.base.width}%`}
@@ -747,14 +788,14 @@ Devvit.addCustomPostType({
               </vstack>
               <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack
-                width={`${page.mainButton.width}%`}
-                height={`${page.mainButton.height}px`}
-                backgroundColor={page.mainButton.background}
-                cornerRadius={page.mainButton.cornerRadius}
+                width={`${page.button.width}%`}
+                height={`${page.button.height}px`}
+                backgroundColor={page.button.background}
+                cornerRadius={page.button.cornerRadius}
                 onPress={startGame}
-                alignment={page.mainButton.alignment}
+                alignment={page.button.alignment}
               >
-                <text size={page.mainButton.textSize} weight={page.mainButton.textWeight} color={page.mainButton.textColor}>Start Game</text>
+                <text size={page.button.textSize} weight={page.button.textWeight} color={page.button.text}>Start Game</text>
               </hstack>
               </vstack>
             </vstack>
@@ -778,54 +819,53 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
         </hstack>
-  
         <vstack gap="medium" width="100%">
         <vstack
             width="100%"
-            backgroundColor={gameUI.question.container.background}
-            cornerRadius={gameUI.question.container.cornerRadius}>
-            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+            backgroundColor={card.container.background}
+            cornerRadius={card.container.cornerRadius}>
+            <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
               <hstack
-                backgroundColor={gameUI.question.header.background}
-                cornerRadius={gameUI.question.header.cornerRadius}
-                padding={gameUI.question.header.padding}
+                backgroundColor={card.highlight.background}
+                cornerRadius={card.highlight.cornerRadius}
+                padding={card.highlight.padding}
               >
-                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Objective</text>
+                <text size={card.highlight.textSize} color={card.highlight.textColor}>Objective</text>
               </hstack>
-              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>Answer 12 questions correctly to win the grand prize of R$1,000,000!</text>
             </vstack>
           </vstack>
           <vstack
             width="100%"
-            backgroundColor={gameUI.question.container.background}
-            cornerRadius={gameUI.question.container.cornerRadius}>
-            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+            backgroundColor={card.container.background}
+            cornerRadius={card.container.cornerRadius}>
+            <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
               <hstack
-                backgroundColor={gameUI.question.header.background}
-                cornerRadius={gameUI.question.header.cornerRadius}
-                padding={gameUI.question.header.padding}
+                backgroundColor={card.highlight.background}
+                cornerRadius={card.highlight.cornerRadius}
+                padding={card.highlight.padding}
               >
-                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Money Ladder</text>
-              </hstack>
-              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Each correct answer moves you up the money ladder</text>
-              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
+                <text size={card.highlight.textSize} color={card.highlight.textColor}>Money Ladder</text>
+                </hstack>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• Each correct answer moves you up the money ladder</text>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• Milestone questions (★) let you walk away with guaranteed money</text>
             </vstack>
           </vstack>
           <vstack
             width="100%"
-            backgroundColor={gameUI.question.container.background}
-            cornerRadius={gameUI.question.container.cornerRadius}>
-            <vstack padding={gameUI.question.container.padding} gap="small" alignment="start">
+            backgroundColor={card.container.background}
+            cornerRadius={card.container.cornerRadius}>
+            <vstack padding={card.container.padding} gap={card.container.gap} alignment={card.container.alignment}>
               <hstack
-                backgroundColor={gameUI.question.header.background}
-                cornerRadius={gameUI.question.header.cornerRadius}
-                padding={gameUI.question.header.padding}
+                backgroundColor={card.highlight.background}
+                cornerRadius={card.highlight.cornerRadius}
+                padding={card.highlight.padding}
               >
-                <text size={typography.paragraph.textSize} color={gameUI.question.header.textColor}>Lifelines</text>
+                <text size={card.highlight.textSize} color={card.highlight.textColor}>Lifelines</text>
               </hstack>
-              <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Ask Audience - Shows audience poll results</text>
-            <text size={typography.paragraph.textSize} color={colors.questionText} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
+              <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• 50:50 - Eliminates two wrong answers</text>
+            <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• Ask Audience - Shows audience poll results</text>
+            <text size={card.container.textSize} color={card.container.textColor} wrap={true}>• Phone a Friend - Get a hint from a friend</text>
             </vstack>
           </vstack>
         </vstack>
@@ -864,7 +904,7 @@ Devvit.addCustomPostType({
                 onPress={startGame}
                 alignment={buttons.base.alignment}
               >
-                <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.primary.text}>Start Game</text>
+                <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Start Game</text>
               </hstack>
               <hstack 
                 width={`${buttons.base.width}%`}
@@ -889,7 +929,7 @@ Devvit.addCustomPostType({
           >
             <hstack alignment="center" gap={buttons.secondary.icon.gap}>
               <image url="leaderboard-icon.png" imageWidth={20} imageHeight={20} width="20px" height="20px" resizeMode="contain" description="Leaderboard icon" />
-              <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.secondary.text}>Leaderboard</text>
+              <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>Leaderboard</text>
             </hstack>
           </hstack>
           <hstack 
@@ -900,7 +940,7 @@ Devvit.addCustomPostType({
             alignment={buttons.base.alignment}
             onPress={handleShowHowToPlay}
           >
-            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.accent.text}>How to Play</text>
+            <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.text}>How to Play</text>
           </hstack>
         </vstack>
       </vstack>
@@ -931,49 +971,6 @@ Devvit.addCustomPostType({
               {renderQuestion()}
               {renderLifelines()}
             </vstack>
-            
-            {/* Show audience results if available */}
-            {showAudienceResults && audienceResults.length > 0 && gameQuestions.length > 0 && (
-                  <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
-                    <hstack gap="small" alignment="middle center">
-                      <text size="small" weight="bold" color="#DAA520">Audience Results</text>
-                      <hstack
-                        padding="small"
-                        cornerRadius="small"
-                        backgroundColor="#FDE68A"
-                        alignment="middle center"
-                        onPress={() => setShowAudienceResults(false)}
-                      >
-                        <text size="small" weight="bold" color="#7C5C00">Hide</text>
-                      </hstack>
-                    </hstack>
-                    <vstack gap="small" width="100%">
-                      {audienceResults.map((percentage, index) => {
-                        const currentQ = gameQuestions[currentQuestion];
-                        return (
-                          <hstack key={index.toString()} width="100%" gap="small" alignment="start">
-                            <text size="small" width="25px" weight="bold" key={index.toString()}>
-                              {String.fromCharCode(65 + index)}:
-                            </text>
-                            <vstack width="100%" gap="small">
-                              <hstack width="100%" gap="small" alignment="start">
-                                <vstack 
-                                  width={`${Math.min(percentage, 60)}%`} 
-                                  height="15px" 
-                                  backgroundColor={index === currentQ.correctAnswer ? "#90EE90" : "#FF6B6B"}
-                                  cornerRadius="small"
-                                />
-                                <text size="small" weight="bold" width="40px">
-                                  {percentage.toString()}%
-                                </text>
-                              </hstack>
-                            </vstack>
-                          </hstack>
-                        );
-                      })}
-                    </vstack>
-                  </vstack>
-                )}
             </vstack>
         )}
 
