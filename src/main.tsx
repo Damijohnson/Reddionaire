@@ -136,12 +136,40 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
   const { reddit } = context;
   const subreddit = await reddit.getCurrentSubreddit();
   const post = await reddit.submitPost({
-    title: "Who Wants to Be a Redditionaire? - Test Your Knowledge!",
+    title: "Who Wants to Be a Reddionaire? - Test Your Knowledge!",
     subredditName: subreddit.name,
     preview: (
-      <vstack height="100%" width="100%" alignment="middle center">
-        <text size="large">Redditionaire Game Loading...</text>
-      </vstack>
+      <zstack width="100%" height="100%">
+        <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
+        <vstack height="100%" width="100%" alignment="middle center" padding="large" gap="large">
+          <vstack gap="medium" alignment="center">
+            <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode="contain" description="Reddionaire logo" />
+            <vstack alignment="center" gap="small">
+              <text size="large" weight="bold" color={colors.accent} alignment="center">
+                Test your knowledge with 12  
+              </text>
+              <text size="large" weight="bold" color={colors.accent} alignment="center">
+                questions and win up to
+              </text>
+            </vstack>
+            <image url="reddionaire-jackpot.png" imageWidth={125} imageHeight={25} width="125px" height="25px" resizeMode="contain" description="R$1,000,000 jackpot" />
+          </vstack>
+          
+          <vstack gap="medium" width="100%" maxWidth="300px" alignment="center">
+            {/* <text size="medium" weight="bold" color={colors.white} alignment="center">
+              Reddionaire Game Loading...
+            </text>  */}
+            
+            {/* Progress Bar */}
+            <vstack width="100%" gap="small">
+              <hstack width="100%" height="8px" backgroundColor={colors.darkestPurple} cornerRadius="small">
+                <hstack width="60%" height="100%" backgroundColor={colors.accent} cornerRadius="small" />
+              </hstack>
+              {/* <text size="small" color={colors.white} alignment="center">Loading questions...</text> */}
+            </vstack>
+          </vstack>
+        </vstack>
+      </zstack>
     ),
   });
 
@@ -151,13 +179,13 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
 
 // Add a menu item to the subreddit menu for instantiating the new experience post
 Devvit.addMenuItem({
-  label: "Start Redditionaire Game",
+  label: "Start Reddionaire Game",
   location: "subreddit",
   forUserType: "moderator",
   onPress: async (_event, context) => {
     const { reddit, ui } = context;
     ui.showToast(
-      "Starting Redditionaire game - you'll be redirected to the game post!"
+      "Starting Reddionaire game - you'll be redirected to the game post!"
     );
 
     const post = await createPost(context);
@@ -166,19 +194,19 @@ Devvit.addMenuItem({
   },
 });
 
-Devvit.addMenuItem({
-  label: "Debug: Show BG URL",
-  location: "subreddit",
-  forUserType: "moderator",
-  onPress: async (_event, context) => {
-    try {
-      const url = await context.assets.getURL(BGURL);
-      context.ui.showToast(url ?? "(no URL returned)");
-    } catch (e) {
-      context.ui.showToast(`assets.getURL error: ${String(e)}`);
-    }
-  },
-});
+// Devvit.addMenuItem({
+//   label: "Debug: Show BG URL",
+//   location: "subreddit",
+//   forUserType: "moderator",
+//   onPress: async (_event, context) => {
+//     try {
+//       const url = await context.assets.getURL(BGURL);
+//       context.ui.showToast(url ?? "(no URL returned)");
+//     } catch (e) {
+//       context.ui.showToast(`assets.getURL error: ${String(e)}`);
+//     }
+//   },
+// });
 
 Devvit.addTrigger({
   events: ["AppInstall"],
@@ -189,7 +217,7 @@ Devvit.addTrigger({
 
 // Add a post type definition
 Devvit.addCustomPostType({
-  name: "Redditionaire Game",
+  name: "Reddionaire Game",
   height: "tall",
   render: (context) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
