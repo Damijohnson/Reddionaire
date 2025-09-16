@@ -442,25 +442,24 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <vstack gap="small" width="100%">
-        <text 
+        {/* <text 
           size={gameUI.moneyLadder.header.size} 
           weight={gameUI.moneyLadder.header.weight} 
           color={gameUI.moneyLadder.header.color}
         >
           Money Ladder
-        </text>
+        </text> */}
 
         {/* Amount row */}
         <hstack gap="small" alignment="start">
           <hstack 
-            width="70%"
             backgroundColor={colors.moneyLadderBg}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
             padding={gameUI.moneyLadder.container.padding}
           >
             <hstack gap="small" alignment="middle center">
               <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
-              <text size="xlarge" weight="bold" color={colors.white}>
+              <text size="medium" weight="bold" color={colors.white}>
                 R${MONEY_LADDER[currentQuestion].amount}
               </text>
             </hstack>
@@ -912,6 +911,21 @@ Devvit.addCustomPostType({
 
         {gameStatus === 'playing' && gameQuestions.length > 0 && !showWalkAway && (
           <vstack width="100%" height="100%" padding="medium" gap="medium">
+            {/* Gameplay Header */}
+            <hstack width="100%" alignment="start middle" padding="none">
+              <hstack width="80%" alignment="start middle" padding="none">
+                <image url="logo.png" width="125px" height={`${page.header.title.height}px`} resizeMode="contain" description="Reddionaire logo" />
+              </hstack>
+              <hstack width="20%" alignment="end middle" padding="none">
+                <hstack 
+                  onPress={resetGame} 
+                  alignment="middle center"
+                >
+                  <text size="large" weight="bold" color={colors.white}>H</text>
+                </hstack>
+              </hstack>
+            </hstack>
+            
             {renderMoneyLadder()}
             <vstack width="100%" gap="medium" alignment="center">
               {renderQuestion()}
