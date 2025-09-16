@@ -1,5 +1,5 @@
 // Learn more at developers.reddit.com/docs
-import { Devvit, useState, TriggerContext } from "@devvit/public-api";
+import { Devvit, useState, useInterval, TriggerContext } from "@devvit/public-api";
 import questionsData from "./questions.json" with { type: "json" };
 import { LeaderboardService } from "./server.js";
 import { colors, typography, buttons, card, table, gameUI, page } from "./theme.js";
@@ -236,6 +236,35 @@ Devvit.addCustomPostType({
     const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
     const [audienceResults, setAudienceResults] = useState<number[]>([]);
     const [showAudienceResults, setShowAudienceResults] = useState(false);
+    
+    // Timer state
+    const [timeLeft, setTimeLeft] = useState<number>(30); // 30 seconds per question
+    const [timerActive, setTimerActive] = useState<boolean>(false);
+    const [timedOut, setTimedOut] = useState<boolean>(false);
+
+    // Timer interval - only runs when timer is active
+    const timerInterval = useInterval(() => {
+      if (timerActive && timeLeft > 0) {
+        setTimeLeft(prev => prev - 1);
+      } else if (timerActive && timeLeft <= 0) {
+        // Time's up - handle timeout
+        setTimerActive(false);
+        handleTimeUp();
+      }
+    }, 1000);
+
+    const handleTimeUp = () => {
+      // Time's up - game over
+      setTimedOut(true);
+      if (gameQuestions.length > 0) {
+        const currentQ = gameQuestions[currentQuestion];
+        const correctAnswer = currentQ.options[currentQ.correctAnswer];
+        setLastAnswerExplanation(`The correct answer was: ${correctAnswer}. ${currentQ.explanation || ""}`);
+      } else {
+        setLastAnswerExplanation("");
+      }
+      setGameStatus('lost');
+    };
 
     const startGame = async () => {
       try {
@@ -264,6 +293,12 @@ Devvit.addCustomPostType({
         setShowLeaderboard(false);
         setShowHowToPlay(false);
         setLastAnswerExplanation("");
+        
+        // Initialize timer
+        setTimeLeft(30);
+        setTimerActive(true);
+        setTimedOut(false);
+        timerInterval.start();
       } catch (error) {
         console.error('Error starting game:', error);
         // Fallback to fallback questions
@@ -277,6 +312,10 @@ Devvit.addCustomPostType({
 
     const answerQuestion = (selectedAnswer: number) => {
       if (gameQuestions.length === 0) return;
+      
+      // Stop the timer when an answer is selected
+      setTimerActive(false);
+      timerInterval.stop();
       
       const currentQ = gameQuestions[currentQuestion];
       const isCorrect = selectedAnswer === currentQ.correctAnswer;
@@ -308,6 +347,11 @@ Devvit.addCustomPostType({
             setHiddenOptions([]); // Reset hidden options for new question
             setAudienceResults([]); // Clear audience results for new question
             setShowAudienceResults(false); // Hide audience results display
+            
+            // Reset and start timer for next question
+            setTimeLeft(30);
+            setTimerActive(true);
+            timerInterval.start();
           }
         } else {
           // Wrong answer - game over
@@ -324,6 +368,10 @@ Devvit.addCustomPostType({
 
     const continueGame = () => {
       setShowWalkAway(false);
+      // Restart timer when continuing after milestone
+      setTimeLeft(30);
+      setTimerActive(true);
+      timerInterval.start();
     };
 
     const generateAudienceResults = (question: any, userId: string, questionId: string) => {
@@ -454,6 +502,12 @@ Devvit.addCustomPostType({
       setHiddenOptions([]);
       setAudienceResults([]);
       setShowAudienceResults(false);
+      
+      // Stop timer and reset
+      setTimerActive(false);
+      timerInterval.stop();
+      setTimeLeft(30);
+      setTimedOut(false);
     };
 
 
@@ -500,6 +554,25 @@ Devvit.addCustomPostType({
             </vstack>
           )}
         </hstack>
+        
+        {/* Timer display */}
+        {gameStatus === 'playing' && (
+          <hstack gap="small" alignment="start">
+            <hstack 
+              backgroundColor={colors.darkestPurple}
+              cornerRadius="small"
+              padding="small"
+              width="120px"
+              height="40px"
+            >
+              <hstack gap="small" alignment="middle center" width="100%">
+                <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>
+                  {timeLeft}s
+                </text>
+              </hstack>
+            </hstack>
+          </hstack>
+        )}
       </vstack>
     );
 
@@ -671,6 +744,11 @@ Devvit.addCustomPostType({
              gameStatus === 'lost' ? `Question ${currentQuestion + 1}` :
              `R$${score}!`}
              </text>
+          {timedOut && gameStatus === 'lost' && (
+            <text size={page.subheading.textSize} weight={page.subheading.textWeight} color={page.subheading.textColor} alignment={page.subheading.alignment}>
+              Times up!
+            </text>
+          )}
         </vstack>
         </vstack>
 
@@ -738,8 +816,25 @@ Devvit.addCustomPostType({
           <text size="medium" color={colors.white} alignment="center">
             Do you want to continue or walk away?
           </text>
+          
+          {/* Timer display for milestone decision */}
+          <vstack gap="small" alignment="center">
+            <hstack 
+              backgroundColor={colors.darkestPurple}
+              cornerRadius="small"
+              padding="small"
+              width="120px"
+              height="40px"
+            >
+              <hstack gap="small" alignment="middle center" width="100%">
+                <text size="medium" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>
+                  {timeLeft}s
+                </text>
+              </hstack>
+            </hstack>
+          </vstack>
         </vstack>
-
+ 
         <vstack gap="medium" width="100%" maxWidth="400px">
           <hstack 
             width={`${buttons.base.width}%`}
