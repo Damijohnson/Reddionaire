@@ -1421,6 +1421,7 @@
     "correctAnswer": 3,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This massive moon is the only one known to have a thick atmosphere and liquid on its surface, though it's methane lakes, not water",
     "explanation": "Titan is larger than Mercury and has a dense atmosphere."
   },
   {
@@ -1430,6 +1431,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This halogen element appears as a reddish-brown liquid and has a strong, irritating odor - its name comes from the Greek word for 'stench'",
     "explanation": "Bromine (Br) is a reddish-brown liquid near room temperature."
   },
   {
@@ -1439,6 +1441,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This organ's beta cells produce the hormone that regulates blood sugar levels - when it fails, diabetes can develop",
     "explanation": "Beta cells in the pancreas secrete insulin."
   },
   {
@@ -1448,6 +1451,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This ionic compound combines sodium (Na) and chlorine (Cl) in a 1:1 ratio - you probably use it every day",
     "explanation": "Common table salt is sodium chloride (NaCl)."
   },
   {
@@ -1457,6 +1461,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This vital organ processes nutrients, produces bile, stores vitamins, and helps detoxify harmful substances",
     "explanation": "By mass, the liver is the largest internal organ."
   },
   {
@@ -1466,6 +1471,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This gas giant, the largest planet in our solar system, has a massive storm that's been raging for at least 400 years",
     "explanation": "Jupiter's Great Red Spot is a massive storm."
   },
   {
@@ -1475,6 +1481,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "movies",
+    "hint": "This British-American director is known for complex narratives and mind-bending plots, as seen in 'Memento' and 'The Dark Knight'",
     "explanation": "'Inception' was written and directed by Christopher Nolan."
   },
   {
@@ -1484,6 +1491,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "literature",
+    "hint": "This Brazilian author's spiritual tale about following your dreams has been translated into over 80 languages",
     "explanation": "Brazilian author Paulo Coelho published it in 1988."
   },
   {
@@ -1493,6 +1501,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "literature",
+    "hint": "This Scottish author and physician introduced the famous detective in the novel 'A Study in Scarlet' in 1887",
     "explanation": "Sir Arthur Conan Doyle introduced Holmes in 1887."
   },
   {
@@ -1502,6 +1511,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "history",
+    "hint": "This Soviet cosmonaut made history aboard Vostok 1 in 1961, completing one orbit around Earth in 108 minutes",
     "explanation": "Soviet cosmonaut Yuri Gagarin orbited Earth on April 12, 1961."
   },
   {
@@ -1511,6 +1521,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "Located in northern Chile, some parts of this desert haven't seen rain in over 500 years due to unique atmospheric conditions",
     "explanation": "Parts of Chile's Atacama Desert receive virtually no rainfall."
   },
   {
@@ -1520,6 +1531,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This city in Uttar Pradesh, about 200km from Delhi, is home to the famous white marble mausoleum built by Emperor Shah Jahan",
     "explanation": "The Taj Mahal sits on the Yamuna River in Agra."
   },
   {
@@ -1529,6 +1541,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This Alpine nation, known for its banking sector and neutrality, uses CHF as its currency code",
     "explanation": "The Swiss franc (CHF) is Switzerland's official currency."
   },
   {
@@ -1538,6 +1551,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "food",
+    "hint": "These red-orange stigmas from crocus flowers must be hand-harvested, with over 150 flowers needed for just one gram",
     "explanation": "Saffron's labor‑intensive harvest makes it extremely costly."
   },
   {
@@ -1547,6 +1561,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This term comes from the Latin word 'nocturnalis', and describes creatures like owls, bats, and many big cats",
     "explanation": "Nocturnal species are active during night hours."
   },
   {
@@ -1556,6 +1571,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "art",
+    "hint": "This Spanish surrealist artist is famous for his melting clocks and his distinctive upturned mustache",
     "explanation": "Dalí's 1931 work is famous for its melting clocks."
   },
   {
@@ -1565,6 +1581,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This branch of biology, from the Greek word 'mykes' (fungus), studies mushrooms, yeasts, molds, and their relatives",
     "explanation": "Mycology covers the biology and classification of fungi."
   },
   {
@@ -1574,6 +1591,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This device, whose name comes from Greek words meaning 'earth' and 'write', uses a suspended mass to detect ground movements",
     "explanation": "A seismograph (or seismometer) detects ground motion from quakes."
   },
   {
@@ -1583,6 +1601,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This warm Atlantic current flows from the Gulf of Mexico to Europe, bringing tropical heat to countries like the UK and Norway",
     "explanation": "The Gulf Stream transports warm water from the Gulf of Mexico across the Atlantic."
   },
   {
@@ -1592,6 +1611,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This megacity of over 9 million people has been Korea's political and cultural center for over 600 years",
     "explanation": "Seoul is South Korea's capital and largest city."
   }
   ],
