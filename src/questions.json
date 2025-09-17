@@ -22,6 +22,7 @@
       "correctAnswer": 1,
       "difficulty": "easy",
       "category": "geography",
+      "hint": "This romantic city is known worldwide for its iconic tower and beautiful Seine River views",
       "explanation": "Paris is the capital and largest city of France."
     },
     {
@@ -31,6 +32,7 @@
       "correctAnswer": 0,
       "difficulty": "easy",
       "category": "science",
+      "hint": "This rusty-colored planet is the fourth from the Sun and has two tiny moons named after the Greek gods of fear and terror",
       "explanation": "Mars is called the Red Planet due to iron oxide on its surface."
     },
     {
@@ -40,6 +42,7 @@
       "correctAnswer": 3,
       "difficulty": "medium",
       "category": "mathematics",
+      "hint": "Try listing out the first few multiples of 18: 18, 36, 54... Then check which one is also divisible by 12",
       "explanation": "LCM(12,18)=36 because 12=2^2·3 and 18=2·3^2; take highest powers: 2^2·3^2=36."
     },
     {
@@ -49,6 +52,7 @@
       "correctAnswer": 2,
       "difficulty": "easy",
       "category": "literature",
+      "hint": "This English playwright from Stratford-upon-Avon wrote many famous plays at the Globe Theatre, including Hamlet and Macbeth",
       "explanation": "William Shakespeare wrote this famous tragedy in the late 16th century."
     },
     {
@@ -58,6 +62,7 @@
       "correctAnswer": 0,
       "difficulty": "easy",
       "category": "geography",
+      "hint": "This massive ocean stretches from Asia to the Americas and contains the deepest point on Earth, the Mariana Trench",
       "explanation": "The Pacific Ocean covers about 46% of Earth's water surface."
     },
     {
@@ -67,6 +72,7 @@
       "correctAnswer": 3,
       "difficulty": "easy",
       "category": "history",
+      "hint": "This year saw both V-E Day (Victory in Europe) in May and the atomic bombings of Japan leading to V-J Day in September",
       "explanation": "World War II ended in 1945 with Germany's surrender in May and Japan's in September."
     },
     {
@@ -76,6 +82,7 @@
       "correctAnswer": 3,
       "difficulty": "easy",
       "category": "science",
+      "hint": "This precious metal's symbol comes from its Latin name 'aurum', meaning 'shining dawn'",
       "explanation": "Au comes from the Latin word for gold, 'aurum'."
     },
     {
@@ -85,6 +92,7 @@
       "correctAnswer": 2,
       "difficulty": "easy",
       "category": "geography",
+      "hint": "This southern hemisphere nation is known as the 'land down under' and features a kangaroo on its coat of arms",
       "explanation": "Kangaroos are native to Australia and are a national symbol."
     },
     {
@@ -94,6 +102,7 @@
       "correctAnswer": 2,
       "difficulty": "easy",
       "category": "mathematics",
+      "hint": "Think of a number that, when multiplied by itself, gives you 144. Here's a tip: it's a multiple of 3 and 4",
       "explanation": "12 × 12 = 144, so the square root of 144 is 12."
     },
     {
@@ -103,15 +112,16 @@
       "correctAnswer": 2,
       "difficulty": "easy",
       "category": "art",
+      "hint": "This Italian Renaissance master was also an inventor who designed flying machines and wrote his notes in mirror writing",
       "explanation": "Leonardo da Vinci painted the Mona Lisa between 1503-1519."
-    },
-    {
+    },    {
       "id": 11,
       "question": "What is the largest mammal?",
       "options": ["African Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
       "correctAnswer": 1,
       "difficulty": "easy",
       "category": "science",
+      "hint": "This marine giant's heart is the size of a car, and its tongue can weigh as much as an elephant",
       "explanation": "The Blue Whale is the largest animal known to have ever existed."
     },
     {
@@ -121,6 +131,7 @@
       "correctAnswer": 2,
       "difficulty": "easy",
       "category": "history",
+      "hint": "Neil Armstrong and Buzz Aldrin made history when Apollo 11's Eagle module landed, with Armstrong declaring 'one small step for man'",
       "explanation": "Apollo 11 landed on the Moon on July 20, 1969."
     },
     {
@@ -130,6 +141,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "science",
+      "hint": "This universal speed limit, often denoted as 'c', is so fast it could circle Earth about 7.5 times in just one second",
       "explanation": "The speed of light in vacuum is approximately 186,000 miles per second."
     },
     {
@@ -139,6 +151,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "science",
+      "hint": "This vital element makes up about 21% of Earth's atmosphere and is essential for most life forms to breathe",
       "explanation": "Oxygen has the chemical symbol 'O' and atomic number 8."
     },
     {
@@ -148,6 +161,7 @@
       "correctAnswer": 3,
       "difficulty": "medium",
       "category": "geography",
+      "hint": "This massive nation spans 11 time zones and stretches from Eastern Europe all the way to the Pacific Ocean",
       "explanation": "Russia is the largest country by land area, covering about 17 million square kilometers."
     },
     {
@@ -157,6 +171,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "literature",
+      "hint": "This witty English author wrote about the Bennet sisters and the proud Mr. Darcy while living in Bath and Hampshire",
       "explanation": "Jane Austen published 'Pride and Prejudice' in 1813."
     },
     {
@@ -166,6 +181,7 @@
       "correctAnswer": 2,
       "difficulty": "medium",
       "category": "geography",
+      "hint": "This bustling metropolis was once called Edo and became the imperial capital after the Meiji Restoration",
       "explanation": "Tokyo has been the capital of Japan since 1868."
     },
     {
@@ -175,6 +191,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "science",
+      "hint": "This ringed gas giant has a collection of over 80 moons, with Titan being its largest satellite",
       "explanation": "Saturn has the most moons in our solar system, with over 80 confirmed moons."
     },
     {
@@ -184,6 +201,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "geography",
+      "hint": "Surprisingly, this cold polar region receives so little precipitation it qualifies as the world's largest desert",
       "explanation": "The Antarctic Desert is the largest desert, covering about 14 million square kilometers."
     },
     {
@@ -193,6 +211,7 @@
       "correctAnswer": 2,
       "difficulty": "medium",
       "category": "music",
+      "hint": "This Venetian composer and violin virtuoso was nicknamed 'The Red Priest' due to his bright red hair",
       "explanation": "Antonio Vivaldi composed 'The Four Seasons' in 1723."
     },
     {
@@ -202,6 +221,7 @@
       "correctAnswer": 2,
       "difficulty": "medium",
       "category": "mathematics",
+      "hint": "This unique number is the only even prime number and is divisible only by 1 and itself",
       "explanation": "2 is the smallest and only even prime number."
     },
     {
@@ -211,6 +231,7 @@
       "correctAnswer": 2,
       "difficulty": "medium",
       "category": "geography",
+      "hint": "Thanks to its overseas territories from French Polynesia to New Caledonia, this European nation spans more time zones than any other",
       "explanation": "France has the most time zones due to its overseas territories, with 12 time zones."
     },
     {
@@ -220,6 +241,7 @@
       "correctAnswer": 3,
       "difficulty": "medium",
       "category": "science",
+      "hint": "This protective organ covers your entire body and helps regulate temperature and vitamin D production",
       "explanation": "The skin is the largest organ, covering about 20 square feet in adults."
     },
     {
@@ -229,6 +251,7 @@
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "art",
+      "hint": "This Dutch post-impressionist painter created this masterpiece while in an asylum in Saint-Rémy-de-Provence, France",
       "explanation": "Vincent van Gogh painted 'The Starry Night' in 1889."
     },
     {
@@ -238,6 +261,7 @@
       "correctAnswer": 2,
       "difficulty": "medium",
       "category": "geography",
+      "hint": "This planned city, built in the shape of an airplane when viewed from above, became the capital in 1960",
       "explanation": "Brasília became the capital in 1960, replacing Rio de Janeiro."
     },
     {
@@ -247,6 +271,7 @@
       "correctAnswer": 3,
       "difficulty": "hard",
       "category": "science",
+      "hint": "This vital element makes up nearly half of the Earth's crust by weight, mostly bound in minerals and rocks",
       "explanation": "Oxygen makes up about 46% of the Earth's crust by weight."
     },
     {
@@ -256,6 +281,7 @@
       "correctAnswer": 0,
       "difficulty": "hard",
       "category": "geography",
+      "hint": "This triangular-shaped Italian island is home to Mount Etna, Europe's largest active volcano",
       "explanation": "Sicily is the largest island in the Mediterranean Sea."
     },
     {
@@ -265,6 +291,7 @@
       "correctAnswer": 2,
       "difficulty": "hard",
       "category": "literature",
+      "hint": "This Florentine poet's epic journey through Hell, Purgatory, and Paradise was written in the early 14th century while in exile",
       "explanation": "Dante Alighieri wrote 'The Divine Comedy' in the early 14th century."
     },
     {
@@ -274,6 +301,7 @@
       "correctAnswer": 2,
       "difficulty": "hard",
       "category": "science",
+      "hint": "Located on Mars, this massive shield volcano is about three times the height of Mount Everest",
       "explanation": "Olympus Mons on Mars is the largest volcano in our solar system."
     },
     {
@@ -283,6 +311,7 @@
       "correctAnswer": 0,
       "difficulty": "hard",
       "category": "geography",
+      "hint": "This northern nation's coastline includes thousands of Arctic islands and the world's largest archipelago",
       "explanation": "Canada has the longest coastline in the world at 202,080 kilometers."
     },
     {
@@ -292,6 +321,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This alkali metal's symbol comes from its Latin name 'natrium' - you might find it paired with Cl in your kitchen",
     "explanation": "Sodium's chemical symbol is Na, from the Latin 'natrium'."
   },
   {
@@ -301,6 +331,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This vast desert, larger than the continental United States, stretches across the northern third of its continent",
     "explanation": "The Sahara is in North Africa and is the world's largest hot desert."
   },
   {
@@ -310,6 +341,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "literature",
+    "hint": "This British author, who also wrote 'Animal Farm', warned about totalitarianism with concepts like 'Big Brother' and 'thoughtcrime'",
     "explanation": "George Orwell published 'Nineteen Eighty-Four' in 1949."
   },
   {
@@ -319,6 +351,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "mathematics",
+    "hint": "This shape appears in nature in honeycomb cells and is named from the Greek words for 'six angles'",
     "explanation": "A hexagon is a six-sided polygon."
   },
   {
@@ -328,6 +361,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "Plants take in this gas and combine it with water to produce glucose, releasing oxygen as a byproduct",
     "explanation": "Plants take in carbon dioxide and release oxygen during photosynthesis."
   },
   {
@@ -337,6 +371,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "music",
+    "hint": "This percussion-string hybrid instrument can span over seven octaves and is sometimes called a 'pianoforte'",
     "explanation": "A piano contains strings struck by hammers, with keys and pedals to modify sound."
   },
   {
@@ -346,6 +381,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This African herbivore's long neck helps it reach leaves up to 18 feet high in acacia trees",
     "explanation": "Adult giraffes can exceed 5.5 meters (18 feet) in height."
   },
   {
@@ -355,6 +391,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "sports",
+    "hint": "The games were held in Rio de Janeiro, with the iconic Christ the Redeemer statue overlooking the celebrations",
     "explanation": "Rio de Janeiro, Brazil, hosted the 2016 Summer Olympics."
   },
   {
@@ -364,6 +401,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "language",
+    "hint": "This tonal language is the official language of the world's most populous country",
     "explanation": "Mandarin Chinese has the highest number of native speakers globally."
   },
   {
@@ -373,6 +411,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This strong mineral acid contains sulfur and is widely used in car batteries and fertilizer production",
     "explanation": "H2SO4 is sulfuric acid, a strong mineral acid."
   },
   {
@@ -382,6 +421,7 @@
     "correctAnswer": 0,
     "difficulty": "medium",
     "category": "art",
+    "hint": "This Dutch Golden Age painter was known as the 'Master of Light' and created this masterpiece, often called the 'Mona Lisa of the North'",
     "explanation": "The Dutch painter Johannes Vermeer created it around 1665."
   },
   {
@@ -391,6 +431,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This sovereign city-state, home to the Pope, is completely surrounded by Rome and could fit inside many golf courses",
     "explanation": "Vatican City covers about 44 hectares (110 acres)."
   },
   {
@@ -400,6 +441,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This river divides Paris into Left and Right Banks, with Notre-Dame Cathedral sitting on an island in its waters",
     "explanation": "The Seine River runs through Paris before emptying into the English Channel."
   },
   {
@@ -409,6 +451,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "On this temperature scale, water freezes at this point and boils at 212° - a difference of 180 degrees",
     "explanation": "Pure water freezes at 32°F (0°C) at standard atmospheric pressure."
   },
   {
@@ -418,6 +461,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This German-born physicist revolutionized our understanding of gravity, describing it as the curvature of spacetime",
     "explanation": "Einstein published general relativity in 1915."
   },
   {
@@ -427,6 +471,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This instrument, often using mercury or an aneroid chamber, helps meteorologists predict weather changes by measuring air pressure",
     "explanation": "A barometer measures atmospheric pressure; mercury and aneroid types are common."
   },
   {
@@ -436,6 +481,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This crystalline form of pure carbon ranks 10 on the Mohs scale and is formed under extreme pressure deep within the Earth",
     "explanation": "Diamond ranks 10 on the Mohs hardness scale."
   },
   {
@@ -445,6 +491,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "economics",
+    "hint": "This British economist's theories about government intervention during economic downturns greatly influenced post-WWII economic policies",
     "explanation": "Keynes published it in 1936, shaping modern macroeconomics."
   },
   {
@@ -454,6 +501,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "science",
+    "hint": "Scientists determined this age by studying cosmic microwave background radiation - the afterglow of the Big Bang",
     "explanation": "Cosmological measurements estimate the universe at ~13.8 billion years old."
   },
     {
@@ -463,6 +511,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "history",
+    "hint": "This 1919 treaty, signed in a famous palace near Paris, imposed harsh reparations on Germany that would later contribute to WWII",
     "explanation": "The Treaty of Versailles was signed in 1919, formally ending WWI."
   },
   {
@@ -472,6 +521,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This silvery element, once used in thermometers, has the chemical symbol Hg from the Latin word 'hydrargyrum'",
     "explanation": "Mercury (Hg) is a liquid metal at standard conditions."
   },
   {
@@ -481,6 +531,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This gas giant, named after the king of the Roman gods, has a distinctive Great Red Spot storm that's been raging for centuries",
     "explanation": "Jupiter is the largest planet by mass and volume."
   },
   {
@@ -490,6 +541,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This currency's symbol (¥) is shared with China's currency, but the Japanese version is written with fewer strokes",
     "explanation": "Japan's currency is the Japanese yen (JPY)."
   },
   {
@@ -499,6 +551,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "literature",
+    "hint": "This British author wrote the first book while living in Edinburgh, often working in local cafes like The Elephant House",
     "explanation": "J.K. Rowling wrote the seven-book 'Harry Potter' series."
   },
   {
@@ -508,6 +561,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "science",
+    "hint": "These three colors are used in screens and TVs in an additive process - when all are combined, they create white light",
     "explanation": "Additive color primaries for light are RGB."
   },
   {
@@ -517,6 +571,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "The most widely accepted model includes North America, South America, Europe, Asia, Africa, Antarctica, and Australia/Oceania",
     "explanation": "Most models count seven continents."
   },
   {
@@ -526,6 +581,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This precious metal's symbol comes from the Latin word 'argentum', which gives Argentina its name",
     "explanation": "Silver's symbol Ag comes from Latin 'argentum'."
   },
   {
@@ -535,6 +591,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "The heart has two upper chambers (atria) and two lower chambers (ventricles) that work together to pump blood",
     "explanation": "Humans have two atria and two ventricles."
   },
   {
@@ -544,6 +601,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "music",
+    "hint": "This deep-voiced instrument is played with a bow and sits between the viola and double bass in size",
     "explanation": "Cello is a bowed string instrument."
   },
   {
@@ -553,6 +611,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "technology",
+    "hint": "This markup language uses tags like <p> and <div> to organize content, and was created by Tim Berners-Lee at CERN",
     "explanation": "HTML provides the markup structure of web pages."
   },
   {
@@ -562,6 +621,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This famous clock tower stands at the north end of the Houses of Parliament, overlooking the River Thames",
     "explanation": "Big Ben is the nickname for the Great Bell in London."
   },
   {
@@ -571,6 +631,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This inert gas makes up about 78% of our atmosphere and is essential for plants to make proteins",
     "explanation": "Nitrogen accounts for about 78% of the atmosphere."
   },
   {
@@ -580,6 +641,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This lightest element has just one proton and is the most abundant element in the universe, fueling stars like our Sun",
     "explanation": "Hydrogen has atomic number 1."
   },
   {
@@ -589,6 +651,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "history",
+    "hint": "This American virologist's injectable vaccine, introduced in 1955, helped virtually eliminate a disease that once paralyzed thousands annually",
     "explanation": "Jonas Salk's inactivated polio vaccine was introduced in 1955."
   },
   {
@@ -598,6 +661,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This medieval city, whose name means 'bear' in German, became the federal city in 1848, though it's neither the largest nor most famous Swiss city",
     "explanation": "Bern is the de facto capital (federal city) of Switzerland."
   },
   {
@@ -607,6 +671,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This thigh bone connects your hip to your knee and is both the longest and strongest bone in your body",
     "explanation": "The femur (thigh bone) is the longest and strongest."
   },
   {
@@ -616,6 +681,7 @@
     "correctAnswer": 0,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This Scottish scientist made his accidental discovery in 1928 when he noticed mold killing bacteria on a contaminated petri dish",
     "explanation": "Fleming observed penicillin's antibacterial properties in 1928."
   },
   {
@@ -625,6 +691,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This ancient city, a UNESCO World Heritage site, was a major center of Islamic learning and sits near the Niger River in West Africa",
     "explanation": "Timbuktu is in Mali, near the Niger River."
   },
   {
@@ -634,6 +701,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "history",
+    "hint": "This symbolic end of the Cold War happened on November 9, when East German citizens were suddenly allowed to cross to West Berlin",
     "explanation": "The wall opened on November 9, 1989."
   },
   {
@@ -643,6 +711,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "technology",
+    "hint": "This fundamental web protocol, developed by Tim Berners-Lee, is what the 'http://' at the start of most web addresses stands for",
     "explanation": "HTTP is the foundation of data communication for the web."
   },
   {
@@ -652,6 +721,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This second planet from the Sun rotates backwards compared to most planets and takes 243 Earth days to complete one rotation",
     "explanation": "Venus rotates once every ~243 Earth days, retrograde."
   },
   {
@@ -661,7 +731,8 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "art",
-    "explanation": "Van Gogh cut off part of his left ear in 1888."
+    "hint": "This Dutch post-impressionist painter, who created 'The Starry Night', suffered from mental illness while living in Arles, France",
+    "explanation": "Vincent Van Gogh cut off part of his left ear in 1888."
   },
   {
     "id": 73,
@@ -670,6 +741,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This process occurs through tiny pores called stomata and helps pull water and nutrients up from the roots",
     "explanation": "Transpiration occurs mainly through stomata in leaves."
   },
   {
@@ -679,6 +751,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "mathematics",
+    "hint": "This irrational number is the base of natural logarithms and appears in compound interest calculations",
     "explanation": "e ≈ 2.71828, the base of natural logarithms."
   },
   {
@@ -688,6 +761,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "language",
+    "hint": "While Arizona has Z, Texas has X, and New Jersey has J, this letter is completely absent from all 50 state names",
     "explanation": "No U.S. state name contains the letter Q."
   },
   {
@@ -697,6 +771,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This radioactive element with atomic number 92 is used in nuclear power plants and was discovered by Martin Klaproth in 1789",
     "explanation": "Uranium (Z=92) is the highest atomic-number element found in significant natural quantities."
   },
   {
@@ -706,6 +781,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This enzyme creates short RNA sequences that DNA polymerase needs to begin synthesizing new DNA strands",
     "explanation": "Primase synthesizes short RNA primers needed for DNA polymerases to extend."
   },
   {
@@ -715,6 +791,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "history",
+    "hint": "This treaty, signed in a Dutch city in 1992, introduced the euro currency and established the three-pillar structure of the EU",
     "explanation": "The Maastricht Treaty (Treaty on European Union) entered into force in 1993."
   },
   {
@@ -724,6 +801,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "science",
+    "hint": "These animals, including mammals and birds, generate their own heat and don't rely on the environment to warm up",
     "explanation": "Endotherms regulate body temperature through internal heat production."
   },
     {
@@ -733,6 +811,7 @@
       "correctAnswer": 0,
       "difficulty": "hard",
       "category": "geography",
+      "hint": "This unique sea in the North Atlantic is bounded by ocean currents instead of land and is named after its floating seaweed",
       "explanation": "The Sargasso Sea lies within the North Atlantic Gyre and is bounded by currents rather than land."
     },
   {
@@ -742,16 +821,18 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "Known as the 'sunshine vitamin', this nutrient helps your body absorb calcium for strong bones",
     "explanation": "Ultraviolet B exposure enables the skin to synthesize vitamin D."
   },
   {
     "id": 82,
-    "question": "What is the currency of Canada?",
-    "options": ["Canadian pound", "Canadian dollar", "Loonie", "Canadian franc"],
+    "question": "What is the official currency of Canada?",
+    "options": ["Canadian pound", "Canadian dollar", "Canadian peso", "Canadian franc"],
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "geography",
-    "explanation": "Canada uses the Canadian dollar (CAD). The $1 coin is nicknamed the loonie."
+    "hint": "This North American currency uses the symbol $ and the international code CAD",
+    "explanation": "The Canadian dollar (CAD) is Canada's official currency."
   },
   {
     "id": 83,
@@ -760,6 +841,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "science",
+    "hint": "On the Celsius scale, water freezes at 0° and boils at this temperature under normal atmospheric pressure",
     "explanation": "Pure water boils at 100°C at standard atmospheric pressure."
   },
   {
@@ -769,6 +851,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "science",
+    "hint": "This Arctic predator can weigh over 600 kg and has black skin under its white fur to absorb heat",
     "explanation": "Adult male polar bears can exceed 600 kg, making them the largest land carnivores."
   },
   {
@@ -778,6 +861,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "mathematics",
+    "hint": "This shape is both a special rectangle (all angles 90°) and a special rhombus (all sides equal)",
     "explanation": "A square is a special rectangle and rhombus with all sides equal and angles 90°."
   },
   {
@@ -787,6 +871,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "sports",
+    "hint": "This racquet sport uses a feathered projectile that can reach speeds over 300 mph",
     "explanation": "Badminton uses a feathered or synthetic shuttlecock hit over a net."
   },
   {
@@ -796,6 +881,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "Located at the southern tip of the North Island, this windy city is nicknamed 'Wellywood' for its film industry",
     "explanation": "Wellington, at the southern tip of the North Island, is the capital."
   },
   {
@@ -805,6 +891,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This element's symbol comes from the Latin word 'kalium' and is abundant in bananas",
     "explanation": "Potassium's symbol K comes from 'kalium'."
   },
   {
@@ -814,6 +901,7 @@
     "correctAnswer": 0,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This tiny bone in your middle ear is shaped like a stirrup and helps transmit sound vibrations",
     "explanation": "The stapes (stirrup) in the middle ear is the smallest human bone."
   },
   {
@@ -823,6 +911,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This South American country has dominated coffee production for over 100 years and is also known for its carnival",
     "explanation": "Brazil has led global coffee production for over a century."
   },
   {
@@ -832,6 +921,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "Known as 'Mother Volga' in Russia, this river flows 3,530 km from the Valdai Hills to the Caspian Sea",
     "explanation": "The Volga flows about 3,530 km through Russia to the Caspian Sea."
   },
   {
@@ -841,6 +931,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "technology",
+    "hint": "This mathematician, daughter of the poet Lord Byron, wrote algorithms for Babbage's Analytical Engine in the 1840s",
     "explanation": "Ada Lovelace wrote notes outlining algorithms for Babbage's Analytical Engine."
   },
   {
@@ -850,6 +941,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "technology",
+    "hint": "Break down 13 into powers of 2: 8 (2³) + 4 (2²) + 0 (2¹) + 1 (2⁰)",
     "explanation": "13 in base-10 equals 1101 in base-2."
   },
   {
@@ -859,6 +951,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "music",
+    "hint": "This German composer wrote this piece (Piano Sonata No. 14) while going deaf, dedicating it to his student Countess Giulietta Guicciardi",
     "explanation": "Ludwig van Beethoven composed Piano Sonata No. 14, nicknamed 'Moonlight'."
   },
   {
@@ -868,6 +961,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "geography",
+    "hint": "This French-speaking province is three times the size of France, though Nunavut (a territory, not a province) is even larger",
     "explanation": "Quebec is the largest province by area; Nunavut is a territory."
   },
   {
@@ -877,6 +971,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "Named after a French mathematician and physicist, this unit equals one newton of force per square meter",
     "explanation": "The pascal (Pa) equals one newton per square meter."
   },
   {
@@ -886,6 +981,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This second major layer of the atmosphere, located above where weather occurs, protects us from harmful UV radiation",
     "explanation": "The ozone layer resides primarily in the lower stratosphere."
   },
   {
@@ -895,6 +991,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "technology",
+    "hint": "Think of a line at a store - the first person to arrive is the first person to be served",
     "explanation": "A queue removes items in the same order they were inserted."
   },
   {
@@ -904,6 +1001,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "history",
+    "hint": "This date, now celebrated as Canada Day, saw Ontario, Quebec, New Brunswick, and Nova Scotia unite into one dominion",
     "explanation": "Canadian Confederation occurred on July 1, 1867."
   },
   {
@@ -913,6 +1011,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "mathematics",
+    "hint": "Remember the pattern: the derivative of sine is cosine, and the derivative of cosine is negative sine",
     "explanation": "d/dx[sin(x)] = cos(x) for x in radians."
   },
   {
@@ -922,6 +1021,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This precious metal, though more expensive than copper, is used in high-end electronics for its superior conductivity",
     "explanation": "Silver has the highest electrical conductivity among elements."
   },
   {
@@ -931,6 +1031,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "geography",
+    "hint": "This planned city became the capital in 1997, replacing Almaty, and was briefly renamed Nur-Sultan before reverting to its original name in 2022",
     "explanation": "The capital, formerly Nur-Sultan, reverted to the name Astana in 2022."
   },
   {
@@ -940,6 +1041,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "art",
+    "hint": "This Spanish artist created this monumental black-and-white painting in 1937 to protest the bombing of a Basque town during the Spanish Civil War",
     "explanation": "Picasso painted 'Guernica' in 1937 as a response to the bombing of Guernica."
   },
   {
@@ -949,6 +1051,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "mathematics",
+    "hint": "This Swiss mathematician discovered that for any convex polyhedron, the number of vertices minus edges plus faces always equals 2",
     "explanation": "Euler's formula: V − E + F = 2 for convex polyhedra."
   },
   {
@@ -958,6 +1061,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This fundamental constant of quantum mechanics, denoted as 'h', relates a photon's energy to its frequency",
     "explanation": "Planck's constant h ≈ 6.626×10^-34 joule–seconds."
   },
   {
@@ -967,16 +1071,18 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "economics",
+    "hint": "This Scottish philosopher and economist introduced the concept of the 'invisible hand' in this 1776 book that founded modern economics",
     "explanation": "Adam Smith published it in 1776, foundational to classical economics."
   },
   {
     "id": 107,
-    "question": "Which country’s national flag is non‑rectangular?",
+    "question": "Which country's national flag is non‑rectangular?",
     "options": ["Switzerland", "Vatican City", "Nepal", "Bhutan"],
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "geography",
-    "explanation": "Nepal’s flag consists of two stacked pennants, making it the only national flag that isn’t rectangular."
+    "hint": "This Himalayan nation's flag consists of two stacked triangular pennants representing the mountains and Buddhism",
+    "explanation": "Nepal's flag consists of two stacked pennants, making it the only national flag that isn't rectangular."
   },
   {
     "id": 108,
@@ -985,6 +1091,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "sports",
+    "hint": "This French-speaking Canadian city's Olympic Stadium features a distinctive inclined tower, the tallest inclined tower in the world",
     "explanation": "Montreal, Quebec, hosted the 1976 Summer Games."
   },
   {
@@ -994,6 +1101,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "Also known as M31, this spiral galaxy is our largest neighbor and will merge with our galaxy in about 4-5 billion years",
     "explanation": "The Andromeda Galaxy (M31) is expected to merge with the Milky Way in ~4–5 billion years."
   },
     {
@@ -1003,6 +1111,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "language",
+    "hint": "Ironically, this deliberately long word combines 'hippopotamus', 'monstrous', and 'sesquipedalian' (loving long words) with 'phobia'",
     "explanation": "The tongue‑in‑cheek term 'hippopotomonstrosesquipedaliophobia' is used to describe a fear of long words."
   },
   {
@@ -1012,6 +1121,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "music",
+    "hint": "This Canadian singer's 80s-inspired synth-pop song became one of the most successful singles of all time on Billboard's Hot 100",
     "explanation": "'Blinding Lights' is a 2019–2020 global hit by The Weeknd."
   },
   {
@@ -1021,6 +1131,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "music",
+    "hint": "This teenage singer-songwriter won multiple Grammy Awards for her debut album 'When We All Fall Asleep, Where Do We Go?'",
     "explanation": "Billie Eilish released 'bad guy' in 2019 on her debut album."
   },
   {
@@ -1030,6 +1141,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "language",
+    "hint": "This English proverb suggests that a complex idea can be conveyed with just a single image, originating from advertising in the 1920s",
     "explanation": "The common proverb ends with 'words'."
   },
   {
@@ -1039,6 +1151,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "language",
+    "hint": "This proverb about the rewards of being first and prompt uses a metaphor about a bird's breakfast habits",
     "explanation": "Classic proverb encouraging promptness."
   },
   {
@@ -1048,6 +1161,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "science",
+    "hint": "These living microorganisms feed on sugars in the dough, producing carbon dioxide bubbles that make bread fluffy",
     "explanation": "Yeast ferments sugars releasing CO₂, which leavens dough."
   },
   {
@@ -1057,6 +1171,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "language",
+    "hint": "Words like 'mom', 'noon', and 'racecar' have this special property - they're mirror images of themselves",
     "explanation": "Examples include 'level' and 'radar'."
   },
   {
@@ -1066,6 +1181,7 @@
     "correctAnswer": 0,
     "difficulty": "easy",
     "category": "movies",
+    "hint": "This actor, known for saying 'whoa', also starred in 'Speed' and 'John Wick', and has become an internet favorite for his kindness",
     "explanation": "Keanu Reeves starred as Neo in 'The Matrix'."
   },
   {
@@ -1075,6 +1191,7 @@
     "correctAnswer": 1,
     "difficulty": "easy",
     "category": "movies",
+    "hint": "This actor went on to win his first Oscar for 'The Revenant' in 2016 after being nominated multiple times",
     "explanation": "Leonardo DiCaprio played Jack opposite Kate Winslet."
   },
   {
@@ -1084,6 +1201,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "language",
+    "hint": "This ancient proverb, attributed to Saint Ambrose, advises travelers to adapt to local customs using the citizens of Italy's capital as an example",
     "explanation": "The saying advises following local customs—'Romans'."
   },
   {
@@ -1093,6 +1211,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "science",
+    "hint": "Humans, bears, and pigs are examples of these adaptable eaters - the word comes from Latin meaning 'all-devouring'",
     "explanation": "Omnivores have diets of both plant and animal matter."
   },
   {
@@ -1102,6 +1221,7 @@
     "correctAnswer": 0,
     "difficulty": "medium",
     "category": "music",
+    "hint": "This red-haired British singer-songwriter is known for hits like 'Perfect' and 'Thinking Out Loud', often performing solo with just a guitar and loop pedal",
     "explanation": "Ed Sheeran released the hit single in 2017."
   },
   {
@@ -1111,6 +1231,7 @@
     "correctAnswer": 0,
     "difficulty": "medium",
     "category": "movies",
+    "hint": "This Australian actor played the clawed mutant for 17 years, ending with the film 'Logan', and is also known for starring in 'The Greatest Showman'",
     "explanation": "Hugh Jackman portrayed Logan/Wolverine across multiple films."
   },
   {
@@ -1120,16 +1241,18 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "science",
+    "hint": "This device often uses spinning cups or propellers to calculate how fast the wind is moving - its name comes from the Greek word for 'wind'",
     "explanation": "An anemometer measures wind speed."
   },
   {
     "id": 124,
-    "question": "Who played T’Challa (Black Panther) in 'Black Panther' (2018)?",
+    "question": "Who played T'Challa (Black Panther) in 'Black Panther' (2018)?",
     "options": ["Michael B. Jordan", "Chadwick Boseman", "John David Washington", "Daniel Kaluuya"],
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "movies",
-    "explanation": "Chadwick Boseman starred as T’Challa in the 2018 film."
+    "hint": "This talented actor, who tragically passed away in 2020, also portrayed Jackie Robinson in '42' and James Brown in 'Get on Up'",
+    "explanation": "Chadwick Boseman starred as T'Challa in the 2018 film."
   },
   {
     "id": 125,
@@ -1138,6 +1261,7 @@
     "correctAnswer": 1,
     "difficulty": "medium",
     "category": "literature",
+    "hint": "This famous line opens Hamlet's soliloquy about existence and mortality in Act 3, Scene 1 of the play",
     "explanation": "From Hamlet's soliloquy in Act 3, Scene 1."
   },
   {
@@ -1147,6 +1271,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "music",
+    "hint": "This Seattle grunge band's breakthrough hit from 1991 helped define the sound of a generation, led by frontman Kurt Cobain",
     "explanation": "Nirvana released it in 1991 on 'Nevermind'."
   },
   {
@@ -1156,6 +1281,7 @@
     "correctAnswer": 0,
     "difficulty": "hard",
     "category": "movies",
+    "hint": "This South African actress shaved her head to play the one-armed warrior in George Miller's post-apocalyptic action film",
     "explanation": "Charlize Theron portrayed Imperator Furiosa."
   },
   {
@@ -1165,6 +1291,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "language",
+    "hint": "This ancient Latin proverb ('Fortes Fortuna adiuvat') encourages taking risks and being courageous",
     "explanation": "Latin: 'Fortes Fortuna adiuvat'—'Fortune favors the bold.'"
   },
   {
@@ -1174,6 +1301,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "science",
+    "hint": "This term combines the Greek words for 'spider' (named after the mythological weaver Arachne) and 'fear'",
     "explanation": "Arachnophobia is an intense fear of spiders."
   },
     {
@@ -1183,6 +1311,7 @@
     "correctAnswer": 1,
     "difficulty": "hard",
     "category": "movies",
+    "hint": "This Broadway star, known for 'Wicked' and 'Rent', sang the Oscar-winning song 'Let It Go'",
     "explanation": "Idina Menzel provided Elsa's speaking and singing voice."
   },
   {
@@ -1192,6 +1321,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "sports",
+    "hint": "This Canadian team, led by Kawhi Leonard, won their first NBA championship in franchise history against the defending champions",
     "explanation": "The Toronto Raptors defeated the Golden State Warriors 4–2 in 2019."
   },
   {
@@ -1201,6 +1331,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
+    "hint": "A standard team consists of one goalkeeper and ten outfield players, making this total number",
     "explanation": "Each side fields 11 players, including the goalkeeper."
   },
   {
@@ -1210,6 +1341,7 @@
     "correctAnswer": 2,
     "difficulty": "medium",
     "category": "sports",
+    "hint": "This American swimmer, nicknamed 'The Baltimore Bullet', dominated the pool across four Olympics from 2004 to 2016",
     "explanation": "Swimmer Michael Phelps won 23 Olympic gold medals."
   },
   {
@@ -1219,6 +1351,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
+    "hint": "This basic scoring play is worth this many points before any extra point or two-point conversion attempts",
     "explanation": "A touchdown is 6 points before any conversion attempt."
   },
   {
@@ -1228,6 +1361,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "sports",
+    "hint": "Known as the 'Seleção', this South American team's five victories include three with Pelé and two with Ronaldo",
     "explanation": "Brazil leads with five World Cup titles."
   },
   {
@@ -1237,6 +1371,7 @@
     "correctAnswer": 3,
     "difficulty": "medium",
     "category": "sports",
+    "hint": "This Canadian legend wore number 99 and holds or shares 61 NHL records, including most career goals and assists",
     "explanation": "Wayne Gretzky earned the nickname 'The Great One' due to his unparalleled dominance and numerous NHL records."
   },
   {
@@ -1246,6 +1381,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "sports",
+    "hint": "These major tournaments include the Australian Open, French Open (Roland Garros), Wimbledon, and one in New York",
     "explanation": "The Australian Open, French Open, Wimbledon, and US Open make four."
   },
   {
@@ -1255,6 +1391,7 @@
     "correctAnswer": 2,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This Italian city is built on 118 small islands connected by bridges, with gondolas being a popular way to travel",
     "explanation": "Venice is built on a network of canals in a lagoon."
   },
   {
@@ -1264,6 +1401,7 @@
     "correctAnswer": 3,
     "difficulty": "easy",
     "category": "geography",
+    "hint": "This famous river, the world's longest, flows northward through Egypt to the Mediterranean Sea",
     "explanation": "Cairo sits on the banks of the Nile River."
   },
   {
@@ -1273,6 +1411,7 @@
     "correctAnswer": 2,
     "difficulty": "hard",
     "category": "science",
+    "hint": "Located in the western Pacific Ocean, this trench's deepest point (Challenger Deep) is about 11 kilometers below sea level",
     "explanation": "The Challenger Deep in the Mariana Trench is the deepest measured point."
   },
   {
@@ -1471,3 +1610,4 @@
     "fallbackQuestions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   }
 }
+
