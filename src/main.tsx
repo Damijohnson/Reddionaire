@@ -11,7 +11,6 @@ Devvit.configure({
 
 const BGURL = "app_bg_v2.jpg";
 
-// Game constants
 const MONEY_LADDER = [
   { question: 1, amount: "100,000", milestone: false },
   { question: 2, amount: "150,000", milestone: false },
@@ -27,7 +26,6 @@ const MONEY_LADDER = [
   { question: 12, amount: "1,000,000", milestone: true },
 ];
 
-// Question rotation system - rotates on every gameplay session
 const getQuestionsForGame = (subredditId: string): typeof questionsData.questions => {
   // Create a session seed with timestamp, random number, and subreddit for truly unique questions each game
   const sessionSeed = `${Date.now()}_${Math.random()}_${subredditId}`;
@@ -119,7 +117,6 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   return finalQuestions;
 };
 
-// Game state interface
 interface GameState {
   currentQuestion: number; 
   score: number;
@@ -176,7 +173,6 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
   return post;
 };
 
-// Add a menu item to the subreddit menu for instantiating the new experience post
 Devvit.addMenuItem({
   label: "Start Reddionaire Game",
   location: "subreddit",
@@ -214,7 +210,6 @@ Devvit.addTrigger({
   },
 });
 
-// Add a post type definition
 Devvit.addCustomPostType({
   name: "Reddionaire Game",
   height: "tall",
@@ -225,6 +220,7 @@ Devvit.addCustomPostType({
     const [fiftyFifty, setFiftyFifty] = useState(true);
     const [askAudience, setAskAudience] = useState(true);
     const [phoneFriend, setPhoneFriend] = useState(true);
+    const [showHint, setShowHint] = useState<boolean>(false);
     const [usedLifelines, setUsedLifelines] = useState<string[]>([]);
     const [showWalkAway, setShowWalkAway] = useState(false);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -236,13 +232,10 @@ Devvit.addCustomPostType({
     const [audienceResults, setAudienceResults] = useState<number[]>([]);
     const [showAudienceResults, setShowAudienceResults] = useState(false);
     
-    // Timer state
     const [timeLeft, setTimeLeft] = useState<number>(30); // 30 seconds per question
     const [timerActive, setTimerActive] = useState<boolean>(false);
     const [timedOut, setTimedOut] = useState<boolean>(false);
-
-    // Timer interval - only runs when timer is active
-    const timerInterval = useInterval(() => {
+        const timerInterval = useInterval(() => {
       if (timerActive && timeLeft > 0) {
         setTimeLeft(prev => prev - 1);
       } else if (timerActive && timeLeft <= 0) {
@@ -346,6 +339,7 @@ Devvit.addCustomPostType({
             setHiddenOptions([]); // Reset hidden options for new question
             setAudienceResults([]); // Clear audience results for new question
             setShowAudienceResults(false); // Hide audience results display
+            setShowHint(false); // Hide hint for new question
             
             // Reset and start timer for next question
             setTimeLeft(30);
@@ -480,6 +474,8 @@ Devvit.addCustomPostType({
         setAskAudience(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       } else if (lifeline === 'phoneFriend' && phoneFriend) {
+        // Show hint when calling a friend
+        setShowHint(true);
         setPhoneFriend(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       }
@@ -501,6 +497,7 @@ Devvit.addCustomPostType({
       setHiddenOptions([]);
       setAudienceResults([]);
       setShowAudienceResults(false);
+      setShowHint(false);
       
       // Stop timer and reset
       setTimerActive(false);
@@ -699,6 +696,27 @@ Devvit.addCustomPostType({
                   </text>
                 </hstack>
               ))}
+            </vstack>
+          )}
+          
+          {/* Show hint if Call lifeline was used */}
+          {showHint && (
+            <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
+              <hstack gap="small" alignment="middle center">
+                <text size="small" weight="bold" color="#DAA520">Friend's Hint:</text>
+                <hstack
+                  padding="small"
+                  cornerRadius="small"
+                  backgroundColor="#FDE68A"
+                  alignment="middle center"
+                  onPress={() => setShowHint(false)}
+                >
+                  <text size="small" weight="bold" color="#7C5C00">Hide</text>
+                </hstack>
+              </hstack>
+              <text size="small" color="#333333">
+                I think the answer might be related to the main topic of the question. Consider the context carefully!
+              </text>
             </vstack>
           )}
           
