@@ -9,9 +9,9 @@ Devvit.configure({
   redis: true,
 });
 
-const BGURL = "app_bg_v2.jpg";
+const bgUrl = "app_bg_v2.jpg";
 
-const MONEY_LADDER = [
+const moneyLadder = [
   { question: 1, amount: "100,000", milestone: false },
   { question: 2, amount: "150,000", milestone: false },
   { question: 3, amount: "200,000", milestone: false },
@@ -24,6 +24,14 @@ const MONEY_LADDER = [
   { question: 10, amount: "800,000", milestone: false },
   { question: 11, amount: "850,000", milestone: false },
   { question: 12, amount: "1,000,000", milestone: true },
+];
+
+const friends = [
+  { name: "Alex", catchphrase: "I think the answer might be related to the main topic of the question. Consider the context carefully!" },
+  { name: "Sam", catchphrase: "Hmm, let me think about this... I believe it's connected to the core concept here. Trust your instincts!" },
+  { name: "Jordan", catchphrase: "Oh, I know this one! The key is in the details - look for the most logical connection." },
+  { name: "Casey", catchphrase: "This is tricky, but I'm pretty sure it relates to the fundamental principles we discussed. Go with your gut!" },
+  { name: "Riley", catchphrase: "I've seen this type of question before. The answer is definitely tied to the main theme. You've got this!" }
 ];
 
 const getQuestionsForGame = (subredditId: string): typeof questionsData.questions => {
@@ -137,7 +145,7 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
     subredditName: subreddit.name,
     preview: (
       <zstack width="100%" height="100%">
-        <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
+        <image url={bgUrl} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
         <vstack height="100%" width="100%" alignment="middle center" padding="large" gap="large">
           <vstack gap="medium" alignment="center">
             <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode="contain" description="Reddionaire logo" />
@@ -195,7 +203,7 @@ Devvit.addMenuItem({
 //   forUserType: "moderator",
 //   onPress: async (_event, context) => {
 //     try {
-//       const url = await context.assets.getURL(BGURL);
+//       const url = await context.assets.getURL(bgUrl);
 //       context.ui.showToast(url ?? "(no URL returned)");
 //     } catch (e) {
 //       context.ui.showToast(`assets.getURL error: ${String(e)}`);
@@ -221,6 +229,7 @@ Devvit.addCustomPostType({
     const [askAudience, setAskAudience] = useState(true);
     const [phoneFriend, setPhoneFriend] = useState(true);
     const [showHint, setShowHint] = useState<boolean>(false);
+    const [currentFriend, setCurrentFriend] = useState<{name: string, catchphrase: string} | null>(null);
     const [usedLifelines, setUsedLifelines] = useState<string[]>([]);
     const [showWalkAway, setShowWalkAway] = useState(false);
     const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -313,7 +322,7 @@ Devvit.addCustomPostType({
       const isCorrect = selectedAnswer === currentQ.correctAnswer;
       
       if (isCorrect) {
-          const newScore = MONEY_LADDER[currentQuestion].amount;
+          const newScore = moneyLadder[currentQuestion].amount;
           const nextQuestion = currentQuestion + 1;
           
           // Set explanation for correct answer
@@ -326,7 +335,7 @@ Devvit.addCustomPostType({
 
           } else {
             // Check if the CURRENT question they just answered is a milestone
-            const isMilestone = MONEY_LADDER[currentQuestion].milestone;
+            const isMilestone = moneyLadder[currentQuestion].milestone;
             // console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
             if (isMilestone) {
               // console.log('Setting showWalkAway to true');
@@ -474,7 +483,9 @@ Devvit.addCustomPostType({
         setAskAudience(false);
         setUsedLifelines(prev => [...prev, lifeline]);
       } else if (lifeline === 'phoneFriend' && phoneFriend) {
-        // Show hint when calling a friend
+        // Select a random friend and show their hint
+        const randomFriend = friends[Math.floor(Math.random() * friends.length)];
+        setCurrentFriend(randomFriend);
         setShowHint(true);
         setPhoneFriend(false);
         setUsedLifelines(prev => [...prev, lifeline]);
@@ -498,6 +509,7 @@ Devvit.addCustomPostType({
       setAudienceResults([]);
       setShowAudienceResults(false);
       setShowHint(false);
+      setCurrentFriend(null);
       
       // Stop timer and reset
       setTimerActive(false);
@@ -528,11 +540,11 @@ Devvit.addCustomPostType({
           >
             <hstack gap="small" alignment="middle center">
               <image url="reddionaire-icon.png" imageWidth={24} imageHeight={24} width="24px" height="24px" resizeMode="contain" description="Reddionaire icon" />
-              <text size={gameUI.moneyLadder.container.textSize} weight={gameUI.moneyLadder.container.textWeight} color={gameUI.moneyLadder.container.textColor}>R${MONEY_LADDER[currentQuestion].amount}</text>
+              <text size={gameUI.moneyLadder.container.textSize} weight={gameUI.moneyLadder.container.textWeight} color={gameUI.moneyLadder.container.textColor}>R${moneyLadder[currentQuestion].amount}</text>
             </hstack>
           </hstack>
           
-          {MONEY_LADDER[currentQuestion].milestone && (
+          {moneyLadder[currentQuestion].milestone && (
             <vstack alignment="middle center" padding="small">
               <text size={gameUI.moneyLadder.milestone.textSize} color={gameUI.moneyLadder.milestone.textColor}>Milestone</text>
             </vstack>
@@ -643,12 +655,12 @@ Devvit.addCustomPostType({
     };
 
     const renderHint = () => {
-      if (!showHint) return null;
+      if (!showHint || !currentFriend) return null;
       
       return (
         <vstack gap={gameUI.lifelineCard.container.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start" width="70%">Friend's Hint</text>
+            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start" width="70%">Calling {currentFriend.name}</text>
             <vstack width="30%" alignment="end">
             <hstack
               padding={gameUI.lifelineCard.hide.padding}
@@ -660,8 +672,8 @@ Devvit.addCustomPostType({
             </vstack>
           </hstack>
           <vstack gap="small" width="100%">
-            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor}>
-              I think the answer might be related to the main topic of the question. Consider the context carefully!
+            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} wrap={true}>
+              {currentFriend.catchphrase}
             </text>
           </vstack>
         </vstack>
@@ -883,7 +895,7 @@ Devvit.addCustomPostType({
             Milestone Reached!
           </text>
           <text size="large" color={colors.white} alignment="center">
-            You've secured R${MONEY_LADDER[currentQuestion].amount}!
+            You've secured R${moneyLadder[currentQuestion].amount}!
           </text>
           <text size="medium" color={colors.white} alignment="center">
             Do you want to continue or walk away?
@@ -1107,7 +1119,7 @@ Devvit.addCustomPostType({
 
     return (
       <zstack width="100%" height="100%">
-      <image url={BGURL} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
+      <image url={bgUrl} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
         <vstack height="100%" width="100%" padding={page.base.padding}>
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack 
