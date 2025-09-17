@@ -601,35 +601,35 @@ Devvit.addCustomPostType({
       
       const currentQ = gameQuestions[currentQuestion];
       return (
-        <vstack gap={gameUI.audienceResults.container.gap} width="100%" padding={gameUI.audienceResults.container.padding} backgroundColor={gameUI.audienceResults.container.background} cornerRadius={gameUI.audienceResults.container.cornerRadius}>
+        <vstack gap={gameUI.lifelineCard.container.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} alignment="start" width="70%">Audience Results</text>
+            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start" width="70%">Audience Results</text>
             <vstack width="30%" alignment="end">
             <hstack
-              padding={gameUI.audienceResults.hide.padding}
-              cornerRadius={gameUI.audienceResults.container.cornerRadius}
-              backgroundColor={gameUI.audienceResults.hide.background}
+              padding={gameUI.lifelineCard.hide.padding}
+              cornerRadius={gameUI.lifelineCard.container.cornerRadius}
+              backgroundColor={gameUI.lifelineCard.hide.background}
               onPress={() => setShowAudienceResults(false)}>
-              <text size={gameUI.audienceResults.hide.textSize} weight={gameUI.audienceResults.hide.textWeight} color={gameUI.audienceResults.hide.textColor}>Hide</text>
+              <text size={gameUI.lifelineCard.hide.textSize} weight={gameUI.lifelineCard.hide.textWeight} color={gameUI.lifelineCard.hide.textColor}>Hide</text>
             </hstack>
             </vstack>
           </hstack>
           <vstack gap="small" width="100%">
             {audienceResults.map((percentage, index) => {
               return (
-                <hstack key={index.toString()} width="100%" gap={gameUI.audienceResults.container.gap} alignment="start">
-                  <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} width="25px">
+                <hstack key={index.toString()} width="100%" gap={gameUI.lifelineCard.container.gap} alignment="start">
+                  <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} width="25px">
                     {String.fromCharCode(65 + index)}:
                   </text>
-                  <vstack width="100%" gap={gameUI.audienceResults.container.gap}>
-                    <hstack width="100%" gap={gameUI.audienceResults.container.gap} alignment="start">
+                  <vstack width="100%" gap={gameUI.lifelineCard.container.gap}>
+                    <hstack width="100%" gap={gameUI.lifelineCard.container.gap} alignment="start">
                       <vstack 
                         width={`${Math.min(percentage, 60)}%`} 
                         height="15px" 
-                        backgroundColor={index === currentQ.correctAnswer ? gameUI.audienceResults.container.correctAnswer : gameUI.audienceResults.container.wrongAnswer}
+                        backgroundColor={index === currentQ.correctAnswer ? gameUI.lifelineCard.container.correctAnswer : gameUI.lifelineCard.container.wrongAnswer}
                         cornerRadius="small"
                       />
-                      <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} width="40px">
+                      <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} width="40px">
                         {percentage.toString()}%
                       </text>
                     </hstack>
@@ -646,21 +646,21 @@ Devvit.addCustomPostType({
       if (!showHint) return null;
       
       return (
-        <vstack gap={gameUI.audienceResults.container.gap} width="100%" padding={gameUI.audienceResults.container.padding} backgroundColor={gameUI.audienceResults.container.background} cornerRadius={gameUI.audienceResults.container.cornerRadius}>
+        <vstack gap={gameUI.lifelineCard.container.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} alignment="start" width="70%">Friend's Hint</text>
+            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start" width="70%">Friend's Hint</text>
             <vstack width="30%" alignment="end">
             <hstack
-              padding={gameUI.audienceResults.hide.padding}
-              cornerRadius={gameUI.audienceResults.container.cornerRadius}
-              backgroundColor={gameUI.audienceResults.hide.background}
+              padding={gameUI.lifelineCard.hide.padding}
+              cornerRadius={gameUI.lifelineCard.container.cornerRadius}
+              backgroundColor={gameUI.lifelineCard.hide.background}
               onPress={() => setShowHint(false)}>
-              <text size={gameUI.audienceResults.hide.textSize} weight={gameUI.audienceResults.hide.textWeight} color={gameUI.audienceResults.hide.textColor}>Hide</text>
+              <text size={gameUI.lifelineCard.hide.textSize} weight={gameUI.lifelineCard.hide.textWeight} color={gameUI.lifelineCard.hide.textColor}>Hide</text>
             </hstack>
             </vstack>
           </hstack>
           <vstack gap="small" width="100%">
-            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor}>
+            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor}>
               I think the answer might be related to the main topic of the question. Consider the context carefully!
             </text>
           </vstack>

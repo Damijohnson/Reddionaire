@@ -184,7 +184,7 @@ export const gameUI = {
       textSize: "small" as const,
     }
   },
-  audienceResults: {
+  lifelineCard: {
     container: {
       padding: "medium" as const,
       cornerRadius: card.container.cornerRadius,
