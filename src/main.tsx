@@ -35,10 +35,10 @@ const friends = [
 ];
 
 const getQuestionsForGame = (subredditId: string): typeof questionsData.questions => {
-  // Create a session seed with timestamp, random number, and subreddit for truly unique questions each game
-  const sessionSeed = `${Date.now()}_${Math.random()}_${subredditId}`;
+  // Create a more robust session seed for better randomization
+  const sessionSeed = `${Date.now()}_${Math.random()}_${subredditId}_${Math.random()}`;
   
-  // Simple hash function for consistent seeding
+  // Improved hash function using multiple passes for better distribution
   let hash = 0;
   for (let i = 0; i < sessionSeed.length; i++) {
     const char = sessionSeed.charCodeAt(i);
@@ -46,17 +46,31 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     hash = hash & hash; // Convert to 32-bit integer
   }
   
-  // Use the hash to shuffle questions consistently with better randomization
-  const shuffledQuestions = [...questionsData.questions].sort(() => {
-    hash = (hash * 9301 + 49297) % 233280;
-    return (hash / 233280) - 0.5;
-  });
+  // Fisher-Yates shuffle implementation for true randomization
+  const shuffleArray = (array: any[], seed: number): any[] => {
+    const shuffled = [...array];
+    let currentSeed = seed;
+    
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      // Generate random index using linear congruential generator
+      currentSeed = (currentSeed * 1664525 + 1013904223) % 4294967296;
+      const j = Math.floor((currentSeed / 4294967296) * (i + 1));
+      
+      // Swap elements
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    return shuffled;
+  };
+  
+  // Shuffle all questions first for maximum randomization
+  const shuffledQuestions = shuffleArray(questionsData.questions, hash);
   
   // Select questions with progression: easy -> medium -> hard (random selection from each tier)
   const questionsPerGame = questionsData.metadata.questionsPerGame;
   const selectedQuestions: typeof questionsData.questions = [];
   
-  // Separate questions by difficulty (already shuffled, so random selection)
+  // Separate questions by difficulty
   const easyQuestions = shuffledQuestions.filter(q => q.difficulty === "easy");
   const mediumQuestions = shuffledQuestions.filter(q => q.difficulty === "medium");
   const hardQuestions = shuffledQuestions.filter(q => q.difficulty === "hard");
@@ -66,20 +80,10 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   const mediumCount = Math.min(4, Math.max(0, questionsPerGame - 4));
   const hardCount = Math.max(0, questionsPerGame - 8);
   
-  // Add random questions from each difficulty tier in progression order
-  // Shuffle each difficulty tier separately to get different random selections
-  const shuffledEasy = [...easyQuestions].sort(() => {
-    hash = (hash * 9301 + 49297) % 233280;
-    return (hash / 233280) - 0.5;
-  });
-  const shuffledMedium = [...mediumQuestions].sort(() => {
-    hash = (hash * 9301 + 49297) % 233280;
-    return (hash / 233280) - 0.5;
-  });
-  const shuffledHard = [...hardQuestions].sort(() => {
-    hash = (hash * 9301 + 49297) % 233280;
-    return (hash / 233280) - 0.5;
-  });
+  // Shuffle each difficulty tier separately with different seeds for better distribution
+  const shuffledEasy = shuffleArray(easyQuestions, hash + 1000);
+  const shuffledMedium = shuffleArray(mediumQuestions, hash + 2000);
+  const shuffledHard = shuffleArray(hardQuestions, hash + 3000);
   
   selectedQuestions.push(...shuffledEasy.slice(0, easyCount));
   selectedQuestions.push(...shuffledMedium.slice(0, mediumCount));
@@ -102,12 +106,8 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     // Create array of indices [0, 1, 2, 3]
     const indices = [0, 1, 2, 3];
     
-    // Create a unique hash for each question to ensure different shuffling
-    let questionHash = hash + questionIndex * 1000;
-    const shuffledIndices = indices.sort(() => {
-      questionHash = (questionHash * 9301 + 49297) % 233280;
-      return (questionHash / 233280) - 0.5;
-    });
+    // Use Fisher-Yates shuffle for option randomization too
+    const shuffledIndices = shuffleArray(indices, hash + questionIndex * 10000);
     
     // Create new options array with shuffled order
     const newOptions = shuffledIndices.map(index => question.options[index]);
