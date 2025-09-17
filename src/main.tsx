@@ -642,6 +642,32 @@ Devvit.addCustomPostType({
       );
     };
 
+    const renderHint = () => {
+      if (!showHint) return null;
+      
+      return (
+        <vstack gap={gameUI.audienceResults.container.gap} width="100%" padding={gameUI.audienceResults.container.padding} backgroundColor={gameUI.audienceResults.container.background} cornerRadius={gameUI.audienceResults.container.cornerRadius}>
+          <hstack width="100%">
+            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor} alignment="start" width="70%">Friend's Hint</text>
+            <vstack width="30%" alignment="end">
+            <hstack
+              padding={gameUI.audienceResults.hide.padding}
+              cornerRadius={gameUI.audienceResults.container.cornerRadius}
+              backgroundColor={gameUI.audienceResults.hide.background}
+              onPress={() => setShowHint(false)}>
+              <text size={gameUI.audienceResults.hide.textSize} weight={gameUI.audienceResults.hide.textWeight} color={gameUI.audienceResults.hide.textColor}>Hide</text>
+            </hstack>
+            </vstack>
+          </hstack>
+          <vstack gap="small" width="100%">
+            <text size={gameUI.audienceResults.container.textSize} weight={gameUI.audienceResults.container.textWeight} color={gameUI.audienceResults.container.textColor}>
+              I think the answer might be related to the main topic of the question. Consider the context carefully!
+            </text>
+          </vstack>
+        </vstack>
+      );
+    };
+
     const renderQuestion = () => {
       if (gameQuestions.length === 0) {
         return (
@@ -672,8 +698,8 @@ Devvit.addCustomPostType({
             </vstack>
           </vstack>
           
-          {/* Show either audience results or answer options */}
-          {showAudienceResults ? renderAudienceResults() : (
+          {/* Show either audience results, hint, or answer options */}
+          {showAudienceResults ? renderAudienceResults() : showHint ? renderHint() : (
             <vstack gap={gameUI.answers.button.gap} width="100%">
               {currentQ.options.map((option, index) => (
                 <hstack
@@ -696,27 +722,6 @@ Devvit.addCustomPostType({
                   </text>
                 </hstack>
               ))}
-            </vstack>
-          )}
-          
-          {/* Show hint if Call lifeline was used */}
-          {showHint && (
-            <vstack gap="small" width="100%" padding="small" backgroundColor="#FFF8DC" cornerRadius="small">
-              <hstack gap="small" alignment="middle center">
-                <text size="small" weight="bold" color="#DAA520">Friend's Hint:</text>
-                <hstack
-                  padding="small"
-                  cornerRadius="small"
-                  backgroundColor="#FDE68A"
-                  alignment="middle center"
-                  onPress={() => setShowHint(false)}
-                >
-                  <text size="small" weight="bold" color="#7C5C00">Hide</text>
-                </hstack>
-              </hstack>
-              <text size="small" color="#333333">
-                I think the answer might be related to the main topic of the question. Consider the context carefully!
-              </text>
             </vstack>
           )}
           
