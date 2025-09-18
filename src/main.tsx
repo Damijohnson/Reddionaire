@@ -404,61 +404,35 @@ Devvit.addCustomPostType({
       const correctAnswer = question.correctAnswer;
       const difficulty = question.difficulty;
       
-      // Base percentages by difficulty with balanced variance
-      let correctPercentage: number;
-      if (difficulty === 'easy') {
-        correctPercentage = 50 + Math.floor(seededRandom() * 30); // 50-80%
-      } else if (difficulty === 'medium') {
-        correctPercentage = 35 + Math.floor(seededRandom() * 35); // 35-70%
-      } else {
-        correctPercentage = 20 + Math.floor(seededRandom() * 40); // 20-60%
-      }
-      
-      // Add moderate noise (±15-20 points total)
-      const noise = (seededRandom() - 0.5) * 20;
-      correctPercentage = Math.max(5, Math.min(85, correctPercentage + noise));
-      
-      // Calculate remaining percentage for wrong answers
-      const remainingPercentage = 100 - correctPercentage;
-      const wrongOptions = [0, 1, 2, 3].filter(index => index !== correctAnswer);
-      
-      // Distribute remaining percentage across wrong options with some variation
-      const wrongPercentages: number[] = [];
-      let totalWrong = 0;
-      
-      for (let i = 0; i < wrongOptions.length; i++) {
-        const basePercentage = remainingPercentage / wrongOptions.length;
-        const variation = (seededRandom() - 0.5) * 30; // ±15% variation
-        let percentage = Math.max(3, basePercentage + variation); // Floor at 3%
-        wrongPercentages.push(percentage);
-        totalWrong += percentage;
-      }
-      
-      // Normalize to 100%
-      const total = correctPercentage + totalWrong;
-      const normalizedCorrect = Math.round((correctPercentage / total) * 100);
-      const normalizedWrong = wrongPercentages.map(p => Math.round((p / total) * 100));
-      
-      // Create final results array
-      const results = new Array(4).fill(0);
-      results[correctAnswer] = normalizedCorrect;
-      
-      let wrongIndex = 0;
-      for (let i = 0; i < 4; i++) {
-        if (i !== correctAnswer) {
-          results[i] = normalizedWrong[wrongIndex];
-          wrongIndex++;
+      // Generate raw percentages for all 4 options
+      const rawPercentages = [0, 1, 2, 3].map((_, index) => {
+        if (index === correctAnswer) {
+          // Correct answer gets higher percentage based on difficulty
+          let basePercentage;
+          if (difficulty === 'easy') {
+            basePercentage = 50 + Math.floor(seededRandom() * 30); // 50-80%
+          } else if (difficulty === 'medium') {
+            basePercentage = 35 + Math.floor(seededRandom() * 35); // 35-70%
+          } else {
+            basePercentage = 20 + Math.floor(seededRandom() * 40); // 20-60%
+          }
+          return basePercentage;
+        } else {
+          // Wrong answers get lower, random percentages
+          return Math.floor(seededRandom() * 25) + 5; // 5-30%
         }
-      }
+      });
       
-      // Ensure total is 100%
-      const finalTotal = results.reduce((sum, val) => sum + val, 0);
-      if (finalTotal !== 100) {
-        const diff = 100 - finalTotal;
-        results[correctAnswer] += diff;
-      }
+      // Normalize to exactly 100%
+      const total = rawPercentages.reduce((sum, val) => sum + val, 0);
+      const normalizedPercentages = rawPercentages.map(p => Math.round((p / total) * 100));
       
-      return results;
+      // Ensure the total is exactly 100 by adjusting the correct answer
+      const finalTotal = normalizedPercentages.reduce((sum, val) => sum + val, 0);
+      const diff = 100 - finalTotal;
+      normalizedPercentages[correctAnswer] += diff;
+      
+      return normalizedPercentages;
     };
 
     const useLifeline = (lifeline: string) => {
@@ -657,7 +631,18 @@ Devvit.addCustomPostType({
       return (
         <vstack gap={gameUI.lifelineCard.header.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start" width="70%">Audience Results</text>
+            <hstack gap="small" alignment="start" width="70%">
+              <image 
+                url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16h8V136a8,8,0,0,1,8-8H72a8,8,0,0,1,8,8v64H96V88a8,8,0,0,1,8-8h32a8,8,0,0,1,8,8V200h16V40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V200h8A8,8,0,0,1,232,208Z"></path></svg>`}
+                imageWidth={16}
+                imageHeight={16}
+                width="16px"
+                height="16px"
+                resizeMode="contain"
+                description="Chart bar icon"
+              />
+              <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start">Audience Results</text>
+            </hstack>
             <vstack width="30%" alignment="end">
             <hstack
               padding={gameUI.lifelineCard.hide.padding}
@@ -670,6 +655,10 @@ Devvit.addCustomPostType({
           </hstack>
           <vstack gap="small" width="100%">
             {audienceResults.map((percentage, index) => {
+              // Find the highest percentage to make it green
+              const maxPercentage = Math.max(...audienceResults);
+              const isHighest = percentage === maxPercentage;
+              
               return (
                 <hstack key={index.toString()} width="100%" gap={gameUI.lifelineCard.container.gap} alignment="start">
                   <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} width="25px">
@@ -680,7 +669,7 @@ Devvit.addCustomPostType({
                       <vstack 
                         width={`${Math.min(percentage, 60)}%`} 
                         height="15px" 
-                        backgroundColor={index === currentQ.correctAnswer ? gameUI.lifelineCard.container.correctAnswer : gameUI.lifelineCard.container.wrongAnswer}
+                        backgroundColor={isHighest ? gameUI.lifelineCard.container.correctAnswer : gameUI.lifelineCard.container.wrongAnswer}
                         cornerRadius="small"
                       />
                       <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} width="40px">
