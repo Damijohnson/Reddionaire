@@ -268,7 +268,7 @@ export const page = {
     alignment: "center" as const,
   },
   paragraph: {
-    textSize: typography.paragraph.textSize,
+    textSize: typography.heading4.textSize,
     textColor: colors.accent,
     alignment: "center" as const,
   },
