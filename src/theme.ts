@@ -228,6 +228,10 @@ export const page = {
     icon: {
       width: 30,
       height: 30,
+      large: {
+        width: 45,
+        height: 45,
+      },
     },
     pageTitle: {
       textColor: colors.white,
