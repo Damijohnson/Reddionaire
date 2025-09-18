@@ -169,11 +169,13 @@ export const gameUI = {
     },
   },
   moneyLadder: {
+    icon: {
+      width: 20,
+      height: 20,
+    },
     container: {
-      width: 110,
-      height: 30,
       textColor: colors.white,
-      padding: "none" as const,
+      padding: "small" as const,
       cornerRadius: "small" as const,
       textSize: "small" as const,
       textWeight: "bold" as const,
@@ -182,6 +184,10 @@ export const gameUI = {
     milestone: {
       textColor: colors.accent,
       textSize: "small" as const,
+      icon: {
+        width: 16,
+        height: 16,
+      },
     }
   },
   lifelineCard: {
@@ -256,8 +262,8 @@ export const page = {
     alignment: "center" as const,
   },
   subheading: {
-    textSize: typography.heading1.textSize,
-    textWeight: typography.heading1.textWeight,
+    textSize: typography.heading2.textSize,
+    textWeight: typography.heading2.textWeight,
     textColor: colors.accent,
     alignment: "center" as const,
   },
