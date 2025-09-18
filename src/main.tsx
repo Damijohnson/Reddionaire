@@ -313,9 +313,20 @@ Devvit.addCustomPostType({
           console.warn('Could not get subreddit, using default:', e);
         }
         
-        // Generate questions for this game session
-        const questions = getQuestionsForGame(subredditId);
-        setGameQuestions(questions);
+         // Generate questions for this game session
+         const questions = getQuestionsForGame(subredditId);
+         console.log('Questions generated:', questions.length);
+         
+         // If no questions generated, use fallback
+         if (questions.length === 0) {
+           console.warn('No questions generated, using fallback');
+           const fallbackQuestions = questionsData.rotationRules.fallbackQuestions.map(id => 
+             questionsData.questions.find(q => q.id === id)
+           ).filter(Boolean) as typeof questionsData.questions;
+           setGameQuestions(fallbackQuestions);
+         } else {
+           setGameQuestions(questions);
+         }
         
         setCurrentQuestion(0);
         setScore("0");
@@ -886,7 +897,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              startGame();
+              resetGame();
             }}
             alignment={page.button.alignment}
           >
@@ -968,7 +979,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              startGame();
+              resetGame();
             }}
             alignment={page.button.alignment}
           >
@@ -1003,7 +1014,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              startGame();
+              resetGame();
             }}
             alignment={page.button.alignment}
           >
