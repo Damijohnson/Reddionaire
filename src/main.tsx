@@ -179,20 +179,36 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
       <zstack width="100%" height="100%">
         <image url={bgUrl} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
         <vstack height="100%" width="100%" alignment="middle center" padding="large" gap="large">
-          <vstack gap="medium" alignment="center">
-            {/* <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode= description="Reddionaire logo" /> */}
-            <vstack alignment="center" gap="small">
-              <text size="large" weight="bold" color={colors.accent}>
-                Test your knowledge with 12  
-              </text>
-              <text size="large" weight="bold" color={colors.accent}>
-                questions and win up to
-              </text>
-              <text size="xlarge" weight="bold" color={colors.accent}>
-                R$1,000,000
-              </text>
+        <vstack gap="medium" alignment="center">
+            <hstack alignment="start middle" gap="small">
+                <zstack>
+            <image 
+                url={svg`<svg id="fi_9382138" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="Currency"><g id="BrazilReal"><g id="Coin"><g id="Bottom"><ellipse cx="256" cy="256" fill="#e88102" rx="245" ry="256"></ellipse><circle cx="256" cy="242.5" fill="#fdd835" r="242.5"></circle></g><g id="Shade" fill="#fff"><path d="m352.8 20.1-319.2 319.1c-10.7-24.5-17.4-51.1-19.4-79l259.5-259.6c27.9 2.1 54.5 8.8 79.1 19.5z" opacity=".5"></path><path d="m467.3 123.5-330.3 330.3c-20.6-11.6-39.2-26.1-55.5-43l342.9-342.8c16.8 16.2 31.3 34.9 42.9 55.5z" opacity=".5"></path><path d="m414.5 58.9-342 342c-5.3-6.2-10.4-12.7-15.1-19.4l337.7-337.7c6.7 4.7 13.2 9.8 19.4 15.1z" opacity=".5"></path><path d="m490.9 182-295.4 295.4c-8.9-2.3-17.6-5.1-26.1-8.3l313.2-313.2c3.2 8.5 6 17.2 8.3 26.1z" opacity=".5"></path><path d="m498.5 242.5c0 1.7 0 3.3-.1 5-2.6-131.6-110.1-237.5-242.4-237.5s-239.8 105.9-242.4 237.5c0-1.7-.1-3.3-.1-5 0-133.9 108.6-242.5 242.5-242.5s242.5 108.6 242.5 242.5z" opacity=".5"></path><path d="m453 253c0 104.9-85.1 190-190 190-58.9 0-111.6-26.9-146.5-69 34.7 37.5 84.3 61 139.5 61 104.9 0 190-85.1 190-190 0-46-16.3-88.1-43.5-121 31.3 33.9 50.5 79.2 50.5 129z" opacity=".5"></path></g><g id="Top"><circle cx="256" cy="245" fill="#f39e09" r="190"></circle><path d="m400 121c-33.3-28.7-76.6-46-124-46-104.9 0-190 85.1-190 190 0 47.4 17.3 90.7 46 124-40.4-34.9-66-86.4-66-144 0-104.9 85.1-190 190-190 57.5 0 109.1 25.6 144 66z" fill="#e88102"></path></g></g><g id="Icon"><g id="Bottom-2" fill="#db6704"><path d="m221.8 275.1c10.1-4.8 17.6-11 22.3-18.7 4.8-7.7 7.1-17.4 7.1-29.2v-15s-9.1-16.4-16.9-22.6c-11.3-8.9-26.9-13.3-46.9-13.3h-66.4v168.7h40.7v-59.6h22l29.8 59.6h43.5v-15zm-17-27.2c-3.9 4.1-9.7 6.1-17.4 6.1h-25.7v-46.4h25.7c7.6 0 13.4 2.1 17.4 6.2 3.9 4.1 5.9 9.9 5.9 17.1s-2 13-5.9 17z"></path><path d="m334 203.4c5.7 0 10.1 2.2 13.2 6.5s4.6 10.5 4.6 18.5h39.2v-15s-7.1-15.4-12.1-21.3c-8.1-9.5-19.2-15.4-33.3-17.4v-24.9h-18.4v24.4c-14.7 1.4-26.4 6.3-35.2 14.8-6.1 5.8-13.2 17.3-13.2 17.3v15c0 7.8 1.2 14.4 3.7 19.9s6 10.3 10.7 14.5c4.6 4.2 10.1 7.8 16.6 11 6.4 3.2 13.4 6.3 21 9.4s12.9 6.4 15.9 9.9 4.5 8.3 4.5 14.4c0 5.5-1.5 9.8-4.5 12.9s-7.1 4.7-12.4 4.7c-7.2 0-12.7-2.3-16.6-6.9s-5.9-11.3-5.9-20.1l-39-15v15c0 16 4.5 28.9 13.5 38.6 9 9.8 21.9 15.5 38.8 17.3v23.4h18.4v-23.3c14.4-1.4 25.9-6.2 34.2-14.6s12.6-19.1 12.6-32.3v-15s-2.9-2.8-3.9-5c-2.6-5.6-6.2-10.4-10.9-14.6-4.6-4.2-10.1-7.9-16.5-11.2s-13.1-6.4-20.3-9.5-12.4-6.2-15.6-9.6-4.9-7.9-4.9-13.6 1.4-10.1 4.2-13.3 6.5-4.9 11.6-4.9z"></path></g><g id="Top-2" fill="#fdd835"><path d="m183.7 270.3h-22v59.7h-40.7v-168.7h66.4c20 0 35.6 4.4 46.9 13.3s16.9 21.4 16.9 37.6c0 11.7-2.4 21.4-7.1 29.2s-12.2 14-22.3 18.7l35.2 68.1v1.7h-43.6zm-22-31.3h25.7c7.7 0 13.5-2 17.4-6.1s5.9-9.7 5.9-17-2-13-5.9-17.1-9.7-6.2-17.4-6.2h-25.7z"></path><path d="m351 285.2c0-6.1-1.5-10.9-4.5-14.4s-8.3-6.8-15.9-9.9-14.6-6.2-21-9.4-11.9-6.8-16.6-11-8.2-9-10.7-14.5-3.7-12.1-3.7-19.9c0-13.1 4.4-23.8 13.2-32.3s20.5-13.4 35.2-14.8v-24.4h18.4v24.9c14.1 2.1 25.2 7.9 33.3 17.4s12.1 21.6 12.1 36.3h-39.1c0-8-1.5-14.2-4.6-18.5s-7.5-6.5-13.2-6.5c-5.1 0-9 1.6-11.9 4.8-2.8 3.2-4.2 7.6-4.2 13.3s1.6 10.2 4.9 13.6 8.5 6.6 15.6 9.6c7.2 3.1 14 6.2 20.3 9.5s11.9 7 16.5 11.2 8.3 9 10.9 14.6 3.9 12.2 3.9 20c0 13.2-4.2 24-12.6 32.3s-19.8 13.2-34.2 14.6v23.3h-18.4v-23.4c-16.8-1.8-29.8-7.5-38.8-17.3s-13.5-22.6-13.5-38.6h39c0 8.8 2 15.5 5.9 20.1s9.4 6.9 16.6 6.9c5.2 0 9.4-1.6 12.4-4.7s4.7-7.3 4.7-12.8z"></path></g><g id="Shade-2" fill="#fff"><path d="m209.4 163.5-29.1 29.1h-18.6v18.6l-40.7 40.6v-90.5h66.4c8 0 15.3.7 22 2.2z" opacity=".5"></path><path d="m225.3 267 31.7 61.2v1.8h-43.6l-17-34.1z" opacity=".5"></path><path d="m311.7 275.9c0 1.1 0 2.2.1 3.2l-30 30c-6.1-9-9.2-20-9.2-33.2z" opacity=".5"></path><path d="m322.1 193.2c-2.8 3.2-4.2 7.6-4.2 13.3s1.6 10.2 4.9 13.6c3.2 3.4 8.5 6.6 15.6 9.6 5.4 2.3 10.6 4.7 15.6 7.1l-24 24c-7.3-3-14.1-6-20.3-9.1-6.4-3.2-11.9-6.8-16.6-11-4.6-4.2-8.2-9-10.6-14.5-1.7-3.8-2.8-8.1-3.4-12.9l66.5-66.5v12.9c14.1 2.1 25.2 7.9 33.3 17.4 5.6 6.7 9.3 14.6 11 23.8l-12.5 12.5h-25.5c0-8-1.5-14.2-4.6-18.5s-7.5-6.5-13.2-6.5c-5.2 0-9.1 1.6-12 4.8z" opacity=".5"></path><path d="m121 317.9 40.7-40.6v34.4l-18.3 18.3h-22.4z" opacity=".5"></path><path d="m251.2 212.2c0 3.8-.2 7.4-.7 10.7l-60.3 60.3-6.5-13h-15l78.7-78.7c2.5 6.1 3.8 13 3.8 20.7z" opacity=".5"></path><path d="m292 174c5.2-5 11.5-8.8 18.7-11.3l-30.2 30.2c2.1-7.2 5.9-13.5 11.5-18.9z" opacity=".5"></path><path d="m338.6 134.8-11.4 11.4v-11.4z" opacity=".5"></path><path d="m324.9 348v-16.2c-5.5-.6-10.6-1.6-15.2-3l26-26c4.6-.3 8.2-1.8 10.9-4.6 2.6-2.7 4.1-6.3 4.4-10.7l30.4-30.4c1.9 2.5 3.4 5.1 4.8 7.9 2.4 5 3.7 11 3.9 17.9z" opacity=".5"></path><path d="m414.5 140.1c-123 43.2-221.8 138.1-270.2 258.6-4.2-3.1-8.3-6.3-12.3-9.8-28.7-33.3-46-76.6-46-123.9 0-104.9 85.1-190 190-190 47.4 0 90.7 17.3 123.9 46 5.3 6.1 10.1 12.5 14.6 19.1z" opacity=".25"></path></g></g></g></g></svg>`}
+                imageWidth={page.titleBar.icon.width} 
+                imageHeight={page.titleBar.icon.height} 
+                width={`${page.titleBar.icon.width}px`} 
+                height={`${page.titleBar.icon.height}px`} 
+                description="Reddionaire icon"
+              />
+                </zstack>
+                <hstack backgroundColor={page.titleBar.pageTitle.background}cornerRadius={page.titleBar.pageTitle.cornerRadius} padding={page.titleBar.pageTitle.padding}>
+                <text size={page.heading.textSize} weight={page.titleBar.pageTitle.textWeight} color={page.titleBar.pageTitle.textColor}>Reddionaire</text>
+              </hstack>
+            </hstack>
+            <vstack gap="medium" alignment="center">
+                <vstack alignment="center">
+                  <text size="xlarge" weight="bold" color={colors.accent}>
+                    Test your knowledge with 12  
+                  </text>
+                  <text size="xlarge" weight="bold" color={colors.accent}>
+                  questions and win up to
+                  </text>
+                </vstack>
+                <text size="xxlarge" weight="bold" color={colors.accent}>
+                      R$1,000,000
+                  </text>
             </vstack>
-          </vstack>
+            </vstack>
           
           <vstack gap="medium" width="100%" maxWidth="300px" alignment="center">
             {/* <text size="medium" weight="bold" color={colors.white} alignment="center">
@@ -561,7 +577,7 @@ Devvit.addCustomPostType({
 
     const renderMoneyLadder = () => (
       <hstack gap="small" width="100%">
-        <hstack gap="small" alignment="start" width="70%">
+        <hstack gap="small" alignment="start" width="80%">
           <hstack 
             backgroundColor={gameUI.moneyLadder.container.background}
             cornerRadius={gameUI.moneyLadder.container.cornerRadius}
@@ -582,7 +598,7 @@ Devvit.addCustomPostType({
           </hstack>
           
           {moneyLadder[currentQuestion].milestone && (
-            <vstack alignment="middle center" padding="small">
+            <vstack alignment="middle center">
               <hstack gap="small" alignment="middle center">
                 <image 
                   url={svg`<svg id="Layer_1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m511.43 133.89-59.81 204.91-17.7 60.58h-355.84l-17.7-60.58-59.81-204.91a13.65 13.65 0 0 1 18.65-16.3l130.38 57.9 95.16-137.75a13.66 13.66 0 0 1 22.48 0l95.16 137.75 130.38-57.9a13.66 13.66 0 0 1 18.65 16.3z" fill="#ffb703"/><path d="m451.62 338.81-17.7 60.58h-355.84l-17.7-60.58z" fill="#f99300"/><path d="m511.43 133.89-59.81 204.91-17.7 60.58h-255.52c122.89-54.68 180-137 184-223.89l130.38-57.9a13.66 13.66 0 0 1 18.65 16.3z" fill="#f99300"/><path d="m488.83 419.58a60.59 60.59 0 0 1 -60.57 60.58h-344.52a60.58 60.58 0 0 1 0-121.16h344.52a63.11 63.11 0 0 1 8.3.56 60.58 60.58 0 0 1 52.27 60z" fill="#f99300"/><path d="m487.63 407.57a60.57 60.57 0 0 1 -59.37 48.56h-344.52a60.59 60.59 0 0 1 -59.37-48.56 60.59 60.59 0 0 1 59.37-48.57h344.52a60.57 60.57 0 0 1 59.37 48.57z" fill="#ffb703"/><path d="m488.83 419.58a60.59 60.59 0 0 1 -60.57 60.58h-344.52a60.55 60.55 0 0 1 -51.7-29c9.35.19 19.18.44 29.55.79 406.95 13.6 366.67-92.95 366.67-92.95l8.3.56a60.58 60.58 0 0 1 52.27 60z" fill="#f99300"/><g fill="none" stroke="#ffcc29" stroke-linecap="round" stroke-miterlimit="10" stroke-width="16.84"><path d="m251.75 70.27-73.35 103.59"/><path d="m24.37 139.01 99.66 44.3"/><path d="m239.53 375.5h49.54"/><path d="m76.15 375.5h121.55"/></g></svg>`}
@@ -598,7 +614,7 @@ Devvit.addCustomPostType({
         </hstack>
         
           {gameStatus === 'playing' && (
-            <hstack width="30%">
+            <hstack width="20%">
               <hstack gap="small" alignment="middle end" width="100%">
                 <image 
                   url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M61.66,37.66l-32,32A8,8,0,0,1,18.34,58.34l32-32A8,8,0,0,1,61.66,37.66Zm176,20.68-32-32a8,8,0,0,0-11.32,11.32l32,32a8,8,0,0,0,11.32-11.32ZM224,136a96,96,0,1,1-96-96A96.11,96.11,0,0,1,224,136Zm-32,0a8,8,0,0,0-8-8H136V80a8,8,0,0,0-16,0v56a8,8,0,0,0,8,8h56A8,8,0,0,0,192,136Z"></path></svg>`}
@@ -1293,7 +1309,7 @@ Devvit.addCustomPostType({
         <vstack height="100%" width="100%" padding={page.base.padding}>
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
           <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
-               <vstack gap="medium" alignment="center">
+            <vstack gap="medium" alignment="center">
             <hstack alignment="start middle" gap="small">
                 <zstack>
             <image 
@@ -1322,7 +1338,7 @@ Devvit.addCustomPostType({
                       R$1,000,000
                   </text>
             </vstack>
-        </vstack>
+            </vstack>
             <vstack gap="medium" width="100%" maxWidth="400px">
               <hstack 
                 width={`${buttons.base.width}%`}
