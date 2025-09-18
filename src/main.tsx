@@ -328,9 +328,14 @@ Devvit.addCustomPostType({
         setShowLeaderboard(false);
         setShowHowToPlay(false);
         setLastAnswerExplanation("");
+        setHiddenOptions([]);
+        setAudienceResults([]);
+        setShowAudienceResults(false);
+        setShowHint(false);
+        setCurrentFriend(null);
         
         // Initialize timer
-        setTimeLeft(310);
+        setTimeLeft(30);
         setTimerActive(true);
         setTimedOut(false);
         timerInterval.start();
@@ -893,7 +898,7 @@ Devvit.addCustomPostType({
 
     const renderLost = () => (
       <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
-        <vstack gap="small" alignment="center">
+        <vstack gap="medium" alignment="center">
           {timedOut ? (
              <hstack alignment="start middle" gap="small">
              <zstack>
