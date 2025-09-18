@@ -247,20 +247,6 @@ Devvit.addMenuItem({
   },
 });
 
-// Devvit.addMenuItem({
-//   label: "Debug: Show BG URL",
-//   location: "subreddit",
-//   forUserType: "moderator",
-//   onPress: async (_event, context) => {
-//     try {
-//       const url = await context.assets.getURL(bgUrl);
-//       context.ui.showToast(url ?? "(no URL returned)");
-//     } catch (e) {
-//       context.ui.showToast(`assets.getURL error: ${String(e)}`);
-//     }
-//   },
-// });
-
 Devvit.addTrigger({
   events: ["AppInstall"],
   onEvent: async (event, context) => {
@@ -329,13 +315,9 @@ Devvit.addCustomPostType({
           console.warn('Could not get subreddit, using default:', e);
         }
         
-         // Generate questions for this game session
          const questions = getQuestionsForGame(subredditId);
-         console.log('Questions generated:', questions.length);
          
-         // If no questions generated, use fallback
          if (questions.length === 0) {
-           console.warn('No questions generated, using fallback');
            const fallbackQuestions = questionsData.rotationRules.fallbackQuestions.map(id => 
              questionsData.questions.find(q => q.id === id)
            ).filter(Boolean) as typeof questionsData.questions;
@@ -400,17 +382,12 @@ Devvit.addCustomPostType({
             setGameStatus('won');
 
           } else {
-            // Check if the CURRENT question they just answered is a milestone
             const isMilestone = moneyLadder[currentQuestion].milestone;
-            // console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
             if (isMilestone) {
-              // console.log('Setting showWalkAway to true');
-              // Stop the timer when showing milestone prompt
               setTimerActive(false);
               timerInterval.stop();
               setShowWalkAway(true);
             } else {
-              // Reset and start timer for next question (only if not milestone)
               setTimeLeft(30);
               setTimerActive(true);
               timerInterval.start();
@@ -908,7 +885,6 @@ Devvit.addCustomPostType({
             onPress={async () => {
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
-                console.log('Updating leaderboard with score:', score);
                 await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
@@ -990,7 +966,6 @@ Devvit.addCustomPostType({
             onPress={async () => {
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
-                console.log('Updating leaderboard with score:', score);
                 await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
@@ -1025,7 +1000,6 @@ Devvit.addCustomPostType({
             onPress={async () => {
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
-                console.log('Updating leaderboard with score:', score);
                 await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
@@ -1085,10 +1059,8 @@ Devvit.addCustomPostType({
             backgroundColor={buttons.secondary.background}
             cornerRadius={buttons.base.cornerRadius}
             onPress={async () => {
-              // Update leaderboard with current score before walking away
               try {
                 const subreddit = await context.reddit.getCurrentSubreddit();
-                console.log('Updating leaderboard with score (walk away):', score);
                 await LeaderboardService.updateLeaderboard(context, subreddit.name, score);
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
@@ -1112,7 +1084,6 @@ Devvit.addCustomPostType({
     };
 
     // Pages Walk Away, Leaderboard, How to Play
-
     const renderLeaderboard = () => (
       <vstack gap={page.base.gap} width="100%" height="100%" alignment={page.base.alignment} padding={page.base.padding}>
         <hstack width="100%" alignment="start middle" padding="none">
