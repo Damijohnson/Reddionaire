@@ -180,7 +180,7 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
         <image url={bgUrl} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
         <vstack height="100%" width="100%" alignment="middle center" padding="large" gap="large">
           <vstack gap="medium" alignment="center">
-            {/* <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode="contain" description="Reddionaire logo" /> */}
+            {/* <image url="logo.png" imageWidth={225} imageHeight={53} width="225px" height="53px" resizeMode= description="Reddionaire logo" /> */}
             <vstack alignment="center" gap="small">
               <text size="large" weight="bold" color={colors.accent}>
                 Test your knowledge with 12  
@@ -373,6 +373,9 @@ Devvit.addCustomPostType({
             // console.log(`Question ${currentQuestion + 1} milestone check:`, isMilestone);
             if (isMilestone) {
               // console.log('Setting showWalkAway to true');
+              // Stop the timer when showing milestone prompt
+              setTimerActive(false);
+              timerInterval.stop();
               setShowWalkAway(true);
             }
             
@@ -616,7 +619,6 @@ Devvit.addCustomPostType({
                 imageHeight={16}
                 width="16px"
                 height="16px"
-                resizeMode="contain"
                 description="50:50 icon"
               />
               <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>50:50</text>
@@ -637,7 +639,6 @@ Devvit.addCustomPostType({
                 imageHeight={16}
                 width="16px"
                 height="16px"
-                resizeMode="contain"
                 description="Ask audience icon"
               />
               <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Ask</text>
@@ -658,7 +659,6 @@ Devvit.addCustomPostType({
                 imageHeight={16}
                 width="16px"
                 height="16px"
-                resizeMode="contain"
                 description="Phone call icon"
               />
               <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Call</text>
@@ -682,7 +682,6 @@ Devvit.addCustomPostType({
                 imageHeight={16}
                 width="16px"
                 height="16px"
-                resizeMode="contain"
                 description="Chart bar icon"
               />
               <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start">Audience Results</text>
@@ -745,7 +744,6 @@ Devvit.addCustomPostType({
                 imageHeight={16}
                 width="16px"
                 height="16px"
-                resizeMode="contain"
                 description="Phone call icon"
               />
               <text size={gameUI.lifelineCard.container.textSize} weight={gameUI.lifelineCard.container.textWeight} color={gameUI.lifelineCard.container.textColor} alignment="start">Calling {currentFriend.name}</text>
@@ -876,7 +874,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              resetGame();
+              startGame();
             }}
             alignment={page.button.alignment}
           >
@@ -958,7 +956,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              resetGame();
+              startGame();
             }}
             alignment={page.button.alignment}
           >
@@ -993,7 +991,7 @@ Devvit.addCustomPostType({
               } catch (error) {
                 console.error('Error updating leaderboard:', error);
               }
-              resetGame();
+              startGame();
             }}
             alignment={page.button.alignment}
           >
@@ -1138,7 +1136,6 @@ Devvit.addCustomPostType({
                         imageHeight={16} 
                         width="16px" 
                         height="16px" 
-                        resizeMode="contain" 
                         description="Leaderboard icon" />
                     )}
                   </hstack>
@@ -1340,7 +1337,6 @@ Devvit.addCustomPostType({
                 imageHeight={20} 
                 width="20px" 
                 height="20px" 
-                resizeMode="contain" 
                 description="Leaderboard icon" />
               <text size={buttons.base.textSize} weight={buttons.base.textWeight} color={buttons.base.textColor}>Leaderboard</text>
             </hstack>
@@ -1395,7 +1391,6 @@ Devvit.addCustomPostType({
                     imageHeight={24}
                     width="24px"
                     height="24px"
-                    resizeMode="contain"
                     description="Home icon"
                   />
                 </hstack>
