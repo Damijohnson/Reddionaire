@@ -262,8 +262,8 @@ export const page = {
     alignment: "center" as const,
   },
   subheading: {
-    textSize: typography.heading2.textSize,
-    textWeight: typography.heading2.textWeight,
+    textSize: typography.heading3.textSize,
+    textWeight: typography.heading3.textWeight,
     textColor: colors.accent,
     alignment: "center" as const,
   },
