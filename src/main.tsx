@@ -195,7 +195,7 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
                 <text size={page.heading.textSize} weight={page.titleBar.pageTitle.textWeight} color={page.titleBar.pageTitle.textColor}>Reddionaire</text>
               </hstack>
             </hstack>
-            <vstack gap="medium" alignment="center">
+            <vstack gap="small" alignment="center">
                 <vstack alignment="center">
                   <text size="xlarge" weight="bold" color={colors.accent}>
                     Test your knowledge with 12  
@@ -210,17 +210,12 @@ const createPost = async (context: Devvit.Context | TriggerContext) => {
             </vstack>
             </vstack>
           
-          <vstack gap="medium" width="100%" maxWidth="300px" alignment="center">
-            {/* <text size="medium" weight="bold" color={colors.white} alignment="center">
-              Reddionaire Game Loading...
-            </text>  */}
-             
+          <vstack gap="medium" width="100%" maxWidth="300px" alignment="center">         
             {/* Progress Bar */}
             <vstack width="100%" gap="small">
               <hstack width="100%" height="8px" backgroundColor={colors.darkestPurple} cornerRadius="small">
                 <hstack width="60%" height="100%" backgroundColor={colors.accent} cornerRadius="small" />
               </hstack>
-              {/* <text size="small" color={colors.white} alignment="center">Loading questions...</text> */}
             </vstack>
           </vstack>
         </vstack>
@@ -1277,9 +1272,9 @@ Devvit.addCustomPostType({
     return (
       <zstack width="100%" height="100%">
       <image url={bgUrl} imageWidth={1920} imageHeight={1080} width="100%" height="100%" resizeMode="cover" description="background" />
-        <vstack height="100%" width="100%" padding={page.base.padding}>
+        <vstack height="100%" width="100%" padding={page.base.padding} >
         {gameStatus === 'waiting' && !showLeaderboard && !showHowToPlay && (
-          <vstack gap="large" width="100%" height="100%" alignment="center" padding="large">
+          <vstack gap="large" width="100%" height="100%" alignment="middle center" padding="large">
             <vstack gap="medium" alignment="center">
             <hstack alignment="start middle" gap="small">
                 <zstack>
@@ -1296,7 +1291,7 @@ Devvit.addCustomPostType({
                 <text size={page.heading.textSize} weight={page.titleBar.pageTitle.textWeight} color={page.titleBar.pageTitle.textColor}>Reddionaire</text>
               </hstack>
             </hstack>
-            <vstack gap="medium" alignment="center">
+            <vstack gap="small" alignment="center">
                 <vstack alignment="center">
                   <text size="xlarge" weight="bold" color={colors.accent}>
                     Test your knowledge with 12  
