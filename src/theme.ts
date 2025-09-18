@@ -209,22 +209,44 @@ export const gameUI = {
   }
 };
 
+export const logo = {
+  height: 30,
+  textColor: colors.white,
+  padding: "small" as const,
+  cornerRadius: "small" as const,
+  textSize: "large" as const,
+  textWeight: "bold" as const,
+  background: colors.darkerPurple,
+  icon: {
+    width: 60,
+    height: 60,
+  },
+};
+
+
 export const page = {
   base: {
     alignment: "center" as const,
     gap: "medium" as const,
     padding: "small" as const,
   },
-  header: {
-    title: {
-      container: 90,
-      width: 175,
+  titleBar: {
+    icon: {
+      width: 30,
       height: 30,
     },
+    pageTitle: {
+      textColor: colors.white,
+      padding: "small" as const,
+      cornerRadius: "small" as const,
+      textSize: "medium" as const,
+      textWeight: "bold" as const,
+      background: colors.darkerPurple,
+    },
     close: {
-      container: 10,
       width: 25,
       height: 25,
+      background: colors.accent,
     }
   },
   heading: {
