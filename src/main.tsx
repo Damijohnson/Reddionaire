@@ -108,7 +108,7 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   } 
   
   // Randomize the position of the correct answer for each question
-  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).filter(question => question && question.options).map((question, questionIndex) => {
+  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).filter(question => question && question.options && question.options.length === 4).map((question, questionIndex) => {
     // Create a copy of the question
     const shuffledQuestion = { ...question };
     
@@ -118,8 +118,28 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     // Use Fisher-Yates shuffle for option randomization too
     const shuffledIndices = shuffleArray(indices, hash + questionIndex * 10000);
     
-    // Create new options array with shuffled order
-    const newOptions = shuffledIndices.map(index => question.options[index]);
+    // Create new options array with shuffled order - ensure all 4 options are preserved
+    const newOptions = shuffledIndices.map(index => {
+      const option = question.options[index];
+      if (option === undefined) {
+        console.warn(`Missing option at index ${index} for question ${question.id}`, {
+          originalOptions: question.options,
+          shuffledIndices,
+          questionId: question.id
+        });
+        return `Option ${String.fromCharCode(65 + index)}`; // Fallback
+      }
+      return option;
+    });
+    
+    // Debug logging
+    if (newOptions.length !== 4) {
+      console.error(`Question ${question.id} has ${newOptions.length} options after shuffling:`, {
+        originalOptions: question.options,
+        shuffledIndices,
+        newOptions
+      });
+    }
     
     // Find the new position of the correct answer
     const newCorrectAnswer = shuffledIndices.indexOf(question.correctAnswer);
@@ -436,6 +456,10 @@ Devvit.addCustomPostType({
     };
 
     const useLifeline = (lifeline: string) => {
+      // Close any currently open lifeline displays
+      setShowAudienceResults(false);
+      setShowHint(false);
+      
       if (lifeline === 'fiftyFifty' && fiftyFifty) {
         // Get current question and hide 2 wrong answers
         const currentQ = gameQuestions[currentQuestion];
