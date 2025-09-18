@@ -137,8 +137,8 @@
     {
       "id": 13,
       "question": "What is the speed of light?",
-      "options": ["186,000 mph", "186,000 km/s", "186,000 m/s", "186,000 km/h"],
-      "correctAnswer": 1,
+      "options": ["186,000 mi/s", "186,000 km/s", "300,000 km/s", "186,000 km/h"],
+      "correctAnswer": 0,
       "difficulty": "medium",
       "category": "science",
       "hint": "This universal speed limit, often denoted as 'c', is so fast it could circle Earth about 7.5 times in just one second",
@@ -147,7 +147,7 @@
     {
       "id": 14,
       "question": "Which element has the chemical symbol 'O'?",
-      "options": ["Osmium", "Oxygen", "Oganesson", "Osmium"],
+      "options": ["Osmium", "Oxygen", "Oganesson", "Opium"],
       "correctAnswer": 1,
       "difficulty": "medium",
       "category": "science",

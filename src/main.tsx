@@ -9,7 +9,7 @@ Devvit.configure({
   redis: true,
 });
 
-const bgUrl = "app_bg_v2.jpg";
+const bgUrl = "app_bg.jpg";
 
 const moneyLadder = [
   { question: 1, amount: "100,000", milestone: false },
@@ -794,7 +794,7 @@ Devvit.addCustomPostType({
       
       const currentQ = gameQuestions[currentQuestion];
       return (
-        <vstack gap="medium" width="100%">
+        <vstack gap="small" width="100%">
           <vstack
             width="100%"
             backgroundColor={card.container.background}
