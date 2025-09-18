@@ -196,6 +196,9 @@ export const gameUI = {
       correctAnswer: colors.success,
       wrongAnswer: colors.error,
     },
+    header: {
+      gap: "medium" as const,
+    },
     hide: {
       padding: buttons.base.padding,
       background: colors.purple,
