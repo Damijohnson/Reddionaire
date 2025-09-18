@@ -684,7 +684,7 @@ Devvit.addCustomPostType({
       return (
         <vstack gap={gameUI.lifelineCard.header.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <hstack gap="small" alignment="start" width="70%">
+            <hstack gap="small" alignment="middle" width="70%">
               <image 
                 url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16h8V136a8,8,0,0,1,8-8H72a8,8,0,0,1,8,8v64H96V88a8,8,0,0,1,8-8h32a8,8,0,0,1,8,8V200h16V40a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8V200h8A8,8,0,0,1,232,208Z"></path></svg>`}
                 imageWidth={16}
@@ -746,7 +746,7 @@ Devvit.addCustomPostType({
       return (
         <vstack gap={gameUI.lifelineCard.header.gap} width="100%" padding={gameUI.lifelineCard.container.padding} backgroundColor={gameUI.lifelineCard.container.background} cornerRadius={gameUI.lifelineCard.container.cornerRadius}>
           <hstack width="100%">
-            <hstack gap="small" alignment="start" width="70%">
+            <hstack gap="small" alignment="middle" width="70%">
               <image 
                 url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M144.27,45.93a8,8,0,0,1,9.8-5.66,86.22,86.22,0,0,1,61.66,61.66,8,8,0,0,1-5.66,9.8A8.23,8.23,0,0,1,208,112a8,8,0,0,1-7.73-5.93,70.35,70.35,0,0,0-50.33-50.34A8,8,0,0,1,144.27,45.93Zm-2.33,41.8c13.79,3.68,22.65,12.55,26.33,26.34A8,8,0,0,0,176,120a8.23,8.23,0,0,0,2.07-.27,8,8,0,0,0,5.66-9.8c-5.12-19.16-18.5-32.54-37.66-37.66a8,8,0,1,0-4.13,15.46Zm72.43,78.73-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L126.87,168c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L89.54,41.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,24,88c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,214.37,166.46Z"></path></svg>`}
                 imageWidth={16}
@@ -1398,7 +1398,7 @@ Devvit.addCustomPostType({
                   alignment="middle center"
                 >
                   <image 
-                    url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"></path></svg>`}
+                    url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="${colors.accent}" viewBox="0 0 256 256"><path d="M224,120v96a8,8,0,0,1-8,8H160a8,8,0,0,1-8-8V164a4,4,0,0,0-4-4H108a4,4,0,0,0-4,4v52a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V120a16,16,0,0,1,4.69-11.31l80-80a16,16,0,0,1,22.62,0l80,80A16,16,0,0,1,224,120Z"></path></svg>`}
                     imageWidth={24}
                     imageHeight={24}
                     width="24px"

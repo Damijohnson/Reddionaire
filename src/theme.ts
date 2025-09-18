@@ -1,11 +1,6 @@
 // Game Show Theme System
 // Professional styling tokens for Redditionaire
 
-
-export const defaultColors = {
-
-};
-
 export const colors = {
   // Brand Colors
   background: '#5A4FCC', // Main purple background
