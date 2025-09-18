@@ -48,7 +48,9 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   
   // Fisher-Yates shuffle implementation for true randomization
   const shuffleArray = (array: any[], seed: number): any[] => {
-    const shuffled = [...array];
+    // Filter out any undefined/null items first
+    const validArray = array.filter(item => item != null);
+    const shuffled = [...validArray];
     let currentSeed = seed;
     
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -63,6 +65,12 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     return shuffled;
   };
   
+  // Ensure we have valid questions data
+  if (!questionsData || !questionsData.questions || !Array.isArray(questionsData.questions)) {
+    console.error('Invalid questions data structure');
+    return [];
+  }
+  
   // Shuffle all questions first for maximum randomization
   const shuffledQuestions = shuffleArray(questionsData.questions, hash);
   
@@ -70,10 +78,11 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
   const questionsPerGame = questionsData.metadata.questionsPerGame;
   const selectedQuestions: typeof questionsData.questions = [];
   
-  // Separate questions by difficulty
-  const easyQuestions = shuffledQuestions.filter(q => q.difficulty === "easy");
-  const mediumQuestions = shuffledQuestions.filter(q => q.difficulty === "medium");
-  const hardQuestions = shuffledQuestions.filter(q => q.difficulty === "hard");
+  // Separate questions by difficulty - filter out any undefined items first
+  const validQuestions = shuffledQuestions.filter(q => q && q.difficulty);
+  const easyQuestions = validQuestions.filter(q => q.difficulty === "easy");
+  const mediumQuestions = validQuestions.filter(q => q.difficulty === "medium");
+  const hardQuestions = validQuestions.filter(q => q.difficulty === "hard");
   
   // Progressive difficulty: first 4 questions easy, next 4 medium, last 4 hard
   const easyCount = Math.min(4, questionsPerGame);
@@ -96,10 +105,10 @@ const getQuestionsForGame = (subredditId: string): typeof questionsData.question
     ).filter(Boolean) as typeof questionsData.questions;
      
     selectedQuestions.push(...fallbackQuestions.slice(0, questionsPerGame - selectedQuestions.length));
-  }
+  } 
   
   // Randomize the position of the correct answer for each question
-  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).map((question, questionIndex) => {
+  const finalQuestions = selectedQuestions.slice(0, questionsPerGame).filter(question => question && question.options).map((question, questionIndex) => {
     // Create a copy of the question
     const shuffledQuestion = { ...question };
     
@@ -555,12 +564,12 @@ Devvit.addCustomPostType({
             <hstack width="40%">
               <hstack gap="small" alignment="middle end" width="100%">
                 <image 
-                  url={svg`<svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="m479.451 112.98-53.74-53.74c-7.811-7.811-20.474-7.811-28.284 0s-7.811 20.474 0 28.284l12.728 12.728-26.102 26.102c-33.978-28.346-75.292-45.458-119.362-49.441v-36.913h18c11.046 0 20-8.954 20-20s-8.954-20-20-20h-76c-11.046 0-20 8.954-20 20s8.954 20 20 20h18v36.913c-109.724 9.916-198 102.055-198 217.087 0 120.482 97.501 218 218 218 120.482 0 218-97.501 218-218 0-51.511-17.756-100.286-50.354-139.362l26.102-26.102 12.728 12.728c7.81 7.81 20.473 7.811 28.284 0 7.81-7.81 7.81-20.473 0-28.284zm-234.76 359.02c-98.149 0-178-79.851-178-178s79.851-178 178-178 178 79.851 178 178-79.85 178-178 178zm103.923-178c0 11.046-8.954 20-20 20h-83.922c-11.046 0-20-8.954-20-20v-117.675c0-11.046 8.954-20 20-20s20 8.954 20 20v97.675h63.922c11.046 0 20 8.954 20 20z"/></svg>`}
-                  imageWidth={15}
-                  imageHeight={15}
-                  width="15px"
-                  height="15px"
-                  description="Stopwatch icon"
+                  url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M61.66,37.66l-32,32A8,8,0,0,1,18.34,58.34l32-32A8,8,0,0,1,61.66,37.66Zm176,20.68-32-32a8,8,0,0,0-11.32,11.32l32,32a8,8,0,0,0,11.32-11.32ZM224,136a96,96,0,1,1-96-96A96.11,96.11,0,0,1,224,136Zm-32,0a8,8,0,0,0-8-8H136V80a8,8,0,0,0-16,0v56a8,8,0,0,0,8,8h56A8,8,0,0,0,192,136Z"></path></svg>`}
+                  imageWidth={20}
+                  imageHeight={20}
+                  width="20px"
+                  height="20px"
+                  description="Timer icon"
                 />
                 <text size="large" weight="bold" color={timeLeft <= 10 ? colors.error : colors.white}>{timeLeft}s</text>
               </hstack>
@@ -582,7 +591,18 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (fiftyFifty) useLifeline('fiftyFifty'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>50:50</text>
+            <hstack gap="small" alignment="middle center">
+              <image 
+                url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M224,152v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V152a16,16,0,0,1,16-16H208A16,16,0,0,1,224,152ZM208,48H48A16,16,0,0,0,32,64v40a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V64A16,16,0,0,0,208,48Z"></path></svg>`}
+                imageWidth={16}
+                imageHeight={16}
+                width="16px"
+                height="16px"
+                resizeMode="contain"
+                description="50:50 icon"
+              />
+              <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>50:50</text>
+            </hstack>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -592,7 +612,18 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (askAudience) useLifeline('askAudience'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Ask</text>
+            <hstack gap="small" alignment="middle center">
+              <image 
+                url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M64.12,147.8a4,4,0,0,1-4,4.2H16a8,8,0,0,1-7.8-6.17,8.35,8.35,0,0,1,1.62-6.93A67.79,67.79,0,0,1,37,117.51a40,40,0,1,1,66.46-35.8,3.94,3.94,0,0,1-2.27,4.18A64.08,64.08,0,0,0,64,144C64,145.28,64,146.54,64.12,147.8Zm182-8.91A67.76,67.76,0,0,0,219,117.51a40,40,0,1,0-66.46-35.8,3.94,3.94,0,0,0,2.27,4.18A64.08,64.08,0,0,1,192,144c0,1.28,0,2.54-.12,3.8a4,4,0,0,0,4,4.2H240a8,8,0,0,0,7.8-6.17A8.33,8.33,0,0,0,246.17,138.89Zm-89,43.18a48,48,0,1,0-58.37,0A72.13,72.13,0,0,0,65.07,212,8,8,0,0,0,72,224H184a8,8,0,0,0,6.93-12A72.15,72.15,0,0,0,157.19,182.07Z"></path></svg>`}
+                imageWidth={16}
+                imageHeight={16}
+                width="16px"
+                height="16px"
+                resizeMode="contain"
+                description="Ask audience icon"
+              />
+              <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Ask</text>
+            </hstack>
           </hstack>
           <hstack 
             width={`${gameUI.lifelines.button.width}%`}
@@ -602,7 +633,18 @@ Devvit.addCustomPostType({
             alignment="middle center"
             onPress={() => { if (phoneFriend) useLifeline('phoneFriend'); }}
           >
-            <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Call</text>
+            <hstack gap="small" alignment="middle center">
+              <image 
+                url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M231.88,175.08A56.26,56.26,0,0,1,176,224C96.6,224,32,159.4,32,80A56.26,56.26,0,0,1,80.92,24.12a16,16,0,0,1,16.62,9.52l21.12,47.15,0,.12A16,16,0,0,1,117.39,96c-.18.27-.37.52-.57.77L96,121.45c7.49,15.22,23.41,31,38.83,38.51l24.34-20.71a8.12,8.12,0,0,1,.75-.56,16,16,0,0,1,15.17-1.4l.13.06,47.11,21.11A16,16,0,0,1,231.88,175.08Z"></path></svg>`}
+                imageWidth={16}
+                imageHeight={16}
+                width="16px"
+                height="16px"
+                resizeMode="contain"
+                description="Phone call icon"
+              />
+              <text size={gameUI.lifelines.button.textSize} weight={gameUI.lifelines.button.textWeight} color={gameUI.lifelines.button.textColor}>Call</text>
+            </hstack>
           </hstack>
         </hstack>
       </vstack>
@@ -1180,7 +1222,15 @@ Devvit.addCustomPostType({
                   onPress={resetGame} 
                   alignment="middle center"
                 >
-                  <text size="large" weight="bold" color={colors.white}>H</text>
+                  <image 
+                    url={svg`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"></path></svg>`}
+                    imageWidth={24}
+                    imageHeight={24}
+                    width="24px"
+                    height="24px"
+                    resizeMode="contain"
+                    description="Home icon"
+                  />
                 </hstack>
               </hstack>
             </hstack>
