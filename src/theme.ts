@@ -211,13 +211,6 @@ export const gameUI = {
 };
 
 export const logo = {
-  height: 30,
-  textColor: colors.white,
-  padding: "small" as const,
-  cornerRadius: "small" as const,
-  textSize: "large" as const,
-  textWeight: "bold" as const,
-  background: colors.darkerPurple,
   icon: {
     width: 60,
     height: 60,
