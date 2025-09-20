@@ -1128,8 +1128,8 @@ Devvit.addCustomPostType({
             </hstack>
           </hstack>
         </hstack>
-        <vstack gap="none" width="100%" padding="none" backgroundColor={table.background} cornerRadius={table.cornerRadius}>
           {leaderboardData.length > 0 ? (
+            <vstack gap="none" width="100%" padding="none" backgroundColor={table.background} cornerRadius={table.cornerRadius}>
             <vstack width="100%" gap="none">
               <hstack width="100%" padding="small">
                 <text size="small" width="10%" color={table.color} weight={table.header.textWeight}>#</text>
@@ -1163,6 +1163,7 @@ Devvit.addCustomPostType({
                   </hstack>
                 </hstack>
               ))}
+            </vstack>
             </vstack>
           ) : (
             <vstack gap="large" width="100%" padding="medium" alignment="center">
@@ -1205,7 +1206,6 @@ Devvit.addCustomPostType({
               </vstack>
             </vstack>
           )}
-        </vstack>
       </vstack>
     );
 
